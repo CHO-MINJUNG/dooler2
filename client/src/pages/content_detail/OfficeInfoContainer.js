@@ -44,6 +44,7 @@ const contactCard = ({authorName, phoneNumber}) => {
 }
 
 const OfficeInfoContainer = () => {
+    //TODO: parameter 전달이 안됨;;
     return (
         <Grid container spacing={4}>
             <Grid item xs={8}>
