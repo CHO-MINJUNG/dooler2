@@ -8,7 +8,7 @@ const Main = () => {
     return (
         <Container fixed>
             <Header></Header>
-            <MainIntroBoard></MainIntroBoard>
+            {/* <MainIntroBoard></MainIntroBoard> */}
             <ContentListMain></ContentListMain>
         </Container>
     );
