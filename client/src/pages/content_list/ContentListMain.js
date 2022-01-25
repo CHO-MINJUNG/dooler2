@@ -23,7 +23,6 @@ function useFetch() {
 
 const ContentListMain = () => {
     // const data = useFetch();
-
     const data = [
         {
           id: 0,

@@ -9,11 +9,12 @@ const passport = require('passport');
 
 dotenv.config();
 
-// const db_config = require(path.join(__dirname, 'config/database.js'));
-// const connection = db_config.init();
-// db_config.connect(connection);
+const db_config = require(path.join(__dirname, 'config/database.js'));
+const connection = db_config.init();
+db_config.connect(connection);
 
 
+const mainRouter = require('./routes/main');
 // const {sequelize} = require('./models');
 // const passportConfig = require('./passport');
 
@@ -50,6 +51,7 @@ app.set('port', process.env.PORT || PORT);
 // app.use(passport.initialize());
 // app.use(passport.session());
 
+app.use('/api', mainRouter);
 
 app.use((req, res, next) => {
     const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
