@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ContentListMain from './content_list/ContentListMain';
 import Header from '../components/Header';
 import {Container} from '@mui/material';

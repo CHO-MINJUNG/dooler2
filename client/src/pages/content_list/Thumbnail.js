@@ -2,16 +2,6 @@ import React, { Component } from 'react';
 
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import { Link } from '@mui/material';
-
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-
-import office1 from '../../assets/office1.jpeg';
 
 class Thumbnail extends Component {
     render() {
