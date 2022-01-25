@@ -24,6 +24,9 @@ function useFetch() {
 const ContentListMain = () => {
     // const data = useFetch();
 
+    //TODO: Javascript에 에러 짱많음 ㅋ
+    //useFetch 쓰려고 할 때 진창남
+
     const data = [
         {
           id: 0,
