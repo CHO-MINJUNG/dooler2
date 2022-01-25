@@ -2,10 +2,10 @@ import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import Thumbnail from './Thumbnail';
 
-export default function ThumbnailContainer({itemData}) {
+export default function ThumbnailContainer(props) {
   return (
     <ImageList>
-      {itemData.map((item) => {
+      {props.itemData.map((item) => {
           return (<Thumbnail key={item.id} item={item}></Thumbnail>);
       })}
     </ImageList>
