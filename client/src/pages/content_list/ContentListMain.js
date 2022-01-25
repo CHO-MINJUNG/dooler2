@@ -23,6 +23,13 @@ function useFetch() {
 
 const ContentListMain = () => {
     // const data = useFetch();
+<<<<<<< HEAD
+=======
+
+    //TODO: Javascript에 에러 짱많음 ㅋ
+    //useFetch 쓰려고 할 때 진창남
+
+>>>>>>> remotes/origin/master
     const data = [
         {
           id: 0,
