@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import  { Main }  from './pages';
-import ContentSingle from "./pages/ContentSingle";
+import ContentSingle from "./pages/content_detail/ContentSingle";
 
 function App() {
   return (

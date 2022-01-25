@@ -1,8 +1,6 @@
 import React from 'react';
-import ContentListMain from './content_list/ContentListMain';
-import Header from '../components/Header';
+import Header from '../../components/Header';
 import {Container} from '@mui/material';
-import MainIntroBoard from './content_list/MainIntroBoard';
 
 const ContentSingle = () => {
     return (
