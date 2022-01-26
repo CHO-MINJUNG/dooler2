@@ -13,6 +13,8 @@ class Thumbnail extends Component {
         //     // title = title.concat("...");
         // }
 
+        // TODO: title 저렇게 만지고 나니까 warning 가득해짐
+
         return (
             <div>
                 <a href={"/" + this.props.item.id} style={{textDecoration: 'none', color: 'black'}}>
