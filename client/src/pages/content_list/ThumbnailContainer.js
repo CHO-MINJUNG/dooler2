@@ -6,7 +6,7 @@ export default function ThumbnailContainer(props) {
   return (
     <ImageList cols={4}>
       {props.itemData.map((item) => {
-          return (<Thumbnail key={item.id} item={item}></Thumbnail>);
+          return (<Thumbnail key={item.office_info_id} item={item}></Thumbnail>);
       })}
     </ImageList>
   );
