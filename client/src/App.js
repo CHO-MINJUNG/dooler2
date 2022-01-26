@@ -5,14 +5,14 @@ import ContentSingle from "./pages/content_detail/ContentSingle";
 import axios from "axios";
 
 function App() {
-  const callApi = async () => {
-    axios.get("/api")
-    .then(res => console.log(res))   
-  };
+  // const callApi = async () => {
+  //   axios.get("/api")
+  //   .then(res => console.log(res))   
+  // };
   
-  useEffect(() => {
-    callApi();
-  }, []);
+  // useEffect(() => {
+  //   callApi();
+  // }, []);
   return (
     <BrowserRouter>
       <Routes>
