@@ -1,6 +1,6 @@
 const {createProxyMiddleware} = require('http-proxy-middleware');
 const serverDomainUrl = 'http://localhost';
-const PORT = 5000;
+const PORT = 8000;
 
 const serverUrl = serverDomainUrl+':'+PORT;
 

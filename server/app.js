@@ -21,7 +21,7 @@ const mainRouter = require('./routes/main');
 const app = express();
 // passportConfig();
 
-const PORT = 5000;
+const PORT = 8000;
 
 app.set('port', process.env.PORT || PORT);
 
