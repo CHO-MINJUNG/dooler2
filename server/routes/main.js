@@ -19,6 +19,7 @@ router.get('/', (req,res) => {
 
 router.get('/:id', (req,res) => {
     const id = req.params.id;
+    var officeImage = {};
     connection.query(
         `select id,
         office_title,
@@ -32,8 +33,22 @@ router.get('/:id', (req,res) => {
         where id = ?`,
         id,
         (err,rows,field) => {
-            console.log(rows)
-            res.send(rows);
+            officeImage=rows[0];
+        }
+    )
+    connection.query(
+        `select image_data
+        from Office_Image
+        where office_id = ?`,
+        id,
+        (err,rows,field) => {
+            var imgList=[];
+            for(var data of rows){
+                imgList.push(data.image_data);
+            }
+            officeImage.image_link = imgList
+            console.log(officeImage)
+            res.send(officeImage)
         }
     )
 })
