@@ -9,7 +9,7 @@ db_config.connect(connection);
 
 router.get('/', (req,res) => {
     connection.query(
-        "select office_info_id, thumbnail, office_title, office_location from Office_Info",
+        "select id, thumbnail, office_title, office_location from Office_Info",
         (err,rows,field) => {
             console.log(rows)
             res.send(rows);
@@ -20,12 +20,31 @@ router.get('/', (req,res) => {
 router.get('/:id', (req,res) => {
     const id = req.params.id;
     connection.query(
-        `select image_id ,
-        office_info_id id,
-        image_data
+        `select id,
+        office_title,
+        user_name,
+        user_phone,
+        office_location,
+        office_content,
+        create_time,
+        views_count
+        from Office_Info
+        where id = ?`,
+        id,
+        (err,rows,field) => {
+            console.log(rows)
+            res.send(rows);
+        }
+    )
+})
+
+router.get('/:id/img', (req,res) => {
+    const id = req.params.id;
+    connection.query(
+        `select image_data
         from Office_Image
-        `,
-        // where office_info_id = ?id,
+        where office_id = ?`,
+        id,
         (err,rows,field) => {
             console.log(rows)
             res.send(rows);
