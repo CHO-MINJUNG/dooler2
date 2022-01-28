@@ -1,5 +1,5 @@
 const {createProxyMiddleware} = require('http-proxy-middleware');
-const serverDomainUrl = 'http://localhost';
+const serverDomainUrl = 'https://dooler.kr';
 const PORT = 8000;
 
 const serverUrl = serverDomainUrl+':'+PORT;
