@@ -21,8 +21,10 @@ const ContentSingle = () => {
 		
 		try {
 			const response = await axios.get(`/api/${id}`);
+			console.log(`ContentSingle.js response data : ${response.data}`);
 			console.log(response.data);
 			setData(response.data);
+			setLoading(false);
 		} catch(err) {
 			console.log("Error >>", err);
 		}
@@ -33,14 +35,22 @@ const ContentSingle = () => {
   }, loading);
 
 
-	return (
-		<Container fixed>
-			<Header></Header>
-			<h1>하나의 게시물입니다.</h1>
-			<OfficeImageContainer image={office}></OfficeImageContainer>
-			<OfficeInfoContainer></OfficeInfoContainer>
-		</Container>
-	);
+	console.log(`ContentSingle.js: ${data}`);
+	console.log(`ContentSingle.js: laoding is ${loading}`);
+
+	if (loading) {
+		//TODO: loading UI 디자인
+		return (<div></div>);
+	} else {
+		return (
+			<Container fixed maxWidth="sm">
+				<Header></Header>
+				<h1>하나의 게시물입니다.</h1>
+				<OfficeImageContainer imageList={office}></OfficeImageContainer>
+				<OfficeInfoContainer office={data}></OfficeInfoContainer>
+			</Container>
+		);
+	}
 };
 
 export default ContentSingle;

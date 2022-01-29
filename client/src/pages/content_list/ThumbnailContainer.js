@@ -3,6 +3,7 @@ import ImageList from '@mui/material/ImageList';
 import Thumbnail from './Thumbnail';
 
 export default function ThumbnailContainer(props) {
+  console.log(props);
   return (
     <ImageList cols={4}>
       {props.itemData.map((item) => {
