@@ -6,6 +6,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const passport = require('passport');
+const cors = require('cors');
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ db_config.connect(connection);
 
 
 const mainRouter = require('./routes/main');
+const { Server } = require('http');
 // const {sequelize} = require('./models');
 // const passportConfig = require('./passport');
 
@@ -51,6 +53,7 @@ app.set('port', process.env.PORT || PORT);
 // app.use(passport.initialize());
 // app.use(passport.session());
 
+app.use(cors());
 app.use('/api', mainRouter);
 
 app.use((req, res, next) => {
