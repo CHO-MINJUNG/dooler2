@@ -7,15 +7,16 @@ class Thumbnail extends Component {
     render() {
         const item = this.props.item;
         console.log(item);
-        const title = item.office_title.substring(0, 19);
+        var title = item.office_title.substring(0, 19);
+        title += '...';
         const imgUrl = item.thumbnail;
         const location = item.office_location;
-        const id = item.office_info_id;
+        const id = item.id;
 
-        // if (title.length > 19) {
-        //     title = item.title.substring(0, 19);
-        //     // title = title.concat("...");
-        // }
+        if (title.length > 19) {
+            title = item.title.substring(0, 19);
+            // title = title.concat("...");
+        }
 
         // TODO: title 저렇게 만지고 나니까 warning 가득해짐
 

@@ -1,20 +1,22 @@
 import { ImageList, ImageListItem } from "@mui/material";
 import React from "react";
 
-const OfficeImageContainer = ({image}) => {
+const OfficeImageContainer = ({imageList}) => {
+
+    console.log(`imageList: ${imageList}`);
     return (
         <ImageList cols={2}>
             <ImageListItem>
-                <img src={image}></img>
+                <img src={imageList[0]}></img>
             </ImageListItem> 
             <ImageListItem>
-                <img src={image}></img>
+                <img src={imageList[1]}></img>
             </ImageListItem> 
             <ImageListItem>
-                <img src={image}></img>
+                <img src={imageList[2]}></img>
             </ImageListItem> 
             <ImageListItem>
-                <img src={image}></img>
+                <img src={imageList[3]}></img>
             </ImageListItem> 
         </ImageList>
     );
