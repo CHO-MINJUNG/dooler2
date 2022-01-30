@@ -7,16 +7,16 @@ const OfficeImageContainer = ({imageList}) => {
     return (
         <ImageList cols={2}>
             <ImageListItem>
-                <img src={imageList}></img>
+                <img src={imageList[0]}></img>
             </ImageListItem> 
             <ImageListItem>
-                <img src={imageList}></img>
+                <img src={imageList[1]}></img>
             </ImageListItem> 
             <ImageListItem>
-                <img src={imageList}></img>
+                <img src={imageList[2]}></img>
             </ImageListItem> 
             <ImageListItem>
-                <img src={imageList}></img>
+                <img src={imageList[3]}></img>
             </ImageListItem> 
         </ImageList>
     );

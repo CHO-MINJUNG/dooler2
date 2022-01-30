@@ -44,13 +44,12 @@ const ContactCard = ({userName, phoneNumber}) => {
 }
 
 const OfficeInfoContainer = ({office}) => {
-    const title = office[0].office_title;
-    const location = office[0].office_location;
-    const content = office[0].office_content;
+    const title = office.office_title;
+    const location = office.office_location;
+    const content = office.office_content;
 
-    const userName = office[0].user_name;
-    const phoneNumber = office[0].user_phone;
-
+    const userName = office.user_name;
+    const phoneNumber = office.user_phone;
 
 
     return (
