@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import ContentListMain from './content_list/ContentListMain';
-import Header from '../components/Header';
+import ContentListMain from './ContentListMain';
+import Header from '../../components/Header';
 import {Container, Divider} from '@mui/material';
-import MainIntroBoard from './content_list/MainIntroBoard';
+import MainIntroBoard from './MainIntroBoard';
 
-const Main = () => {
+const MainContentList = () => {
     return (
         <Container fixed maxWidth="md">
             <Header></Header>
@@ -15,4 +15,4 @@ const Main = () => {
     );
 };
 
-export default Main;
+export default MainContentList;
