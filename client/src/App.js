@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import  { Main }  from './pages';
-import ContentSingle from "./pages/content_detail/ContentSingle";
+import MainContentList from "./pages/content_list/MainContentList";
+import MainContentSingle from "./pages/content_detail/MainContentSingle";
 import axios from "axios";
 
 function App() {
@@ -16,8 +16,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" exact={true} element={<Main/>} /> 
-        <Route path="/:id" exact={true} element={<ContentSingle/>} /> 
+        <Route path="/" exact={true} element={<MainContentList/>} /> 
+        <Route path="/:id" exact={true} element={<MainContentSingle/>} /> 
       </Routes>
     </BrowserRouter>
   );
