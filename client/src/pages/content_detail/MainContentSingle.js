@@ -11,7 +11,7 @@ import OfficeInfoContainer from './OfficeInfoContainer';
 
 import './style.css';
 
-const ContentSingle = () => {
+const MainContentSingle = () => {
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const param = useParams();
@@ -38,7 +38,7 @@ const ContentSingle = () => {
 		return (<div></div>);
 	} else {
 		return (
-			<Container fixed maxWidth="sm">
+			<Container fixed maxWidth="md">
 				<Header></Header>
 				<Divider></Divider>
 				<h1>하나의 게시물입니다.</h1>
@@ -62,4 +62,4 @@ const renderImageListOrDefault = function (officeImageData) {
 	}
 }
 
-export default ContentSingle;
+export default MainContentSingle;

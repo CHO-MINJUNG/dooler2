@@ -28,16 +28,16 @@ const OfficeInfoCard = ({title, content}) => {
 const ContactCard = ({userName, phoneNumber}) => {
     return (
     <React.Fragment>
-        <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            연락처
-        </Typography>
-        <Typography variant="body2">
-            이름: {userName}
-        </Typography>
-        <Typography variant="body2">
-            전화번호: {phoneNumber}
-        </Typography>
+        <CardContent sx={{backgroundColor:'#eeeeee'}}>
+            <Typography sx={{ fontSize: 14, fontWeight:'bold'}} color="black" gutterBottom>
+                연락처
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+                이름: {userName}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+                전화번호: {phoneNumber}
+            </Typography>
         </CardContent>
     </React.Fragment>
     );
