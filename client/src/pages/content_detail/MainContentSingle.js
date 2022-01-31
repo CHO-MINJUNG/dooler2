@@ -11,7 +11,7 @@ import OfficeInfoContainer from './OfficeInfoContainer';
 
 import './style.css';
 
-const ContentSingle = () => {
+const MainContentSingle = () => {
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const param = useParams();
@@ -37,11 +37,12 @@ const ContentSingle = () => {
 		//TODO: loading UI 디자인
 		return (<div></div>);
 	} else {
+    const title = data.office_title;
 		return (
-			<Container fixed maxWidth="sm">
+			<Container fixed maxWidth="md">
 				<Header></Header>
 				<Divider></Divider>
-				<h1>하나의 게시물입니다.</h1>
+				<h1>{title}</h1>
 				<OfficeImageContainer imageList={renderImageListOrDefault(data.image_link)}></OfficeImageContainer>
 				<OfficeInfoContainer office={data}></OfficeInfoContainer>
 			</Container>
@@ -62,4 +63,4 @@ const renderImageListOrDefault = function (officeImageData) {
 	}
 }
 
-export default ContentSingle;
+export default MainContentSingle;

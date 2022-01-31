@@ -11,13 +11,10 @@ const OfficeInfoCard = ({title, content}) => {
     return (
         <React.Fragment>
             <CardContent>
-            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                사무실 소개 글
+            <Typography sx={{ fontSize: 18, fontWeight: 'bold' }} color="black" gutterBottom>
+                Office Description
             </Typography>
-            <Typography variant="h5" sx= {{ mb: 1.5 }} component="div">
-                {title}
-            </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2" color="text.secondary">
                 {content}
             </Typography>
             </CardContent>
@@ -28,16 +25,16 @@ const OfficeInfoCard = ({title, content}) => {
 const ContactCard = ({userName, phoneNumber}) => {
     return (
     <React.Fragment>
-        <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            연락처
-        </Typography>
-        <Typography variant="body2">
-            이름: {userName}
-        </Typography>
-        <Typography variant="body2">
-            전화번호: {phoneNumber}
-        </Typography>
+        <CardContent sx={{backgroundColor:'#eeeeee'}}>
+            <Typography sx={{ fontSize: 18, fontWeight:'bold'}} color="black" gutterBottom>
+                연락처
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+                이름: {userName}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+                전화번호: {phoneNumber}
+            </Typography>
         </CardContent>
     </React.Fragment>
     );

@@ -10,6 +10,7 @@ const MainContentList = () => {
         <Container fixed maxWidth="md">
             <Header></Header>
             <Divider></Divider>
+            <br></br>
             <LongBanner></LongBanner>
             <ContentListMain></ContentListMain>
         </Container>
