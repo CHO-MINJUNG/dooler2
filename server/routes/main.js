@@ -37,14 +37,14 @@ router.get('/:id', (req,res) => {
         }
     )
     connection.query(
-        `select image_data
+        `select file_name
         from Office_Image
         where office_id = ?`,
         id,
         (err,rows,field) => {
             var imgList=[];
             for(var data of rows){
-                imgList.push(data.image_data);
+                imgList.push(data.file_name);
             }
             officeImage.image_link = imgList
             console.log(officeImage)
