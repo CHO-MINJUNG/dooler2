@@ -27,6 +27,8 @@ const PORT = 8000;
 
 app.set('port', process.env.PORT || PORT);
 
+
+app.use(cors());
 // sequelize.sync({force: false})
 //   .then(() => {
 //     console.log('데이터베이스 연결 성공');
@@ -53,7 +55,7 @@ app.set('port', process.env.PORT || PORT);
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-app.use(cors());
+app.use('/api/image', express.static('uploads'));
 app.use('/api', mainRouter);
 
 app.use((req, res, next) => {
