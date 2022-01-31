@@ -30,7 +30,7 @@ class Thumbnail extends Component {
         return (
             <div>
                 <a href={"/" + id} style={{textDecoration: 'none', color: 'black'}}>
-                <ImageListItem key={id} sx={hoverThumbnailsx()>
+                <ImageListItem key={id} sx={hoverThumbnailsx()}>
                     <img
                         src={imgSrc}
                         srcSet={`${imgSrc}`}
