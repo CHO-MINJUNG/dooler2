@@ -11,6 +11,8 @@ import OfficeInfoContainer from './OfficeInfoContainer';
 
 import './style.css';
 
+export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+
 const MainContentSingle = () => {
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
@@ -20,7 +22,7 @@ const MainContentSingle = () => {
 		const id = param.id;
 		
 		try {
-			const response = await axios.get(`/api/${id}`);
+			const response = await axios.get(`${API_BASE_URL}/api/${id}`);
 			setData(response.data);
 			setLoading(false);
 		} catch(err) {

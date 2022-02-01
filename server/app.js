@@ -29,6 +29,7 @@ app.set('port', process.env.PORT || PORT);
 
 
 app.use(cors());
+app.use(express.static(path.join(__dirname, '../build')));
 // sequelize.sync({force: false})
 //   .then(() => {
 //     console.log('데이터베이스 연결 성공');

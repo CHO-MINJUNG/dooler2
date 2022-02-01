@@ -5,14 +5,6 @@ import MainContentSingle from "./pages/content_detail/MainContentSingle";
 import axios from "axios";
 
 function App() {
-  // const callApi = async () => {
-  //   axios.get("/api")
-  //   .then(res => console.log(res))   
-  // };
-  
-  // useEffect(() => {
-  //   callApi();
-  // }, []);
   return (
     <BrowserRouter>
       <Routes>

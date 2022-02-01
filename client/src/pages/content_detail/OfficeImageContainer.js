@@ -1,8 +1,11 @@
 import { ImageList, ImageListItem } from "@mui/material";
 import React from "react";
 
+export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+
 const OfficeImageContainer = ({imageList}) => {
-    const domain = 'http://localhost:3000/api/image/';
+    const domain = `${API_BASE_URL}/api/image/`;
+    
     console.log(`imageList: ${imageList}`);
     return (
         <ImageList cols={2}>
