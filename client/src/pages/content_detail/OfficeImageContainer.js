@@ -3,6 +3,7 @@ import React from "react";
 
 const OfficeImageContainer = ({imageList}) => {
     const domain = 'http://localhost:3000/api/image/';
+    
     console.log(`imageList: ${imageList}`);
     return (
         <ImageList cols={2}>

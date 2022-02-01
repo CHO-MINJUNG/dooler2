@@ -36,6 +36,9 @@ router.get('/:id', (req,res) => {
             officeImage=rows[0];
         }
     )
+    if(officeImage ==={}){
+    }
+
     connection.query(
         `select file_name
         from Office_Image

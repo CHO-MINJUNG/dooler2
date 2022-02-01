@@ -11,7 +11,7 @@ const ContentListMain = () => {
 
   const callApi = async () => {
     try {
-      const response = await axios.get('/api')
+      const response = await axios.get('https://52.79.47.103:8000/api')
       setData(response.data)
     } catch(err) {
       console.log("Error >>", err);
