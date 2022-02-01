@@ -1,7 +1,7 @@
 import React, {useState, useEffect, Component} from 'react';
 import ThumbnailContainer from './ThumbnailContainer';
+import fetchOfficeData from './fetchOfficeData';
 
-import axios from 'axios';
 import { render } from 'react-dom';
 
 const ContentListMain = () => {
@@ -9,17 +9,8 @@ const ContentListMain = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const callApi = async () => {
-    try {
-      const response = await axios.get('/api')
-      setData(response.data)
-    } catch(err) {
-      console.log("Error >>", err);
-    }
-  }
-
   useEffect(() => {
-    callApi();
+    fetchOfficeData(setData);
   }, loading);
   
   return (
