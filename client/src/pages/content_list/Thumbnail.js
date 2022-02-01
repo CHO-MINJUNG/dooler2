@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 
+export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+
 class Thumbnail extends Component {
     render() {
         const item = this.props.item;
@@ -13,7 +15,7 @@ class Thumbnail extends Component {
         const id = item.id;
 
         title = textEllipsisOver19Chars(title);
-        const domain = 'http://localhost:3000/api/image/';
+        const domain = `${API_BASE_URL}/api/image/`;
 
         var imgSrc = domain +item.thumbnail;
         if (item.thumbnail==""){
