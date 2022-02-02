@@ -12,10 +12,10 @@ const OfficeInfoCard = ({title, content}) => {
         <React.Fragment>
             <CardContent>
             <Typography sx={{ fontSize: 18, fontWeight: 'bold' }} color="black" gutterBottom>
-                Office Description
+                호스트 메시지
             </Typography>
             <Typography variant="body2" color="text.secondary">
-                {content}
+						{content}
             </Typography>
             </CardContent>
         </React.Fragment>
@@ -50,6 +50,12 @@ const OfficeInfoContainer = ({office}) => {
 
 
     return (
+			<div
+				style={{
+					paddingTop: '50px',
+					paddingBottom: '50px',
+				}}
+			>
         <Grid container spacing={4}>
             <Grid item xs={8}>
                 <Card variant="outlined"><OfficeInfoCard title={title} content={content}></OfficeInfoCard></Card>
@@ -58,6 +64,7 @@ const OfficeInfoContainer = ({office}) => {
                 <Card variant="outlined"><ContactCard userName={userName} phoneNumber={phoneNumber}></ContactCard></Card>
             </Grid>
         </Grid>
+			</div>
     );
 };
 

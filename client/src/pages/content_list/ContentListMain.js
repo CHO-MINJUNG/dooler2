@@ -3,6 +3,7 @@ import ThumbnailContainer from './ThumbnailContainer';
 import fetchOfficeData from './fetchOfficeData';
 
 import { render } from 'react-dom';
+import { Typography } from '@mui/material';
 
 const ContentListMain = () => {
   const [data, setData] = useState([]);
@@ -14,7 +15,8 @@ const ContentListMain = () => {
 
   return (
       <div>
-          <ThumbnailContainer itemData={data}></ThumbnailContainer>
+        <br></br>
+        <ThumbnailContainer itemData={data}></ThumbnailContainer>
       </div>
   );
 }

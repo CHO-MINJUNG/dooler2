@@ -23,7 +23,7 @@ router.get('/:id', (req,res) => {
     connection.query(
         `select id,
         office_title,
-        user_name,
+        user_id,
         user_phone,
         office_location,
         office_content,

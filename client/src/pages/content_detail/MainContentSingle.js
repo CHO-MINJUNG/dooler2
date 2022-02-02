@@ -1,7 +1,7 @@
 import React, {Component, useState, useEffect} from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import {Container, Divider} from '@mui/material';
+import {Container, Divider, Typography} from '@mui/material';
 
 import Header from '../../components/Header';
 
@@ -37,14 +37,21 @@ const MainContentSingle = () => {
 
 	if (loading) {
 		//TODO: loading UI 디자인
-		return (<div></div>);
+		return (<div>로딩중</div>);
 	} else {
     const title = data.office_title;
 		return (
 			<Container fixed maxWidth="md">
 				<Header></Header>
 				<Divider></Divider>
-				<h1>{title}</h1>
+				<div 
+					style={{
+						paddingTop: '20px',
+						paddingBottom: '20px',
+					}}
+				>
+					<Typography variant='h1' fontWeight={600} fontSize={30}>{title}</Typography>
+				</div>
 				<OfficeImageContainer imageList={renderImageListOrDefault(data.image_link)}></OfficeImageContainer>
 				<OfficeInfoContainer office={data}></OfficeInfoContainer>
 			</Container>
