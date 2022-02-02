@@ -27,7 +27,6 @@ class Thumbnail extends Component {
             <div>
                 <a href={"/" + id} style={{textDecoration: 'none', color: 'black'}}>
                 <ImageListItem key={id} sx={
-									hoverThumbnailsx(),
 									thumbnailSx()
 								}>
                     <img
@@ -37,6 +36,7 @@ class Thumbnail extends Component {
                         loading="lazy"
                         style={{
                             height:"172px",
+														borderRadius: '5px 5px 0px 0px',
                         }}
                     />
 										<div style={{padding: '7px 4px 0px 14px'}}>
@@ -64,19 +64,15 @@ const textEllipsisOver19Chars = function (text) {
     return renderedText;
 }
 
-const hoverThumbnailsx = () => {
+const thumbnailSx = () => {
 	return {
+		border: '1px solid #e3e3e3',
+		borderRadius: '5px',
 		'&:hover': {  
       transform:'scale(1.1)',
 			transitionDuration: '500ms',
 			boxShadow: '0px 0px 5px #9E9E9E'
 		}
-	};
-}
-
-const thumbnailSx = () => {
-	return {
-		border: '1px solid #e3e3e3',
 	};
 }
 
