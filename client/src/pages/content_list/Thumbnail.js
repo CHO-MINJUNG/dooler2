@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
+import { color } from '@mui/system';
+import { Typography } from '@mui/material';
 
 export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
 class Thumbnail extends Component {
     render() {
         const item = this.props.item;
-        console.log(item);
         var title = item.office_title;
         const imgUrl = item.thumbnail;
         const location = item.office_location;
@@ -22,29 +23,29 @@ class Thumbnail extends Component {
             imgSrc="https://colorate.azurewebsites.net/SwatchColor/B2B2B2";
         }
 
-        // if (title.length > 19) {
-        //     title = item.title.substring(0, 19);
-        //     // title = title.concat("...");
-        // }
-
-        // TODO: title 저렇게 만지고 나니까 warning 가득해짐
-
         return (
             <div>
                 <a href={"/" + id} style={{textDecoration: 'none', color: 'black'}}>
-                <ImageListItem key={id} sx={hoverThumbnailsx()}>
+                <ImageListItem key={id} sx={
+									hoverThumbnailsx(),
+									thumbnailSx()
+								}>
                     <img
                         src={imgSrc}
                         srcSet={`${imgSrc}`}
                         alt={item.title}
                         loading="lazy"
-                        style={{width:"247px",height:"172px"}}
+                        style={{
+                            height:"172px",
+                        }}
                     />
-                    <ImageListItemBar
-                        title={title}
-                        subtitle={<span>{location}</span>}
-                        position="below"
-                    />
+										<div style={{padding: '7px 4px 0px 14px'}}>
+											<ImageListItemBar
+													title={<Typography fontWeight={500}>{title}</Typography>}
+													subtitle={<Typography sx={{fontSize: 13, marginTop: '5px'}} fontWeight={350} color="text.secondary">{location}</Typography>}
+													position="below"
+											/>
+										</div>
                 </ImageListItem>
                 </a>
             </div>
@@ -65,10 +66,17 @@ const textEllipsisOver19Chars = function (text) {
 
 const hoverThumbnailsx = () => {
 	return {
-		'&:hover': {
+		'&:hover': {  
+      transform:'scale(1.1)',
 			transitionDuration: '500ms',
-			boxShadow: '2px 2px 3px #9E9E9E'
+			boxShadow: '0px 0px 5px #9E9E9E'
 		}
+	};
+}
+
+const thumbnailSx = () => {
+	return {
+		border: '1px solid #e3e3e3',
 	};
 }
 
