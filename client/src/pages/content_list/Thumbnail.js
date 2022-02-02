@@ -24,31 +24,31 @@ class Thumbnail extends Component {
         }
 
         return (
-            <div>
-                <a href={"/" + id} style={{textDecoration: 'none', color: 'black'}}>
-                <ImageListItem key={id} sx={
-									thumbnailSx()
-								}>
-                    <img
-                        src={imgSrc}
-                        srcSet={`${imgSrc}`}
-                        alt={item.title}
-                        loading="lazy"
-                        style={{
-                            height:"172px",
-														borderRadius: '5px 5px 0px 0px',
-                        }}
-                    />
-										<div style={{padding: '7px 4px 0px 14px'}}>
-											<ImageListItemBar
-													title={<Typography fontWeight={500}>{title}</Typography>}
-													subtitle={<Typography sx={{fontSize: 13, marginTop: '5px'}} fontWeight={350} color="text.secondary">{location}</Typography>}
-													position="below"
-											/>
-										</div>
-                </ImageListItem>
-                </a>
-            </div>
+					<div>
+						<a href={"/" + id} style={{textDecoration: 'none', color: 'black'}}>
+						<ImageListItem key={id} sx={
+							thumbnailSx()
+						}>
+							<img
+									src={imgSrc}
+									srcSet={`${imgSrc}`}
+									alt={item.title}
+									loading="lazy"
+									style={{
+										height:"172px",
+										borderRadius: '5px 5px 0px 0px',
+									}}
+							/>
+									<div style={{padding: '7px 4px 0px 14px'}}>
+										<ImageListItemBar
+												title={<Typography fontWeight={500}>{title}</Typography>}
+												subtitle={<Typography sx={{fontSize: 13, marginTop: '5px'}} fontWeight={350} color="text.secondary">{location}</Typography>}
+												position="below"
+										/>
+									</div>
+							</ImageListItem>
+							</a>
+					</div>
         );
     }
 };
