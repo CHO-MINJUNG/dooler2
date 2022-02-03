@@ -14,8 +14,8 @@ const connection = db_config.init();
 db_config.connect(connection);
 
 
-router.get('/login', (req, res) => {
-    res.send()
+router.get('/me', (req, res) => {
+    // 로그인 성공
 });
 router.get('/join', (req, res) =>{
     // res.sendFile(path.join(__dirname,'../view/join.html'))

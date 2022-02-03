@@ -15,27 +15,19 @@ const authenticationButtons = (isAuthNeeded, isLoggedIn) => {
 const loginRegistrationButton = () => {
 	return (
 		<div>
-			<a href=""
+			<a href="/auth/login"
 				style={{
 					textDecoration:'none',
 					color: 'black',
-				}}
-				onClick={function (event) {
-					event.preventDefault();
-					alert('준비중입니다.')
 				}}
 			>
 				로그인
 			</a>
 			/
-			<a href=""
+			<a href="/auth/signup"
 				style={{
 					textDecoration:'none',
 					color: 'black',
-				}}
-				onClick={function (event) {
-					event.preventDefault();
-					alert('준비중입니다.')
 				}}
 			>
 				회원가입
