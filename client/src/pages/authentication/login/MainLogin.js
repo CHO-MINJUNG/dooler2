@@ -22,7 +22,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://dooler.kr">
-        Your Website
+        Dooler
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -65,7 +65,7 @@ export default function SignIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            로그인 하기
           </Typography>
           <Box component="form" onSubmit={loginSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -73,7 +73,7 @@ export default function SignIn() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="아이디"
               name="email"
               autoComplete="email"
               autoFocus
@@ -83,14 +83,10 @@ export default function SignIn() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="비밀번호"
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
             />
             <Button
               type="submit"
@@ -101,14 +97,10 @@ export default function SignIn() {
               로그인
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Typography variant='body2' sx={{display:'inline'}}>계정이 없으신가요? </Typography>
+                <Link href="/auth/signup" variant="body2">
+                  {"회원가입"}
                 </Link>
               </Grid>
             </Grid>
