@@ -17,6 +17,7 @@ import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SendIcon from '@mui/icons-material/Send';
+import { grey } from '@mui/material/colors';
 
 export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
@@ -25,7 +26,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://dooler.kr">
-        Your Website
+        Dooler
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -33,7 +34,13 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: grey[600],
+    },
+  }
+});
 
 export default function SignUp() {
   const [value, setValue] = React.useState(new Date());
@@ -54,8 +61,7 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
+      <Container component="main" maxWidth="xs" sx={{borderRadius: '5px', paddingBottom:'10px'}}>
         <Box
           sx={{
             marginTop: 8,
@@ -64,23 +70,38 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
+          <Typography component="h1" variant="h6" sx={{marginBottom: '30px', marginTop:'10px'}}>
+            회원가입    
           </Typography>
+          <Box
+            sx={{
+              alignItems: 'start',
+            }}>
+            <Typography component="h1" variant="h5">
+              지금 둘러에서 새로운 꿈을 연결보세요!
+            </Typography>
+          </Box>
           <Box component="form" noValidate action={`${API_BASE_URL}/api/auth/join`} method="post" sx={{ mt: 3 }}>
             <Grid container spacing={2}>
+              <Grid item xs={12} sx={{marginBottom: '15px',}}>
+                <TextField
+                  autoComplete="user-name"
+                  name="이름"
+                  required
+                  fullWidth
+                  id="user_name"
+                  label="이름"
+                  autoFocus
+                />
+              </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  id="email"
-                  label="Email"
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
+                  id="user_id"
+                  label="아이디"
+                  name="user_id"
+                  autoComplete="user-id"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -94,7 +115,7 @@ export default function SignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} >
                 <TextField
                   required
                   fullWidth
@@ -102,17 +123,7 @@ export default function SignUp() {
                   label="비밀번호 확인"
                   type="password"
                   id="re_password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="given-name"
-                  name="이름"
-                  required
-                  fullWidth
-                  id="name"
-                  label="이름"
+                  autoComplete="re-password"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -130,27 +141,21 @@ export default function SignUp() {
               </Stack>
               </Grid>
               <Grid item xs={12}>
-              <Box component="form" noValidate action={`${API_BASE_URL}/api/auth/join`} method="post" sx={{ mt: 3 }}>
-                <TextField
-                  autoComplete="given-name"
-                  name="phone"
-                  id="phone"
-                  label="휴대폰 번호"
-                />
-                <Button 
-                  variant="contained" 
-                  endIcon={<SendIcon />}
-                  sx={{ mt: 1, mb: 1 }}
-                >
-                  인증번호 전송
-                </Button>
-              </Box>
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
+                <Box component="form" noValidate action={`${API_BASE_URL}/api/auth/join`} method="post" sx={{ mt: 3, }} rowSpacing={'space-between'}>
+                  <TextField
+                    autoComplete="given-name"
+                    name="phone"
+                    id="phone"
+                    label="휴대폰 번호"
+                  />
+                  <Button 
+                    variant="contained" 
+                    endIcon={<SendIcon />}
+                    sx={{ mt: 1, mb: 1 }}
+                  >
+                    인증번호 전송
+                  </Button>
+                </Box>
               </Grid>
             </Grid>
             <Button
@@ -159,12 +164,13 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              완료
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container justifyContent="flex-start">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
+                <Typography variant='body2' sx={{display: 'inline'}}>이미 계정이 있으신가요? </Typography>
+                <Link href="/auth/login" variant="body2">
+                  로그인
                 </Link>
               </Grid>
             </Grid>

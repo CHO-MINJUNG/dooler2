@@ -10,14 +10,14 @@ import Typography from '@mui/material/Typography';
 const OfficeInfoCard = ({title, content}) => {
     return (
         <React.Fragment>
-            <CardContent>
-            <Typography sx={{ fontSize: 18, fontWeight: 'bold' }} color="black" gutterBottom>
-                호스트 메시지
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-						{content}
-            </Typography>
-            </CardContent>
+					<CardContent>
+					<Typography sx={{ fontSize: 18, fontWeight: 'bold' }} color="black" gutterBottom>
+						호스트 메시지
+					</Typography>
+					<Typography variant="body2" color="text.secondary" paragraph="true">
+						<p>{content}</p>
+					</Typography>
+					</CardContent>
         </React.Fragment>
     );
 }
@@ -30,10 +30,10 @@ const ContactCard = ({userName, phoneNumber}) => {
                 연락처
             </Typography>
             <Typography variant="body2" color="text.secondary">
-                이름: {userName}
+                <p>이름: {userName}</p>
             </Typography>
             <Typography variant="body2" color="text.secondary">
-                전화번호: {phoneNumber}
+                <p>전화번호: {phoneNumber}</p>
             </Typography>
         </CardContent>
     </React.Fragment>

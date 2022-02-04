@@ -29,24 +29,26 @@ class Thumbnail extends Component {
 							transitionDuration: '500ms',
 							transform:'scale(1.1)',
 						}}}>
-						<Card
-							sx={{ height: '100%', display: 'flex', flexDirection: 'column',}}
-						>
-							<CardMedia
-								component="img"
-								height={192}
-								image={imgSrc}
-								alt="사무실 사진"
-							/>
-							<CardContent sx={{ flexGrow: 1 }}>
-								<Typography fontWeight={500} noWrap={true}>
-									{title}
-								</Typography>
-								<Typography sx={{fontSize: 13, marginTop: '5px'}} fontWeight={350} color="text.secondary">
-									{location}
-								</Typography>
-							</CardContent>
-						</Card>
+						<a href={'dreams/' + id} style={{textDecoration: 'none'}}>
+							<Card
+								sx={{ height: '100%', display: 'flex', flexDirection: 'column',}}
+							>
+								<CardMedia
+									component="img"
+									height={192}
+									image={imgSrc}
+									alt="사무실 사진"
+								/>
+								<CardContent sx={{ flexGrow: 1 }}>
+									<Typography fontWeight={500} noWrap={true}>
+										{title}
+									</Typography>
+									<Typography sx={{fontSize: 13, marginTop: '5px'}} fontWeight={350} color="text.secondary">
+										{location}
+									</Typography>
+								</CardContent>
+							</Card>
+						</a>
 					</Grid>
 				);
     }
