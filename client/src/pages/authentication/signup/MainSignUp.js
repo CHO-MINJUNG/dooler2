@@ -16,6 +16,9 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import SendIcon from '@mui/icons-material/Send';
+
+export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
 function Copyright(props) {
   return (
@@ -33,7 +36,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-  const [value, setValue] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [value, setValue] = React.useState(new Date());
 
   const handleChange = (newValue) => {
     setValue(newValue);
@@ -67,7 +70,7 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate action={`${API_BASE_URL}/api/auth/join`} method="post" sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -77,6 +80,7 @@ export default function SignUp() {
                   label="Email"
                   name="email"
                   autoComplete="email"
+                  autoFocus
                 />
               </Grid>
               <Grid item xs={12}>
@@ -84,9 +88,20 @@ export default function SignUp() {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="비밀번호"
                   type="password"
                   id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="re_password"
+                  label="비밀번호 확인"
+                  type="password"
+                  id="re_password"
                   autoComplete="new-password"
                 />
               </Grid>
@@ -96,9 +111,8 @@ export default function SignUp() {
                   name="이름"
                   required
                   fullWidth
-                  id="firstName"
+                  id="name"
                   label="이름"
-                  autoFocus
                 />
               </Grid>
               <Grid item xs={12}>
@@ -114,6 +128,23 @@ export default function SignUp() {
                     />
                 </LocalizationProvider>
               </Stack>
+              </Grid>
+              <Grid item xs={12}>
+              <Box component="form" noValidate action={`${API_BASE_URL}/api/auth/join`} method="post" sx={{ mt: 3 }}>
+                <TextField
+                  autoComplete="given-name"
+                  name="phone"
+                  id="phone"
+                  label="휴대폰 번호"
+                />
+                <Button 
+                  variant="contained" 
+                  endIcon={<SendIcon />}
+                  sx={{ mt: 1, mb: 1 }}
+                >
+                  인증번호 전송
+                </Button>
+              </Box>
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel

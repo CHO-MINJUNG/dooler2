@@ -10,9 +10,10 @@ module.exports = () => {
     usernameField: 'email',
     passwordField: 'password',
   }, async (email, password, done) => {
+    console.log("왜")
     try {
+      
       const isUser = await User.findOne({ where: { email } });
-
       if (!isUser) {
         done(null, false, { message: '가입되지 않은 회원입니다.' });
       }

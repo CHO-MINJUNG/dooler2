@@ -34,7 +34,7 @@ const theme = createTheme();
 
 export default function SignIn() {
   const loginSubmit = (event) => {
-
+    event.preventDefault();
     axios.post(`${API_BASE_URL}/api/auth/login`).then((response) => {
         console.log(response.status);
         console.log(response.data.token);
@@ -67,7 +67,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={loginSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" action={`${API_BASE_URL}/api/auth/login`} method="post" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
