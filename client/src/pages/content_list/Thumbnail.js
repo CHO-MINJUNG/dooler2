@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
-import { color } from '@mui/system';
 import { Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 
 export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
@@ -15,7 +16,6 @@ class Thumbnail extends Component {
         const location = item.office_location;
         const id = item.id;
 
-        title = textEllipsisOver19Chars(title);
         const domain = `${API_BASE_URL}/api/image/`;
 
         var imgSrc = domain +item.thumbnail;
@@ -23,57 +23,33 @@ class Thumbnail extends Component {
             imgSrc="https://colorate.azurewebsites.net/SwatchColor/B2B2B2";
         }
 
-        return (
-					<div>
-						<a href={"/" + id} style={{textDecoration: 'none', color: 'black'}}>
-						<ImageListItem key={id} sx={
-							thumbnailSx()
-						}>
-							<img
-									src={imgSrc}
-									srcSet={`${imgSrc}`}
-									alt={item.title}
-									loading="lazy"
-									style={{
-										height:"172px",
-										borderRadius: '5px 5px 0px 0px',
-									}}
+				return (
+					<Grid item key={item} xs={12} sm={6} md={4} sx={
+						{'&:hover': {  
+							transitionDuration: '500ms',
+							transform:'scale(1.1)',
+						}}}>
+						<Card
+							sx={{ height: '100%', display: 'flex', flexDirection: 'column',}}
+						>
+							<CardMedia
+								component="img"
+								height={192}
+								image={imgSrc}
+								alt="사무실 사진"
 							/>
-									<div style={{padding: '7px 4px 0px 14px'}}>
-										<ImageListItemBar
-												title={<Typography fontWeight={500}>{title}</Typography>}
-												subtitle={<Typography sx={{fontSize: 13, marginTop: '5px'}} fontWeight={350} color="text.secondary">{location}</Typography>}
-												position="below"
-										/>
-									</div>
-							</ImageListItem>
-							</a>
-					</div>
-        );
+							<CardContent sx={{ flexGrow: 1 }}>
+								<Typography fontWeight={500} noWrap={true}>
+									{title}
+								</Typography>
+								<Typography sx={{fontSize: 13, marginTop: '5px'}} fontWeight={350} color="text.secondary">
+									{location}
+								</Typography>
+							</CardContent>
+						</Card>
+					</Grid>
+				);
     }
 };
-
-const textEllipsisOver19Chars = function (text) {
-    var renderedText = text;
-
-    if (text.length > 19) {
-        renderedText = renderedText.substring(0, 19);
-        renderedText += "...";
-    }
-
-    return renderedText;
-}
-
-const thumbnailSx = () => {
-	return {
-		border: '1px solid #e3e3e3',
-		borderRadius: '5px',
-		'&:hover': {  
-      transform:'scale(1.1)',
-			transitionDuration: '500ms',
-			boxShadow: '0px 0px 5px #9E9E9E'
-		}
-	};
-}
 
 export default Thumbnail;
