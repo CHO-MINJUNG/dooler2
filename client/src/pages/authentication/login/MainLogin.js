@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import fetchUserData from './fetchUserData';
 import axios from 'axios';
+import { grey } from '@mui/material/colors';
 
 export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
@@ -30,7 +31,13 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: grey[600],
+    },
+  }
+});
 
 export default function SignIn() {
   const loginSubmit = (event) => {
@@ -61,11 +68,9 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            로그인 하기
+          
+          <Typography component="h1" variant="h6" sx={{marginBottom: '30px', marginTop:'10px'}}>
+            로그인
           </Typography>
           <Box component="form" onSubmit={loginSubmit} noValidate sx={{ mt: 1 }}>
             <TextField

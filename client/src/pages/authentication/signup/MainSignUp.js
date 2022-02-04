@@ -16,13 +16,14 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { grey } from '@mui/material/colors';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://dooler.kr">
-        Your Website
+        Dooler
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -30,7 +31,13 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: grey[600],
+    },
+  }
+});
 
 export default function SignUp() {
   const [value, setValue] = React.useState(new Date('2014-08-18T21:11:54'));
@@ -51,7 +58,7 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{borderRadius: '5px', paddingBottom:'10px'}}>
         <CssBaseline />
         <Box
           sx={{
@@ -61,22 +68,38 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
+          <Typography component="h1" variant="h6" sx={{marginBottom: '30px', marginTop:'10px'}}>
+            회원가입    
           </Typography>
+          <Box
+            sx={{
+              alignItems: 'start',
+            }}>
+            <Typography component="h1" variant="h5">
+              지금 둘러에서 새로운 꿈을 연결보세요!
+            </Typography>
+          </Box>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
+              <Grid item xs={12} sx={{marginBottom: '15px',}}>
+                <TextField
+                  autoComplete="user-name"
+                  name="이름"
+                  required
+                  fullWidth
+                  id="user_name"
+                  label="이름"
+                  autoFocus
+                />
+              </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  id="email"
-                  label="Email"
-                  name="email"
-                  autoComplete="email"
+                  id="user_id"
+                  label="아이디"
+                  name="user_id"
+                  autoComplete="user-id"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -84,43 +107,43 @@ export default function SignUp() {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="비밀번호"
                   type="password"
                   id="password"
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} >
                 <TextField
-                  autoComplete="given-name"
-                  name="이름"
                   required
                   fullWidth
-                  id="firstName"
-                  label="이름"
-                  autoFocus
+                  name="re-password"
+                  label="비밀번호 확인"
+                  type="re-password"
+                  id="re-password"
+                  autoComplete="re-password"
                 />
               </Grid>
-              <Grid item xs={12}>
-              <Stack spacing={12}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DesktopDatePicker
-                    label="생년월일"
-                    inputFormat="yyyy/MM/dd"
-                    value={value}
-                    onChange={handleChange}
-                    required
-                    renderInput={(params) => <TextField {...params} />}
-                    />
-                </LocalizationProvider>
-              </Stack>
-              </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
+                <Stack spacing={12}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DesktopDatePicker
+                      label="생년월일"
+                      inputFormat="yyyy/MM/dd"
+                      value={value}
+                      onChange={handleChange}
+                      required
+                      renderInput={(params) => <TextField {...params} />}
+                      />
+                  </LocalizationProvider>
+                </Stack>
+              </Grid> */}
+              {/* <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
             <Button
               type="submit"
@@ -128,12 +151,13 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              완료
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container justifyContent="flex-start">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
+                <Typography variant='body2' sx={{display: 'inline'}}>이미 계정이 있으신가요? </Typography>
+                <Link href="/auth/login" variant="body2">
+                  로그인
                 </Link>
               </Grid>
             </Grid>
