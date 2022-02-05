@@ -6,6 +6,7 @@ import MainContentSingle from "./pages/content_detail/MainContentSingle";
 import MainLogin from "./pages/authentication/login/MainLogin";
 import MainMypage from "./pages/authentication/mypage/MainMypage";
 import MainSignUp from "./pages/authentication/signup/MainSignUp";
+import MainEditor from "./pages/editor/MainEditor";
 
 import axios from "axios";
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/auth/login" exact={true} element={<MainLogin />} />
         <Route path="/mypage" exact={true} element={<MainMypage />} />
         <Route path="/auth/signup" exact={true} element={<MainSignUp />} />
+        <Route path="/createDream" exact={true} element={<MainEditor />} />
       </Routes>
     </BrowserRouter>
   );

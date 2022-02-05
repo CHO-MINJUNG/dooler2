@@ -1,14 +1,9 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -83,7 +78,7 @@ export default function SignUp() {
           </Box>
           <Box component="form" noValidate action={`${API_BASE_URL}/api/auth/join`} method="post" sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sx={{marginBottom: '15px',}}>
+              <Grid item xs={12}>
                 <TextField
                   autoComplete="user-name"
                   name="이름"
@@ -93,6 +88,20 @@ export default function SignUp() {
                   label="이름"
                   autoFocus
                 />
+              </Grid>
+              <Grid item xs={12} sx={{marginBottom: '15px',}}>
+                <Stack spacing={12}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DesktopDatePicker
+                      label="생년월일"
+                      inputFormat="yyyy/MM/dd"
+                      value={value}
+                      onChange={handleChange}
+                      required
+                      renderInput={(params) => <TextField {...params} />}
+                      />
+                  </LocalizationProvider>
+                </Stack>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -127,34 +136,24 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
-              <Stack spacing={12}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DesktopDatePicker
-                    label="생년월일"
-                    inputFormat="yyyy/MM/dd"
-                    value={value}
-                    onChange={handleChange}
-                    required
-                    renderInput={(params) => <TextField {...params} />}
+                <Box component="form" noValidate action={`${API_BASE_URL}/api/auth/join`} method="post" spacing={8}>
+                  <Stack direction={'row'} justifyContent={'space-between'} spacing={2}>
+                    <TextField
+                      autoComplete="given-name"
+                      name="phone"
+                      id="phone"
+                      label="휴대폰 번호"
+                      fullWidth
+                      required
                     />
-                </LocalizationProvider>
-              </Stack>
-              </Grid>
-              <Grid item xs={12}>
-                <Box component="form" noValidate action={`${API_BASE_URL}/api/auth/join`} method="post" sx={{ mt: 3, }} rowSpacing={'space-between'}>
-                  <TextField
-                    autoComplete="given-name"
-                    name="phone"
-                    id="phone"
-                    label="휴대폰 번호"
-                  />
-                  <Button 
-                    variant="contained" 
-                    endIcon={<SendIcon />}
-                    sx={{ mt: 1, mb: 1 }}
-                  >
-                    인증번호 전송
-                  </Button>
+                    <Button 
+                      variant="contained" 
+                      endIcon={<SendIcon />}
+                      fullWidth
+                    >
+                      인증하기
+                    </Button>
+                    </Stack>
                 </Box>
               </Grid>
             </Grid>
