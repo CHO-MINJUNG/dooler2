@@ -1,6 +1,6 @@
 
 const authenticationButtons = (isAuthNeeded, isLoggedIn) => {
-	console.log(isAuthNeeded, isLoggedIn);
+	console.log(isAuthNeeded, isLoggedIn, 'auth');
 	if (!isAuthNeeded) {
 		return ;
 	} else {
