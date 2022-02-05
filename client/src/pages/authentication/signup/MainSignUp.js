@@ -16,7 +16,10 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import SendIcon from '@mui/icons-material/Send';
 import { grey } from '@mui/material/colors';
+
+export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
 function Copyright(props) {
   return (
@@ -40,7 +43,7 @@ const theme = createTheme({
 });
 
 export default function SignUp() {
-  const [value, setValue] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [value, setValue] = React.useState(new Date());
 
   const handleChange = (newValue) => {
     setValue(newValue);
@@ -59,7 +62,6 @@ export default function SignUp() {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs" sx={{borderRadius: '5px', paddingBottom:'10px'}}>
-        <CssBaseline />
         <Box
           sx={{
             marginTop: 8,
@@ -79,7 +81,7 @@ export default function SignUp() {
               지금 둘러에서 새로운 꿈을 연결보세요!
             </Typography>
           </Box>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate action={`${API_BASE_URL}/api/auth/join`} method="post" sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sx={{marginBottom: '15px',}}>
                 <TextField
@@ -117,33 +119,44 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  name="re-password"
+                  name="re_password"
                   label="비밀번호 확인"
-                  type="re-password"
-                  id="re-password"
+                  type="password"
+                  id="re_password"
                   autoComplete="re-password"
                 />
               </Grid>
-              {/* <Grid item xs={12}>
-                <Stack spacing={12}>
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DesktopDatePicker
-                      label="생년월일"
-                      inputFormat="yyyy/MM/dd"
-                      value={value}
-                      onChange={handleChange}
-                      required
-                      renderInput={(params) => <TextField {...params} />}
-                      />
-                  </LocalizationProvider>
-                </Stack>
-              </Grid> */}
-              {/* <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid> */}
+              <Grid item xs={12}>
+              <Stack spacing={12}>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DesktopDatePicker
+                    label="생년월일"
+                    inputFormat="yyyy/MM/dd"
+                    value={value}
+                    onChange={handleChange}
+                    required
+                    renderInput={(params) => <TextField {...params} />}
+                    />
+                </LocalizationProvider>
+              </Stack>
+              </Grid>
+              <Grid item xs={12}>
+                <Box component="form" noValidate action={`${API_BASE_URL}/api/auth/join`} method="post" sx={{ mt: 3, }} rowSpacing={'space-between'}>
+                  <TextField
+                    autoComplete="given-name"
+                    name="phone"
+                    id="phone"
+                    label="휴대폰 번호"
+                  />
+                  <Button 
+                    variant="contained" 
+                    endIcon={<SendIcon />}
+                    sx={{ mt: 1, mb: 1 }}
+                  >
+                    인증번호 전송
+                  </Button>
+                </Box>
+              </Grid>
             </Grid>
             <Button
               type="submit"
