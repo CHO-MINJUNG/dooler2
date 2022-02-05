@@ -3,7 +3,7 @@ import React from "react";
 
 import mainBoard from '../../assets/main_board_temporary.png';
 
-const LongBanner = () => {
+const ArtBoard = () => {
     return (
         <div>
             <img src={mainBoard} width={'100%'}></img>
@@ -11,4 +11,4 @@ const LongBanner = () => {
     );
 };
 
-export default LongBanner;
+export default ArtBoard;
