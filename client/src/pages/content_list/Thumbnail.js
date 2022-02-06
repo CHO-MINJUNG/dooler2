@@ -15,7 +15,7 @@ class Thumbnail extends Component {
         const location = item.office_location;
         const id = item.id;
 
-        const domain = `${API_BASE_URL}/api/image/`;
+        const domain = `${API_BASE_URL}/api/crop_image/`;
 
         var imgSrc = domain +item.thumbnail+'?size=300';
         
