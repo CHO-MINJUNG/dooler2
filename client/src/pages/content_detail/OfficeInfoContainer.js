@@ -6,6 +6,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import HtmlRenderingParagraph from "./HtmlRendering";
 
 const OfficeInfoCard = ({title, content}) => {
     return (
@@ -14,9 +15,7 @@ const OfficeInfoCard = ({title, content}) => {
 					<Typography sx={{ fontSize: 18, fontWeight: 'bold' }} color="black" gutterBottom>
 						호스트 메시지
 					</Typography>
-					<Typography variant="body2" color="text.secondary" paragraph="true">
-						<p>{content}</p>
-					</Typography>
+					<HtmlRenderingParagraph html={content}/>
 					</CardContent>
         </React.Fragment>
     );
@@ -30,10 +29,10 @@ const ContactCard = ({userName, phoneNumber}) => {
                 연락처
             </Typography>
             <Typography variant="body2" color="text.secondary">
-                <p>이름: {userName}</p>
+                전화번호: {phoneNumber}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-                <p>전화번호: {phoneNumber}</p>
+            <Typography variant="caption" color="text.secondary">
+							전화 문의시 ‘둘러에서 보고 전화드렸어요’ 라고 하시면 문의가 쉽습니다.
             </Typography>
         </CardContent>
     </React.Fragment>
