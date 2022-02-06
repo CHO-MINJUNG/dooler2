@@ -24,7 +24,7 @@ router.get('/join', (req, res) =>{
 
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
   console.log(req.body);
-  const { email, password, re_password, name, birth} = req.body; 
+  const { name, email, password, re_password, birth, phone} = req.body; 
   try{
     const isUser = await User.findOne({where: {email}});
 
@@ -39,13 +39,16 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
 
     const password_encrypted = await bcrypt.hash(password, SALTROUNDS);
     await User.create({
-      birth:birth,
-      email:email,
       name:name,
+      email:email,
       password:password_encrypted,
-    });
+      birth:birth,
+      phone:phone
+    }).then(
+      '<script type="text/javascript">alert("가입이 완료되었습니다!");</script>'
+    )
     
-    return res.redirect('/');
+    return res.end()
   } catch(error){
     console.log(error);
     return next(error);
@@ -92,16 +95,21 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
       }
       if (!isUser) {
         console.log("여기")
-        return res.redirect(`/?loginError=${info.message}`);
+        return res.send(info)
       }
       
-      return req.login(isUser, (loginError) => {
+      req.login(isUser, (loginError) => {
         if (loginError) {
-          console.error(loginError);
           return next(loginError);
-        } else{
-          return res.redirect('login-success');
-        }
+        } 
+        // const fullUserWithoutPassword = await User.findOne({
+        //   where: { email: email },
+        //   attributes: {
+        //     exclude: ['password'], // exclude: 제외한 나머지 정보 가져오기
+        //   },
+        // });
+        // // 비밀번호를 제외한 유저 정보를 json으로 응답
+        return res.json({userLogin:true});
       });
     })(req, res, next); // 미들웨어 내의 미들웨어에는 (req, res, next)를 붙입니다.
   });

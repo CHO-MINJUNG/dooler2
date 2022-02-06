@@ -43,10 +43,10 @@ const theme = createTheme({
 });
 
 export default function SignUp() {
-  const [value, setValue] = React.useState(new Date());
+  const [datevalue, setDateValue] = React.useState(new Date());
 
-  const handleChange = (newValue) => {
-    setValue(newValue);
+  const handleDateChange = (newValue) => {
+    setDateValue(newValue);
   };
 
   const handleSubmit = (event) => {
@@ -86,10 +86,10 @@ export default function SignUp() {
               <Grid item xs={12} sx={{marginBottom: '15px',}}>
                 <TextField
                   autoComplete="user-name"
-                  name="이름"
+                  name="name"
                   required
                   fullWidth
-                  id="user_name"
+                  id="name"
                   label="이름"
                   autoFocus
                 />
@@ -98,9 +98,9 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  id="user_id"
+                  id="email"
                   label="아이디"
-                  name="user_id"
+                  name="email"
                   autoComplete="user-id"
                 />
               </Grid>
@@ -132,30 +132,34 @@ export default function SignUp() {
                   <DesktopDatePicker
                     label="생년월일"
                     inputFormat="yyyy/MM/dd"
-                    value={value}
-                    onChange={handleChange}
+                    value={datevalue}
+                    onChange={handleDateChange}
                     required
-                    renderInput={(params) => <TextField {...params} />}
+                    renderInput={(params) => <TextField name='birth' {...params} />}
                     />
                 </LocalizationProvider>
               </Stack>
               </Grid>
               <Grid item xs={12}>
-                <Box component="form" noValidate action={`${API_BASE_URL}/api/auth/join`} method="post" sx={{ mt: 3, }} rowSpacing={'space-between'}>
-                  <TextField
+              <TextField
+                    fullWidth
+                    required
                     autoComplete="given-name"
                     name="phone"
                     id="phone"
                     label="휴대폰 번호"
                   />
-                  <Button 
-                    variant="contained" 
-                    endIcon={<SendIcon />}
-                    sx={{ mt: 1, mb: 1 }}
-                  >
-                    인증번호 전송
-                  </Button>
-                </Box>
+            {/* <Box component="form" noValidate action={`${API_BASE_URL}/api/sms_auth/message`} method="post" sx={{ mt: 3, }} rowSpacing={'space-between'}>
+              
+              <Button 
+                variant="contained" 
+                type="submit"
+                endIcon={<SendIcon />}
+                sx={{ mt: 1, mb: 1 }}
+              >
+                인증번호 전송
+              </Button>
+            </Box> */}
               </Grid>
             </Grid>
             <Button

@@ -17,6 +17,7 @@ db_config.connect(connection);
 
 const mainRouter = require('./routes/main');
 const authRouter = require('./routes/auth');
+const smsauthRouter = require('./routes/sms_auth');
 
 const {sequelize} = require('./models');
 const passportConfig = require('./passport');
@@ -64,6 +65,7 @@ app.use(passport.session());
 app.use('/api/image', express.static('uploads'));
 app.use('/api', mainRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/sms_auth', smsauthRouter);
 
 app.use((req, res, next) => {
     const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
