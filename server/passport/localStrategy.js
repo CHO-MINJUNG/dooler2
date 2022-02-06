@@ -12,10 +12,8 @@ module.exports = () => {
     session: true,
     passReqToCallback: false,
   }, async (email, userPassword, done) => {
-    console.log(email, userPassword)
     try {
       const isUser = await User.findOne({where:{ email }});
-      console.log(isUser)
       if (!isUser) {
         return done(null, false, { message: '가입되지 않은 회원입니다.' });
       }

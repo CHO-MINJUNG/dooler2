@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const passport = require('passport');
 const cors = require('cors');
+const sharp = require('sharp');
 
 dotenv.config();
 
@@ -66,6 +67,11 @@ app.use('/api/image', express.static('uploads'));
 app.use('/api', mainRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/sms_auth', smsauthRouter);
+
+app.get('/api/image/:ImagePath',(req,res) => {
+  console.log(req.query.size)
+  res.status(200).send(sharp(ImagePath).resize({height:parseInt(size), fit: sharp.fit.contain}).toBuffer())
+})
 
 app.use((req, res, next) => {
     const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);

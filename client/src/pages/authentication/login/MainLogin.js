@@ -42,21 +42,21 @@ const theme = createTheme({
 export default function SignIn() {
   const [userState, setUserState] = useState("");
 
-  const loginSubmit = (event) => {
-    event.preventDefault();
-    axios.post(`${API_BASE_URL}/api/auth/login`).then((response) => {
-        console.log(response.status);
-        console.log(response.data.token);
-      });
-    // event.preventDefault();
-    // const data = new FormData(event.currentTarget);
-    // // eslint-disable-next-line no-console
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
-    // fetchUserData(data.get('email'),data.get('password'))
-  };
+  // const loginSubmit = (event) => {
+  //   event.preventDefault();
+  //   axios.post(`${API_BASE_URL}/api/auth/login`).then((response) => {
+  //       console.log(response.status);
+  //       console.log(response.data.token);
+  //     });
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   // eslint-disable-next-line no-console
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  //   fetchUserData(data.get('email'),data.get('password'))
+  // };
 
   return (
     <ThemeProvider theme={theme}>
@@ -77,8 +77,6 @@ export default function SignIn() {
           <Box component="form"
            onSubmit={(e) => {
              e.preventDefault();
-             console.log(e.target.email.value)
-             console.log(e.target.password.value)
              let userInputData = {
                email: e.target.email.value,
                password: e.target.password.value,
@@ -88,7 +86,7 @@ export default function SignIn() {
                url: `${API_BASE_URL}/api/auth/login`,
                data: {email: userInputData.email, password: userInputData.password}
              }).then((result) => {
-              console.log() 
+              console.log(result.request.response['userLogin']);
               setUserState(result.data.message)})
            }}
            //action={`${API_BASE_URL}/api/auth/login`} method="post" 
