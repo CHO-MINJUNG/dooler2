@@ -1,7 +1,8 @@
 import sanitizeHtml from 'sanitize-html';
 
 const defaultOptions = {
-  allowedTags: [ 'b', 'i', 'em', 'strong', 'p', 'u', 's', 'ul', 'ol', 'span'],
+  allowedTags: [ 'b', 'i', 'em', 'strong', 'p', 'u', 's', 'ul', 'ol', 'span', 'strong', 'li', 'br'],
+  
   allowedIframeHostnames: ['www.youtube.com']
 };
 
