@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState, useEffect, Component} from 'react';
 import { Avatar } from '@mui/material';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -40,6 +40,8 @@ const theme = createTheme({
 });
 
 export default function SignIn() {
+  const [userState, setUserState] = useState("");
+
   const loginSubmit = (event) => {
     event.preventDefault();
     axios.post(`${API_BASE_URL}/api/auth/login`).then((response) => {
@@ -72,7 +74,25 @@ export default function SignIn() {
           <Typography component="h1" variant="h6" sx={{marginBottom: '30px', marginTop:'10px'}}>
             로그인
           </Typography>
-          <Box component="form" action={`${API_BASE_URL}/api/auth/login`} method="post" noValidate sx={{ mt: 1 }}>
+          <Box component="form"
+           onSubmit={(e) => {
+             e.preventDefault();
+             console.log(e.target.email.value)
+             console.log(e.target.password.value)
+             let userInputData = {
+               email: e.target.email.value,
+               password: e.target.password.value,
+             }
+             axios({
+               method:'post',
+               url: `${API_BASE_URL}/api/auth/login`,
+               data: {email: userInputData.email, password: userInputData.password}
+             }).then((result) => {
+              console.log() 
+              setUserState(result.data.message)})
+           }}
+           //action={`${API_BASE_URL}/api/auth/login`} method="post" 
+           noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -93,6 +113,7 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
+            <Typography>{userState}</Typography>
             <Button
               type="submit"
               fullWidth
