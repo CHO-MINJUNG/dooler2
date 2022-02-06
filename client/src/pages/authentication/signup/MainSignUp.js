@@ -89,20 +89,6 @@ export default function SignUp() {
                   autoFocus
                 />
               </Grid>
-              <Grid item xs={12} sx={{marginBottom: '15px',}}>
-                <Stack spacing={12}>
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DesktopDatePicker
-                      label="생년월일"
-                      inputFormat="yyyy/MM/dd"
-                      value={value}
-                      onChange={handleChange}
-                      required
-                      renderInput={(params) => <TextField {...params} />}
-                      />
-                  </LocalizationProvider>
-                </Stack>
-              </Grid>
               <Grid item xs={12}>
                 <TextField
                   required

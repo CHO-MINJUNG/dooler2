@@ -29,10 +29,10 @@ const ContactCard = ({userName, phoneNumber}) => {
                 연락처
             </Typography>
             <Typography variant="body2" color="text.secondary">
-                이름: {userName}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
                 전화번호: {phoneNumber}
+            </Typography>
+            <Typography variant="caption" color="text.secondary">
+							전화 문의시 ‘둘러에서 보고 전화드렸어요’ 라고 하시면 문의가 쉽습니다.
             </Typography>
         </CardContent>
     </React.Fragment>
