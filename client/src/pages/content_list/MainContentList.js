@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import ContentListMain from './ContentListMain';
 import Header from '../../components/Header';
 import {Container, Divider} from '@mui/material';
-import MainIntroBoard from './LongBanner';
-import LongBanner from './LongBanner';
+import ArtBoard from './ArtBoard';
+import ButtonsOfMainPage from './ButtonsOfMainPage';
 
 const MainContentList = () => {
     return (
@@ -11,7 +11,9 @@ const MainContentList = () => {
             <Header></Header>
             <Divider></Divider>
             <br></br>
-            <LongBanner></LongBanner>
+            <ArtBoard></ArtBoard>
+            <br></br>
+            <ButtonsOfMainPage></ButtonsOfMainPage>
             <ContentListMain></ContentListMain>
         </Container>
     );
