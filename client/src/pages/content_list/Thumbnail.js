@@ -12,17 +12,13 @@ class Thumbnail extends Component {
     render() {
         const item = this.props.item;
         var title = item.office_title;
-        const imgUrl = item.thumbnail;
         const location = item.office_location;
         const id = item.id;
 
-        const domain = `${API_BASE_URL}/api/image/`;
+        const domain = `${API_BASE_URL}/api/crop_image/`;
 
-        var imgSrc = domain +item.thumbnail;
-        if (item.thumbnail==""){
-            imgSrc="https://colorate.azurewebsites.net/SwatchColor/B2B2B2";
-        }
-
+        var imgSrc = domain +item.thumbnail+'?size=300';
+        
 				return (
 					<Grid item key={item} xs={12} sm={6} md={4} sx={
 						{'&:hover': {  

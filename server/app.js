@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const passport = require('passport');
 const cors = require('cors');
+const sharp = require('sharp');
 
 dotenv.config();
 
@@ -28,7 +29,6 @@ passportConfig();
 const PORT = 8000;
 
 app.set('port', process.env.PORT || PORT);
-
 
 app.use(cors({
   origin:true,
@@ -66,6 +66,33 @@ app.use('/api/image', express.static('uploads'));
 app.use('/api', mainRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/sms_auth', smsauthRouter);
+
+app.get('/api/crop_image/:ImagePath',(req,res) => {
+  console.log('Cropped image is rendered');
+  const imageFile = path.join(__dirname,`uploads/${req.params.ImagePath}`);
+
+  sharp(imageFile)
+  .resize({height:parseInt(req.query.size), fit: sharp.fit.contain})
+  .toBuffer((err,data, info) => {
+    res.status(200).end(data);
+  });
+
+  // sharp(imageFile)
+  //   .resize({height:parseInt(req.query.size), fit: sharp.fit.contain})
+  //   .toBuffer()
+  //   .then(
+  //     ({ data, info }) => {
+  //       console.log(data);
+  //       console.log(info);
+  //       // res.status(200).send(data)
+  //     }
+  //   )
+  //   .catch(
+  //     err => {
+  //       console.log(err)
+  //     }
+  //   );
+});
 
 app.use((req, res, next) => {
     const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);

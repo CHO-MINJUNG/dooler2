@@ -13,6 +13,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SendIcon from '@mui/icons-material/Send';
 import { grey } from '@mui/material/colors';
+import axios from 'axios';
 
 export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
@@ -39,6 +40,7 @@ const theme = createTheme({
 
 export default function SignUp() {
   const [datevalue, setDateValue] = React.useState(new Date());
+  const [SignupState, setSignupState] = React.useState("");
 
   const handleDateChange = (newValue) => {
     setDateValue(newValue);
@@ -76,7 +78,33 @@ export default function SignUp() {
               지금 둘러에서 새로운 꿈을 연결보세요!
             </Typography>
           </Box>
-          <Box component="form" noValidate action={`${API_BASE_URL}/api/auth/join`} method="post" sx={{ mt: 3 }}>
+          <Box component="form" noValidate
+            onSubmit={(e) => {
+              e.preventDefault();
+              let userInputData = {
+                name: e.target.name.value, 
+                email: e.target.email.value,
+                password: e.target.password.value,
+                re_password: e.target.re_password.value,
+                birth: e.target.birth.value,
+                phone: e.target.phone.value
+              }
+              axios({
+                method:'post',
+                url: `${API_BASE_URL}/api/auth/join`,
+                data: {
+                  name: userInputData.name,
+                  email: userInputData.email, 
+                  password: userInputData.password,
+                  re_password: userInputData.re_password,
+                  birth: userInputData.birth,
+                  phone: userInputData.phone
+                }
+              }).then((result) => {
+              setSignupState(result.data.message)
+            })}}
+            // action={`${API_BASE_URL}/api/auth/join`} method="post" 
+            sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -157,6 +185,7 @@ export default function SignUp() {
             </Box> */}
               </Grid>
             </Grid>
+            <Typography>{SignupState}</Typography>
             <Button
               type="submit"
               fullWidth
