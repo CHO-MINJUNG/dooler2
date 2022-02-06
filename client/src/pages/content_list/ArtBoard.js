@@ -1,12 +1,19 @@
 import { Card } from "@mui/material";
 import React from "react";
+import MediaQuery from 'react-responsive';
 
-import mainBoard from '../../assets/main_board_temporary.png';
+import artboardLong from '../../assets/artboard_long.png';
+import artboardShort from '../../assets/artboard_short.png';
 
 const ArtBoard = () => {
     return (
         <div>
-            <img src={mainBoard} width={'100%'}></img>
+            <MediaQuery maxWidth={900}>
+                <img src={artboardShort} width={'100%'}></img>
+            </MediaQuery>
+            <MediaQuery minWidth={901}>
+                <img src={artboardLong} width={'100%'}></img>
+            </MediaQuery>
         </div>
     );
 };
