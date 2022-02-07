@@ -18,7 +18,8 @@ db_config.connect(connection);
 
 const mainRouter = require('./routes/main');
 const authRouter = require('./routes/auth');
-const smsauthRouter = require('./routes/sms_auth');
+// const smsauthRouter = require('./routes/sms_auth');
+
 
 const {sequelize} = require('./models');
 const passportConfig = require('./passport');
@@ -62,12 +63,11 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/api/image', express.static('uploads'));
 app.use('/api', mainRouter);
 app.use('/api/auth', authRouter);
-app.use('/api/sms_auth', smsauthRouter);
+// app.use('/api/sms_auth', smsauthRouter);
 
-app.get('/api/crop_image/:ImagePath',(req,res) => {
+app.get('api/uploads/:ImagePath',(req,res) => {
   console.log('Cropped image is rendered');
   const imageFile = path.join(__dirname,`uploads/${req.params.ImagePath}`);
 

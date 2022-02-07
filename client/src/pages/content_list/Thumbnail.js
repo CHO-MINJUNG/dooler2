@@ -32,7 +32,7 @@ class Thumbnail extends Component {
 								<CardMedia
 									component="img"
 									height={192}
-									image={imgSrc}
+									image={item.thumbnail}
 									alt="사무실 사진"
 								/>
 								<CardContent sx={{ flexGrow: 1 }}>
