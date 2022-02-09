@@ -48,7 +48,14 @@ const ImagePreviewer = () => {
 				alignContent={'center'} 
 				height={'500px'}
 			>
-				<input key={i} type="file" name="myImage" data-id={i} onChange={onImageChange}/>
+				<input 
+					key={i} 
+					type="file" 
+					name="myImage" 
+					data-id={i} 
+					accept=".jpg, .jpeg, .png .gif .bmp"
+					onChange={onImageChange}
+				/>
 			</Grid>
 		);
 	};
