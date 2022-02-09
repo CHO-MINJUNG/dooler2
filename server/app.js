@@ -18,6 +18,7 @@ db_config.connect(connection);
 
 const mainRouter = require('./routes/main');
 const authRouter = require('./routes/auth');
+const officeInfoRouter = require('./routes/office_info');
 // const smsauthRouter = require('./routes/sms_auth');
 
 
@@ -55,8 +56,9 @@ app.use(session({
   secret: process.env.COOKIE_SECRET,
   cookie: {
     httpOnly: true,
-    secure: false,
+    secure: true,
   },
+  name:'hi',
 }));
 app.use(bodyParser.urlencoded({extended:false}));
 
@@ -65,17 +67,18 @@ app.use(passport.session());
 
 app.use('/api', mainRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/office_info', officeInfoRouter);
 // app.use('/api/sms_auth', smsauthRouter);
 
-app.get('api/uploads/:ImagePath',(req,res) => {
-  console.log('Cropped image is rendered');
-  const imageFile = path.join(__dirname,`uploads/${req.params.ImagePath}`);
+// app.get('api/uploads/:ImagePath',(req,res) => {
+//   console.log('Cropped image is rendered');
+//   const imageFile = path.join(__dirname,`uploads/${req.params.ImagePath}`);
 
-  sharp(imageFile)
-  .resize({height:parseInt(req.query.size), fit: sharp.fit.contain})
-  .toBuffer((err,data, info) => {
-    res.status(200).end(data);
-  });
+//   sharp(imageFile)
+//   .resize({height:parseInt(req.query.size), fit: sharp.fit.contain})
+//   .toBuffer((err,data, info) => {
+//     res.status(200).end(data);
+//   });
 
   // sharp(imageFile)
   //   .resize({height:parseInt(req.query.size), fit: sharp.fit.contain})
@@ -92,7 +95,7 @@ app.get('api/uploads/:ImagePath',(req,res) => {
   //       console.log(err)
   //     }
   //   );
-});
+// });
 
 app.use((req, res, next) => {
     const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);

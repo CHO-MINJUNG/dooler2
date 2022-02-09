@@ -93,13 +93,14 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
         return next(authError);
       }
       if (!isUser) {
-        return res.send(info)
+        return res.json({userLogin:false, message: info.message})
       }
       
       req.login(isUser, (loginError) => {
         if (loginError) {
           return next(loginError);
         } 
+        console.log(isUser.cookie);
         // const fullUserWithoutPassword = await User.findOne({
         //   where: { email: email },
         //   attributes: {
@@ -107,9 +108,9 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
         //   },
         // });
         // // 비밀번호를 제외한 유저 정보를 json으로 응답
-        return res.json({userLogin:true});
+        return res.json({userLogin:true, userId: isUser.id});
       });
-    })(req, res, next); // 미들웨어 내의 미들웨어에는 (req, res, next)를 붙입니다.
+    })(req, res, next) ; // 미들웨어 내의 미들웨어에는 (req, res, next)를 붙입니다.
   });
   
   router.get('/logout', isLoggedIn, (req, res, ) => {
