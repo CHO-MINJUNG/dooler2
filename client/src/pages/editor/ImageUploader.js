@@ -11,7 +11,7 @@ const ImageUploader = () => {
   const prevImage3 = useSelector((state) => state.imageList[3]);
 
   return (
-    <div>
+    <div style={{paddingTop: '15px',}}>
       <ImagePreviewer/>
     </div>
   );

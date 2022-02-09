@@ -10,14 +10,16 @@ const FormContainer = () => {
 
   const contentStore = createStore(contentReducer);
   return (
-    <Provider store={contentStore}>
-      <TitleEditor
-        placeholder={"제목을 입력해주세요"}
-      />
-      {/* <OfficeImageContainer imageList={renderImageListOrDefault(data.image_link)}></OfficeImageContainer> */}
-      <ImageUploader/>
-      <OfficeInfoEditor></OfficeInfoEditor>
-    </Provider>
+    <div style={{paddingTop: '10px'}}>
+      <Provider store={contentStore}>
+        <TitleEditor
+          placeholder={"제목을 입력해주세요"}
+        />
+        {/* <OfficeImageContainer imageList={renderImageListOrDefault(data.image_link)}></OfficeImageContainer> */}
+        <ImageUploader/>
+        <OfficeInfoEditor></OfficeInfoEditor>
+      </Provider>
+    </div>
   );
 };
 
