@@ -53,7 +53,7 @@ const ImagePreviewer = () => {
 					type="file" 
 					name="myImage" 
 					data-id={i} 
-					accept=".jpg, .jpeg, .png .gif .bmp"
+					accept="image/*"
 					onChange={onImageChange}
 				/>
 			</Grid>
