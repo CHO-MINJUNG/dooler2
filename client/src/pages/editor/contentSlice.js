@@ -2,6 +2,8 @@ import { createStore } from 'redux';
 import { Provider, useSelector, useDispatch, connect } from 'react-redux';
 import { modalUnstyledClasses } from '@mui/material';
 
+import office from '../../assets/office1.jpeg';
+
 const contentReducer = (currentState, action) => {
   if (currentState === undefined) {
     return {
@@ -30,11 +32,13 @@ const contentReducer = (currentState, action) => {
       break;
     case 'MAINTEXT_CHANGE':
       newState.mainText = action.text;
-    case 'PLUS':
-      newState.imageList[0] = 5;
       break;
-    case 'DELETE':
+    case 'IMAGE_UPLOAD':
+      newState.imageList[action.index] = action.image;
+      break;
+    case 'IMAGE_DELETE':
       newState.imageList[action.index] = null;
+      break;
     default:
       console.log('error: content redux error, no type');
   }

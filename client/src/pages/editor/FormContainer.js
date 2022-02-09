@@ -4,6 +4,7 @@ import OfficeInfoEditor from "./OfficeInfoEditor";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import contentReducer from './contentSlice';
+import ImageUploader from "./ImageUploader";
 
 const FormContainer = () => {
 
@@ -14,6 +15,7 @@ const FormContainer = () => {
         placeholder={"제목을 입력해주세요"}
       />
       {/* <OfficeImageContainer imageList={renderImageListOrDefault(data.image_link)}></OfficeImageContainer> */}
+      <ImageUploader/>
       <OfficeInfoEditor></OfficeInfoEditor>
     </Provider>
   );
