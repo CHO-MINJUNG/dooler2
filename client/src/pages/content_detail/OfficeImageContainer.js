@@ -5,7 +5,7 @@ import Carousel from 'nuka-carousel';
 export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
 const OfficeImageContainer = ({imageList}) => {
-    const domain = `${API_BASE_URL}/api/image/`;
+    // const domain = `${API_BASE_URL}/api/image/`;
     
     console.log(`imageList: ${imageList}`);
     return (
@@ -13,10 +13,10 @@ const OfficeImageContainer = ({imageList}) => {
 					defaultControlsConfig={{prevButtonText: '<', nextButtonText: '>'}}
 					heightMode="current"
 				>
-					<img src={domain+imageList[0]} style={imgStyle()}></img>
-					<img src={domain+imageList[1]} style={imgStyle()}></img>
-					<img src={domain+imageList[2]} style={imgStyle()}></img>
-					<img src={domain+imageList[3]} style={imgStyle()}></img>
+					<img src={imageList[0]} style={imgStyle()}></img>
+					<img src={imageList[1]} style={imgStyle()}></img>
+					<img src={imageList[2]} style={imgStyle()}></img>
+					<img src={imageList[3]} style={imgStyle()}></img>
         </Carousel>
     );
 };
