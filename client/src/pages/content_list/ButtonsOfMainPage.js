@@ -8,10 +8,6 @@ const ButtonsOfMainPage = () => {
   return (
     <Grid container justifyContent={'flex-start'}>
       <Button href={"/createDream"} 
-        onClick= {function(event) {
-          event.preventDefault();
-          alert('준비중입니다');
-        }}
         sx={{
           border: '1px solid black',
           color: 'black',
