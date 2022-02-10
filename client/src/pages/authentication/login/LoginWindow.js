@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState} from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -13,6 +13,8 @@ import { useDispatch } from 'react-redux';
 
 import {authAction} from './loginSlice';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 const Copyright = (props) => {
   return (
@@ -37,11 +39,10 @@ const theme = createTheme({
 
 export const LoginWindow = () => {
   const dispatch = useDispatch();
-	let navigate = useNavigate();
+  let fail_message = useSelector(state => state.message);
+	let isUser = useSelector(state => state.isLoggedIn)
+  let navigate = useNavigate();
 
-// const [userState, setUserState] = useState("");
-
-//   userState = useSelector();
 
   const loginSubmit = (event) => {
     event.preventDefault();
@@ -51,13 +52,8 @@ export const LoginWindow = () => {
     }
     dispatch(authAction(userInputData))
 		.then(response => {
-			const isUser = response.payload.userLogin;
-			const message = response.payload.message;
-
 			if(isUser){
 				navigate('/');
-			} else{
-				alert(message)
 			}
 		})
   };
@@ -82,6 +78,7 @@ export const LoginWindow = () => {
             loginSubmit(e)
            }}
            noValidate sx={{ mt: 1 }}>
+             {/* //TODO: required가 작동하지 않는 문제 해결. reducer에서 점검하면 state 바꾸는 게 애매해짐. */}
             <TextField
               margin="normal"
               required
@@ -102,7 +99,7 @@ export const LoginWindow = () => {
               id="password"
               autoComplete="current-password"
             />
-            {/* <Typography>{userState}</Typography> */}
+            <Typography>{fail_message}</Typography>
             <Button
               type="submit"
               fullWidth

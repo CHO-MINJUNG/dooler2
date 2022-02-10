@@ -86,7 +86,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
 //   });
 
 // authenticate(전략, 콜백함수(앞의 전략(local)에서 done함수 결과값들을 차례대로 받아오게 하는 것))
-  router.post('/login',isNotLoggedIn, (req, res, next) => {
+  router.post('/login', isNotLoggedIn, (req, res, next) => {
     passport.authenticate('local', (authError, isUser, info) => {
       if (authError) {
         console.error(authError);
@@ -100,7 +100,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
         if (loginError) {
           return next(loginError);
         } 
-        console.log(isUser.cookie);
+        // console.log(isUser.cookie);
         // const fullUserWithoutPassword = await User.findOne({
         //   where: { email: email },
         //   attributes: {

@@ -1,20 +1,26 @@
-import React from 'react';
+import React, {Component, useState, useEffect} from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import {Container, Divider, Typography} from '@mui/material';
+
 import Header from '../../components/Header';
-import {Container, Divider} from '@mui/material';
-import EditorSection from './EditorSection';
-import ImageUploaderSection from './ImageUploaderSection';
 
-const MainEditor = ({}) => {
+import FormContainer from './FormContainer';
 
-	return (
-    <Container fixed maxWidth="md">
-        <Header></Header>
-        <Divider></Divider>
-        <br></br>
-        <EditorSection></EditorSection>
-        <ImageUploaderSection></ImageUploaderSection>
-    </Container> 
-  );
+
+export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+
+const MainEditor = () => {
+	//  const title = data.office_title;
+		return (
+			<Container fixed maxWidth="md">
+				<Header></Header>
+				<Divider></Divider>
+				<FormContainer></FormContainer>
+			</Container>
+		);
+
+
 }
 
 export default MainEditor;

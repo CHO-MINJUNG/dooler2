@@ -9,13 +9,13 @@ import CardMedia from '@mui/material/CardMedia';
 export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
 class Thumbnail extends Component {
-    render() {
-        const item = this.props.item;
-        var title = item.office_title;
-        const location = item.office_location;
-        const id = item.id;
+	render() {
+		const item = this.props.item;
+		var title = item.office_title;
+		const location = item.office_location;
+		const id = item.id;
 
-        const domain = `${API_BASE_URL}/api/crop_image/`;
+		const domain = `${API_BASE_URL}/api/crop_image/`;
 
         var imgSrc = domain +item.thumbnail+'/300';
         
