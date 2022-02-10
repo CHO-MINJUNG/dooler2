@@ -27,7 +27,6 @@ const passportConfig = require('./passport');
 
 const app = express();
 passportConfig();
-
 const PORT = 8000;
 
 app.set('port', process.env.PORT || PORT);
@@ -64,6 +63,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.use('/api', mainRouter);
 app.use('/api/auth', authRouter);

@@ -7,9 +7,12 @@ exports.isLoggedIn = (req, res, next) => {
   };
   
 exports.isNotLoggedIn = (req, res, next) => {
+  console.log(req);
   if (!req.isAuthenticated()) {
+    console.log('왔다')
     next();
   } else {
+    console.log('여긴데')
     const message = encodeURIComponent('로그인한 상태입니다.');
     res.redirect(`/?error=${message}`);
   }

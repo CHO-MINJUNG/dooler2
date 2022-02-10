@@ -13,7 +13,9 @@ export const authAction = (userInputData) => {
     url: `${API_BASE_URL}/api/auth/login`,
     data: {email: userInputData.email, password: userInputData.password},
   })
-    .then(response => response.data);
+    .then(response => {
+      console.log(response);
+      return response.data});
 
   return{
     type: "LOGIN_USER",
@@ -33,11 +35,13 @@ export const authReducer = (currentState, action) => {
 
 	switch (action.type){
 		case 'LOGIN_USER':
-      return {
+      currentState = {
         ...currentState, 
         isLoggedIn: action.payload.userLogin, 
-        userId: action.payload.id,
-        message: action.payload.message }
+        userId: action.payload.userId,
+        message: action.payload.message
+      }
+      //console.log(currentState)
 			break;
 
 		default:

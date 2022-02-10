@@ -86,29 +86,21 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
 //   });
 
 // authenticate(전략, 콜백함수(앞의 전략(local)에서 done함수 결과값들을 차례대로 받아오게 하는 것))
-  router.post('/login', isNotLoggedIn, (req, res, next) => {
+  router.post('/login',isNotLoggedIn, (req, res, next) => {
     passport.authenticate('local', (authError, isUser, info) => {
       if (authError) {
         console.error(authError);
         return next(authError);
       }
       if (!isUser) {
-        return res.json({userLogin:false, message: info.message})
+        return res.send({userLogin:false, message: info.message})
       }
       
-      req.login(isUser, (loginError) => {
+      return req.login(isUser, (loginError) => {
         if (loginError) {
           return next(loginError);
         } 
-        // console.log(isUser.cookie);
-        // const fullUserWithoutPassword = await User.findOne({
-        //   where: { email: email },
-        //   attributes: {
-        //     exclude: ['password'], // exclude: 제외한 나머지 정보 가져오기
-        //   },
-        // });
-        // // 비밀번호를 제외한 유저 정보를 json으로 응답
-        return res.json({userLogin:true, userId: isUser.id});
+        return res.send({userLogin:true});
       });
     })(req, res, next) ; // 미들웨어 내의 미들웨어에는 (req, res, next)를 붙입니다.
   });

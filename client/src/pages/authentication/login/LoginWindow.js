@@ -14,7 +14,9 @@ import { useDispatch } from 'react-redux';
 import {authAction} from './loginSlice';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 
+export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
 const Copyright = (props) => {
   return (
@@ -39,9 +41,10 @@ const theme = createTheme({
 
 export const LoginWindow = () => {
   const dispatch = useDispatch();
-  let fail_message = useSelector(state => state.message);
-	let isUser = useSelector(state => state.isLoggedIn)
   let navigate = useNavigate();
+
+  let fail_message = useSelector(state => state.message);
+  let isUser = useSelector(state => state.isLoggedIn)
 
 
   const loginSubmit = (event) => {
@@ -50,13 +53,22 @@ export const LoginWindow = () => {
       email: event.target.email.value,
       password: event.target.password.value,
     }
-    dispatch(authAction(userInputData))
-		.then(response => {
-			if(isUser){
-				navigate('/');
-			}
-		})
-  };
+    axios({
+      method:'POST',
+      url: `${API_BASE_URL}/api/auth/login`,
+      data: {email: userInputData.email, password: userInputData.password},
+      withCredentials: true
+    }). then(response => {
+      if(response.data.userLogin) navigate('/');
+    })
+    
+    // dispatch(authAction(userInputData))
+		// .then(response => {
+    //   if(response.payload.userLogin){
+    //     navigate('/');
+    //   }
+		}
+  
 
 
   return (

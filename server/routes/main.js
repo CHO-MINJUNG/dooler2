@@ -11,7 +11,6 @@ router.get('/', (req,res) => {
     connection.query(
         "select id, thumbnail, office_title, office_location from Office_Info",
         (err,rows,field) => {
-            console.log(rows)
             res.send(rows);
         }
     )
@@ -50,7 +49,6 @@ router.get('/:id', (req,res) => {
                 imgList.push(data.file_name);
             }
             officeImage.image_link = imgList
-            console.log(officeImage)
             res.send(officeImage)
         }
     )
@@ -64,7 +62,6 @@ router.get('/:id/img', (req,res) => {
         where office_id = ?`,
         id,
         (err,rows,field) => {
-            console.log(rows)
             res.send(rows);
         }
     )
