@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import contentReducer from './contentSlice';
 import ImageUploader from "./ImageUploader";
+import ThumnbnailEditor from "./ThumbnailEditor";
 
 const FormContainer = () => {
 
