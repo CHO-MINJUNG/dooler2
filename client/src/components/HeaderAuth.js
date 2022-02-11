@@ -1,5 +1,21 @@
+import axios from 'axios';
+import { useState } from 'react';
+axios.defaults.withCredentials=true;
 
-const authenticationButtons = (isAuthNeeded, isLoggedIn) => {
+// export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+
+// const [loginData, setLoginData] = useState(false);
+
+// exports.isLoggedIn = axios({
+//     method:'GET',
+//     url: `${API_BASE_URL}/api/auth/session`,
+// }).then(response =>{
+//     setLoginData(response.data)
+// 	}
+// )
+
+
+export const authenticationButtons = (isAuthNeeded, isLoggedIn) => {
 	if (!isAuthNeeded) {
 		return ;
 	} else {
@@ -11,7 +27,7 @@ const authenticationButtons = (isAuthNeeded, isLoggedIn) => {
 	}
 }
 
-const loginRegistrationButton = () => {
+export const loginRegistrationButton = () => {
 	return (
 		<div>
 			<a href="/auth/login"
@@ -35,7 +51,7 @@ const loginRegistrationButton = () => {
 	);
 }
 
-const logoutMypageButton = () => {
+export const logoutMypageButton = () => {
 	return (
 		<div>
 			<a href=""
@@ -58,5 +74,3 @@ const logoutMypageButton = () => {
 		</div>
 	);
 }
-
-export default authenticationButtons;

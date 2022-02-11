@@ -53,23 +53,14 @@ export const LoginWindow = () => {
       email: event.target.email.value,
       password: event.target.password.value,
     }
-    axios({
-      method:'POST',
-      url: `${API_BASE_URL}/api/auth/login`,
-      data: {email: userInputData.email, password: userInputData.password},
-      withCredentials: true
-    }). then(response => {
-      if(response.data.userLogin) navigate('/');
-    })
     
-    // dispatch(authAction(userInputData))
-		// .then(response => {
-    //   if(response.payload.userLogin){
-    //     navigate('/');
-    //   }
-		}
-  
-
+    dispatch(authAction(userInputData))
+		.then(response => {
+      if(response.payload.userLogin){
+        navigate('/');
+      }
+		})
+  }
 
   return (
     <ThemeProvider theme={theme}>

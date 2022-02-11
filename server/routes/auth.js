@@ -13,6 +13,9 @@ const db_config = require(path.join(__dirname, '../config/database.js'));
 const connection = db_config.init();
 db_config.connect(connection);
 
+router.get('/session', (req, res) => {
+  res.send(isLoggedIn);
+})
 
 router.get('/me', (req, res) => {
     // 로그인 성공
@@ -23,14 +26,12 @@ router.get('/join', (req, res) =>{
 
 
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
-  console.log(req.body);
   const { name, email, password, re_password, birth, phone} = req.body; 
   try{
     const isUser = await User.findOne({where: {email}});
 
     if (isUser){
       return res.send( {message: "이미 가입된 이메일입니다"});    
-      res.redirect('/join');
     }
     if(password != re_password){
       res.send('<script type="text/javascript">alert("입력된 비밀번호가 서로 다릅니다.");</script>');    

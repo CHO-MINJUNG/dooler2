@@ -2,9 +2,10 @@ import React from 'react';
 import { AppBar, Divider, Toolbar, Typography } from '@mui/material';
 import logo from '../assets/logo.png';
 
-import authenticationButtons from './HeaderAuth';
+import {authenticationButtons} from './HeaderAuth';
 
 const Header = ({isAuthNeeded =true, isLoggedIn=false}) => {
+	// isLoggedIn()
 	return (
 		<Toolbar sx={{ justifyContent: "space-between" }}>
 			<a href="/">

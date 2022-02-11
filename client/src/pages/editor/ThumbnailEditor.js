@@ -19,7 +19,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import sendContentToAxios from './sendContentToAxios';
 
 const ThumnbnailEditor = () => {
-  const imgSrc = useSelector((state) => state.imageList[0]);
+  const img = useSelector((state) => state.imageList[0]);
+  const imgSrc = URL.createObjectURL(img);
   const title = useSelector((state) => state.title);
 
   const dispatch = useDispatch();
