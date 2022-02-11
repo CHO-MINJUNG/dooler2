@@ -7,18 +7,29 @@ export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 const sendContentToAxios = (content) => {
   const formData = new FormData();
 
-  const uploadTestImageFileWhereAreYouLookingAt = content.imageList[0];
+  //TODO: 전송하는 formData 설정
+  formData.append('file', content.imageList[0]);
+  formData.append("fileName", 'fileName');
+  // formData.append('name', 'jingi');
 
-  formData.append('imageList', content.imageList[0]);
+  for (let value of formData.values()) {
+    console.log(value);
+  }
 
-  console.log('formdTA', formData.keys());
+  
+  axios.post(
+    `${API_BASE_URL}/api/office_info/create`,
+    formData,
+    // headers: { "Content-Type" : "multipart/form-data"}
+  );
 
-  axios({
-    method: 'post',
-    url: `${API_BASE_URL}/api/office_info/create`,
-    data: formData,
-    headers: { "Content-Type" : "multipart/form-data"}
-  }).then((response) => console.log(response));
+  // axios({
+  //   method:'POST',
+  //   url: `${API_BASE_URL}/api/office_info/create`,
+  //   data: {email: 'hi', password: 'hi'},
+  //   // withCredentials: true
+  // }) 
+
 
   // axios({
   //     method:'POST',

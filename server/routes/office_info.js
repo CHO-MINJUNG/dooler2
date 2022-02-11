@@ -23,14 +23,29 @@ var params = {
   key: params_key,
   acl: 'public-read' 
 }
+
+var storage = multer.diskStorage({
+  destination: (req, file, callBack) => {
+      callBack(null, './storage-for-test')     // './storage-for-test' directory name where save the file
+  },
+  filename: (req, file, callBack) => {
+      callBack(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+  }
+})
+
 let upload = multer({
-  storage: multerS3(params)
+  //TODO: multerS3에 맞게 storage 설정
+  // storage: multerS3(params)
+  storage: storage
 })
 
 const S3URL = "https://doolerbucket.s3.ap-northeast-2.amazonaws.com/";
 
-
-router.post('/create', (req,res) => {
+router.post('/create', upload.single('file'), (req,res) => {
+  console.log(req.body, 'req.body');
+  console.log(req.file, 'req.file');
+  console.log(req.file.filename, 'req.file.filename');
+  /*
   // const {contact, fee, imageList, location, mainText, title} = req.body;
   console.log(req.body, 'req.body')
   // var text = fs.readFileSync(req.body.imageList[0]);
@@ -94,6 +109,8 @@ router.post('/create', (req,res) => {
   // // connection.query(
   // //     `insert `
   // // )
+
+  */
 })
 
 router.get('/update/:id', (req, res) => {
