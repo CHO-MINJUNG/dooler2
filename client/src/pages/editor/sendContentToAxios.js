@@ -1,48 +1,34 @@
 import axios from 'axios';
-
 axios.defaults.withCredentials=true;
 
 export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
 const sendContentToAxios = (content) => {
-  const formData = new FormData();
+  let formData = new FormData();
+  let createSuccess = true;
 
-  //TODO: 전송하는 formData 설정
-  formData.append('file', content.imageList[0]);
-  formData.append("fileName", 'fileName');
-  // formData.append('name', 'jingi');
-
-  for (let value of formData.values()) {
-    console.log(value);
+  const num = content.imageList.length;
+  for (var i=0; i<num; i++){
+    if (content.imageList[i]=== null) break;
+    formData.append(`image`, content.imageList[i]);
   }
-
   
-  axios.post(
-    `${API_BASE_URL}/api/office_info/create`,
-    formData,
-    // headers: { "Content-Type" : "multipart/form-data"}
-  );
+  formData.append('contact', content.contact)
+  formData.append('fee', content.fee)
+  formData.append('location', content.location)
+  formData.append('mainText', content.mainText)
+  formData.append('title', content.title)
 
-  // axios({
-  //   method:'POST',
-  //   url: `${API_BASE_URL}/api/office_info/create`,
-  //   data: {email: 'hi', password: 'hi'},
-  //   // withCredentials: true
-  // }) 
-
-
-  // axios({
-  //     method:'POST',
-  //     url: `${API_BASE_URL}/api/office_info/create`,
-  //     data: content,
-  //   }, {
-      
-  //   headers: {
-  //     'Content-Type': 'multipart/form-data'
-  //   },
-  //   }). then(
-
-  //     )
+  axios({
+    method: 'post',
+    url: `${API_BASE_URL}/api/office_info/create`,
+    data: formData,
+    headers: { "Content-type" : "multipart/form-data"},
+  }).then((response) => {
+    console.log(response.data.createSuccess)
+    createSuccess = response.data.createSuccess
+  });
+  return createSuccess
 }
 
 export default sendContentToAxios;

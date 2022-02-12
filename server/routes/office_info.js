@@ -1,116 +1,57 @@
 const express = require('express');
 const path = require('path');
-const multer = require('multer');
-const multerS3 = require('multer-s3');
-const aws = require('aws-sdk');
-const sharp = require('sharp');
-const fs = require('fs');
+const mysql = require('mysql2/promise');
+
+const pool = mysql.createPool;
+
 
 const router = express.Router();
 
 const db_config = require(path.join(__dirname, '../config/database.js'));
-const connection = db_config.init();
-db_config.connect(connection);
+const connection = db_config.pool();
+// db_config.connect(connection);
 
-aws.config.loadFromPath(__dirname + '/../config/awsconfig.json');
-const s3 = new aws.S3();
+let s3 = require("./utils/img_s3")
 
-let params_key = function (req, file, cb){};
-
-var params = {
-  s3: s3,
-  bucket: "doolerbucket",
-  key: params_key,
-  acl: 'public-read' 
-}
-
-var storage = multer.diskStorage({
-  destination: (req, file, callBack) => {
-      callBack(null, './storage-for-test')     // './storage-for-test' directory name where save the file
-  },
-  filename: (req, file, callBack) => {
-      callBack(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+router.post('/create', s3.upload.array('image'), (req,res) => {
+  const {contact, fee, location, mainText, title} = req.body;  
+  const test_id = 0;
+  let now_office_id = null;
+  console.log(req.files);
+  
+  const insert_office = {
+    office_title: title, 
+    thumbnail: req.files[0].location, 
+    user_id: test_id, 
+    user_phone: contact, 
+    office_location: location, 
+    office_fee: fee, 
+    office_content: mainText
   }
-})
+  let insert_db = async () => {
+    try{
+      await connection.query(`INSERT INTO Office_Info SET ?`, insert_office);
 
-let upload = multer({
-  //TODO: multerS3에 맞게 storage 설정
-  // storage: multerS3(params)
-  storage: storage
-})
+      const [rows, fields] = await connection.query(`SELECT id 
+      FROM Office_Info ORDER BY id DESC LIMIT 1;`)
+      
+      now_office_id=rows[0].id;
 
-const S3URL = "https://doolerbucket.s3.ap-northeast-2.amazonaws.com/";
-
-router.post('/create', upload.single('file'), (req,res) => {
-  console.log(req.body, 'req.body');
-  console.log(req.file, 'req.file');
-  console.log(req.file.filename, 'req.file.filename');
-  /*
-  // const {contact, fee, imageList, location, mainText, title} = req.body;
-  console.log(req.body, 'req.body')
-  // var text = fs.readFileSync(req.body.imageList[0]);
-  // console.log('동기적 읽기 ' + text);
-  let now_office_id=null;
-  var filename=null; 
-
-  connection.query(`select count(id) as cnt from Office_Info`,
-  (err, rows, field) => {
-    if(err) return res.send('office num 불러오기 실패')
-    // 새 id 할당
-    now_office_id = rows[0].cnt + 1
-  })
-
-
-  for(let i=0; i< imageList.length; i++){
-    if(imageList[i]===null) break;
-    filename = `uploads/${now_office_id}_${i+1}`
-
-    
-    params_key = function(req, file, cb){
-      cb(null, filename)
+      for (var img of req.files){
+        await connection.query( 
+          `INSERT INTO Office_Image SET ?`,
+          {office_id: now_office_id, 
+            file_name: img.location}
+        )
+      }
+    } catch(err) {
+      console.log(err)
+      throw err;
     }
-    upload.single(imageList[i])
-    console.log(imageList[i])
-    // s3.upload(params, function(err, data){
-    //   if(err) {
-    //     return res.send('s3 업로드에 실패하였음')
-    //   }
-    //   console.log(data,"업로드 완료");
-    // });
-    // const upload = new aws.S3.ManagedUpload(params);
-    
-    // const promise = upload.promise();
-  
-    // promise.then(
-    //   function(data) {
-    //     console.log("Successfully uploaded photo.");
-    //   },
-    //   function(err) {
-    //     return console.log("There was an error uploading your photo: ", err.message);
-    //   }
-    // );
-  
-  
   }
-  // const thumbnail = `${S3URL}uploads/${now_office_id}_1`;
-  // const test_id = 0;
-  // connection.query( 
-  //   `insert office_title, thumbnail, user_id, user_phone, office_location, office_fee, office_content
-  //   values(?,?,?,?,?,?,?)
-  //   from Office_Info`,
-  //   {title, thumbnail , test_id, contact, location,fee, mainText},
-  //   (err,rows,field) => {
-  //     if (err){
-  //       return res.send("office info db 추가 실패")
-  //     }
-  //     console.log(rows)
-  //   }
-  // )
-  // // connection.query(
-  // //     `insert `
-  // // )
+insert_db()
+  .then(res.send({createSuccess:true}))
 
-  */
 })
 
 router.get('/update/:id', (req, res) => {
