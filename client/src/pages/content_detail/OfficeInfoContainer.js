@@ -15,7 +15,9 @@ const OfficeInfoCard = ({title, content}) => {
 					<Typography sx={{ fontSize: 18, fontWeight: 'bold' }} color="black" gutterBottom>
 						호스트 메시지
 					</Typography>
-					<HtmlRenderingParagraph html={content}/>
+                    <Typography variant="body2" color="text.secondary" style={{whiteSpace: 'pre-line'}}>
+                        {content}
+                    </Typography>
 					</CardContent>
         </React.Fragment>
     );
