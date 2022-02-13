@@ -1,19 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useState } from 'react';
 axios.defaults.withCredentials=true;
 
-// export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
-
-// const [loginData, setLoginData] = useState(false);
-
-// exports.isLoggedIn = axios({
-//     method:'GET',
-//     url: `${API_BASE_URL}/api/auth/session`,
-// }).then(response =>{
-//     setLoginData(response.data)
-// 	}
-// )
-
+export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
 export const authenticationButtons = (isAuthNeeded, isLoggedIn) => {
 	if (!isAuthNeeded) {
@@ -54,12 +43,11 @@ export const loginRegistrationButton = () => {
 export const logoutMypageButton = () => {
 	return (
 		<div>
-			<a href=""
+			<a href='/auth/logout'
 				style={{
 					textDecoration:'none',
 					color: 'black',
-				}}
-			>
+				}}>
 				로그아웃
 			</a>
 			/
@@ -74,3 +62,5 @@ export const logoutMypageButton = () => {
 		</div>
 	);
 }
+
+

@@ -15,6 +15,7 @@ import {authAction} from './loginSlice';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+axios.defaults.withCredentials=true;
 
 export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 

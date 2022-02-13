@@ -13,7 +13,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SendIcon from '@mui/icons-material/Send';
 import { grey } from '@mui/material/colors';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+axios.defaults.withCredentials=true;
 
 export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
@@ -39,6 +41,8 @@ const theme = createTheme({
 });
 
 export default function SignUp() {
+  let navigate = useNavigate();
+
   const [datevalue, setDateValue] = React.useState(new Date());
   const [SignupState, setSignupState] = React.useState("");
 
@@ -48,12 +52,33 @@ export default function SignUp() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    let userInputData = {
+      name: event.target.name.value, 
+      email: event.target.email.value,
+      password: event.target.password.value,
+      re_password: event.target.re_password.value,
+      birth: event.target.birth.value,
+      phone: event.target.phone.value
+    }
+    axios({
+      method:'post',
+      url: `${API_BASE_URL}/api/auth/join`,
+      data: {
+        name: userInputData.name,
+        email: userInputData.email, 
+        password: userInputData.password,
+        re_password: userInputData.re_password,
+        birth: userInputData.birth,
+        phone: userInputData.phone
+      }
+      }).then((result) => {
+        if(result.data.createUser===true){
+          alert("회원가입이 완료되었습니다.")
+          navigate('/');
+        }
+        setSignupState(result.data.message)
+    })
+
   };
 
   return (
@@ -79,31 +104,7 @@ export default function SignUp() {
             </Typography>
           </Box>
           <Box component="form" noValidate
-            onSubmit={(e) => {
-              e.preventDefault();
-              let userInputData = {
-                name: e.target.name.value, 
-                email: e.target.email.value,
-                password: e.target.password.value,
-                re_password: e.target.re_password.value,
-                birth: e.target.birth.value,
-                phone: e.target.phone.value
-              }
-              axios({
-                method:'post',
-                url: `${API_BASE_URL}/api/auth/join`,
-                data: {
-                  name: userInputData.name,
-                  email: userInputData.email, 
-                  password: userInputData.password,
-                  re_password: userInputData.re_password,
-                  birth: userInputData.birth,
-                  phone: userInputData.phone
-                }
-              }).then((result) => {
-              setSignupState(result.data.message)
-            })}}
-            // action={`${API_BASE_URL}/api/auth/join`} method="post" 
+            onSubmit={handleSubmit}
             sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
