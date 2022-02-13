@@ -1,5 +1,10 @@
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+axios.defaults.withCredentials=true;
 
-const authenticationButtons = (isAuthNeeded, isLoggedIn) => {
+export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+
+export const authenticationButtons = (isAuthNeeded, isLoggedIn) => {
 	if (!isAuthNeeded) {
 		return ;
 	} else {
@@ -11,7 +16,7 @@ const authenticationButtons = (isAuthNeeded, isLoggedIn) => {
 	}
 }
 
-const loginRegistrationButton = () => {
+export const loginRegistrationButton = () => {
 	return (
 		<div>
 			<a href="/auth/login"
@@ -35,15 +40,14 @@ const loginRegistrationButton = () => {
 	);
 }
 
-const logoutMypageButton = () => {
+export const logoutMypageButton = () => {
 	return (
 		<div>
-			<a href=""
+			<a href='/auth/logout'
 				style={{
 					textDecoration:'none',
 					color: 'black',
-				}}
-			>
+				}}>
 				로그아웃
 			</a>
 			/
@@ -59,4 +63,4 @@ const logoutMypageButton = () => {
 	);
 }
 
-export default authenticationButtons;
+

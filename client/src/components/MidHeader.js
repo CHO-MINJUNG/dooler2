@@ -3,7 +3,8 @@ import { AppBar, Divider, Toolbar, Typography } from '@mui/material';
 import logo from '../assets/logo.png';
 import { PropTypes } from 'prop-types';
 
-import authenticationButtons from './HeaderAuth';
+import {authenticationButtons} from './HeaderAuth';
+
 
 const MidHeader = ({title}) => {
     return (
