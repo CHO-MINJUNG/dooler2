@@ -11,16 +11,13 @@ import FormContainer from './FormContainer';
 export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
 const MainEditor = () => {
-	//  const title = data.office_title;
-		return (
-			<Container fixed maxWidth="md">
-				<Header></Header>
-				<Divider></Divider>
-				<FormContainer></FormContainer>
-			</Container>
-		);
-
-
+	return (
+		<Container fixed maxWidth="md">
+			<Header></Header>
+			<Divider></Divider>
+			<FormContainer></FormContainer>
+		</Container>
+	);
 }
 
 export default MainEditor;

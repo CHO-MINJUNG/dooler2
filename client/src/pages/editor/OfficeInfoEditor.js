@@ -112,7 +112,7 @@ const OfficeInfoEditor = () => {
                 onClick={function (e) {
                   const isTitle = (content.title != null) && (content.title != '');
                   const isFirstImage = (content.imageList[0] != null);
-                  const isMainText = (content.mainText != null) && (content.title != '');
+                  const isMainText = (content.mainText != null) && (content.mainText != '');
                   const isContact = (content.contact != null) && (content.contact != '');
                   
                   if (isTitle && isFirstImage && isMainText && isContact) {
