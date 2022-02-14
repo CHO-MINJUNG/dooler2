@@ -1,12 +1,9 @@
 import { Grid} from "@mui/material";
 import React from "react";
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import HtmlRenderingParagraph from "./HtmlRendering";
+import MediaQuery from 'react-responsive';
 
 const OfficeInfoCard = ({title, content}) => {
     return (
@@ -57,6 +54,17 @@ const OfficeInfoContainer = ({office}) => {
 					paddingBottom: '50px',
 				}}
 			>
+				<MediaQuery maxWidth={900}>
+        <Grid container spacing={2} direction={'column'}>
+						<Grid item xs={4} border={true}>
+							<Card variant="outlined"><ContactCard userName={userName} phoneNumber={phoneNumber}></ContactCard></Card>
+            </Grid>
+            <Grid item xs={8}>
+                <Card variant="outlined"><OfficeInfoCard title={title} content={content}></OfficeInfoCard></Card>
+            </Grid>
+        </Grid>
+				</MediaQuery>
+				<MediaQuery minWidth={901}>
         <Grid container spacing={4}>
             <Grid item xs={8}>
                 <Card variant="outlined"><OfficeInfoCard title={title} content={content}></OfficeInfoCard></Card>
@@ -65,6 +73,7 @@ const OfficeInfoContainer = ({office}) => {
                 <Card variant="outlined"><ContactCard userName={userName} phoneNumber={phoneNumber}></ContactCard></Card>
             </Grid>
         </Grid>
+				</MediaQuery>
 			</div>
     );
 };
