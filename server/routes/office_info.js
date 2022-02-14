@@ -1,17 +1,17 @@
 const express = require('express');
 const path = require('path');
-const mysql = require('mysql2/promise');
-
-const pool = mysql.createPool;
-
-
 const router = express.Router();
 
 const db_config = require(path.join(__dirname, '../config/database.js'));
 const connection = db_config.pool();
-// db_config.connect(connection);
+
+const { isLoggedIn, isNotLoggedIn } = require('./middlewares/auth_middleware');
+
 
 let s3 = require("./utils/img_s3")
+
+router.get('/create', isLoggedIn, (req,res) => {
+})
 
 router.post('/create', s3.upload.array('image'), (req,res) => {
   const {contact, fee, location, mainText, title} = req.body;  

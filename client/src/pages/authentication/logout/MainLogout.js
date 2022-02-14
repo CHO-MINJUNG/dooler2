@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React from "react";
 import axios from 'axios';
 axios.defaults.withCredentials=true;

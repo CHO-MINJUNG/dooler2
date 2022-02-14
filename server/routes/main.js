@@ -69,10 +69,4 @@ router.get('/:id/img', (req,res) => {
     )
 })
 
-// select 
-//             office_info_id as id, 
-//             thumbnail as img, 
-//             office_title as title, 
-//             office_location as location
-//         from Office_Info 
 module.exports = router;
