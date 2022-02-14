@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState} from "react";
 import TitleEditor from "./TitleEditor";
 import OfficeInfoEditor from "./OfficeInfoEditor";
 import { Provider } from "react-redux";
@@ -10,6 +10,10 @@ import ThumnbnailEditor from "./ThumbnailEditor";
 const FormContainer = () => {
 
   const contentStore = createStore(contentReducer);
+  const [phoneNumber, setPhoneNumber] = useState('');
+
+
+
   return (
     <div style={{paddingTop: '10px'}}>
       <Provider store={contentStore}>

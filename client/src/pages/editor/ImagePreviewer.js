@@ -34,7 +34,7 @@ const ImagePreviewer = () => {
 			dispatch({
 				type: 'IMAGE_UPLOAD',
 				index: event.target.dataset.id,
-				image: URL.createObjectURL(img)
+				image: img
 			});
 		}
 	};
@@ -47,6 +47,7 @@ const ImagePreviewer = () => {
 				justifyContent={'center'} 
 				alignContent={'center'} 
 				height={'500px'}
+				
 			>
 				<input 
 					key={i} 
@@ -61,7 +62,7 @@ const ImagePreviewer = () => {
 	};
 
 	const imageViewer = (i) => {
-		const image = imageList[i];
+		const image = URL.createObjectURL(imageList[i]);
 		return (
 			<img key={i} src={image} style={imgStyle()} onClick={() => {
 				if (window.confirm('삭제 하시겠습니까?')) {

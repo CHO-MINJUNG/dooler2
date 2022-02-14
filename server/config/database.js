@@ -1,5 +1,6 @@
 const mysql = require('mysql');
 const dotenv = require('dotenv');
+const mysql_pool = require('mysql2/promise');
 
 dotenv.config();
 
@@ -20,5 +21,9 @@ module.exports = {
             if(err) console.error('mysql connection error : '+ err);
             else console.log('mysql is connected successfully!');
         })
-    }
+    },
+    pool: function() {
+        return mysql_pool.createPool(db_info);
+    },
+    db_info
 }
