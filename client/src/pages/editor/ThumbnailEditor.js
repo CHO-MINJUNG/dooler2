@@ -15,11 +15,14 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import sendContentToAxios from './sendContentToAxios';
 
 const ThumnbnailEditor = () => {
-  const imgSrc = useSelector((state) => state.imageList[0]);
+  const img = useSelector((state) => state.imageList[0]);
+  let navigate = useNavigate();
+  const imgSrc = URL.createObjectURL(img);
   const title = useSelector((state) => state.title);
 
   const dispatch = useDispatch();
@@ -86,7 +89,12 @@ const ThumnbnailEditor = () => {
             const isLocation = (content.location != null) && (content.location != '');
             const isFee = (content.fee != null) && (content.fee != '');
             if (isLocation && isFee) {
-              sendContentToAxios(content);
+              const success = sendContentToAxios(content)
+              console.log(success);
+              if (success) {
+                alert('게시물 작성이 완료되었습니다')
+                navigate('/')
+              }
             } else {
               alert('정보를 모두 입력해주세요');
             }

@@ -8,8 +8,10 @@ const connection = db_config.init();
 db_config.connect(connection);
 
 router.get('/', (req,res) => {
+    console.log(req.user)
     connection.query(
-        "select id, thumbnail, office_title, office_location, office_fee from Office_Info",
+        `select id, thumbnail, office_title, office_location from Office_Info
+        ORDER BY create_time DESC`,
         (err,rows,field) => {
             res.send(rows);
         }
@@ -67,10 +69,4 @@ router.get('/:id/img', (req,res) => {
     )
 })
 
-// select 
-//             office_info_id as id, 
-//             thumbnail as img, 
-//             office_title as title, 
-//             office_location as location
-//         from Office_Info 
 module.exports = router;
