@@ -35,7 +35,6 @@ const MainEditor = () => {
 			<FormContainer></FormContainer>
 		</Container>
 	);
-
 }
 
 export default MainEditor;
