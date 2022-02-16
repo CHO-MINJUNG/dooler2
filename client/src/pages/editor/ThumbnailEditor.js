@@ -64,19 +64,40 @@ const ThumnbnailEditor = () => {
               />
               </Grid>
               <Grid item xs={4}>
-              <TextField
-                placeholder={"보증금/월세"}
-                fullWidth
-                value={content.fee}
-                margin="dense"
-                size="small"
-                onChange={function(e) {
-                  dispatch({
-                    type: 'FEE_CHANGE',
-                    text: e.target.value,
-                  });
-                }}
-              />
+                <Stack direction={'row'}>
+                  <TextField
+                    placeholder={"보증금"}
+                    fullWidth
+                    value={content.deposit}
+                    margin="dense"
+                    size="small"
+                    type={"number"}
+                    // inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                    onChange={function(e) {
+                      dispatch({
+                        type: 'DEPOSIT_CHANGE',
+                        number: e.target.value,
+                      });
+                    }}
+                  />
+                  <p>
+                    /
+                  </p>
+                  <TextField
+                    placeholder={"월세"}
+                    fullWidth
+                    value={content.fee}
+                    margin="dense"
+                    size="small"
+                    type={"number"}
+                    onChange={function(e) {
+                      dispatch({
+                        type: 'FEE_CHANGE',
+                        number: e.target.value,
+                      });
+                    }}
+                  />
+                </Stack>
               </Grid>
             </Grid>
         </CardContent>
@@ -105,7 +126,20 @@ const ThumnbnailEditor = () => {
       </DialogActions>
     </div>
   );
-
 }
 
-  export default ThumnbnailEditor;
+const isOnlyNumber = (text) => {
+  const isNumber = false;
+
+  const re = /^[0-9\b]+$/;
+
+  // if value is not blank, then test the regex
+
+  if (text === '' || re.test(text)) {
+    isNumber = true;
+  }
+
+  return isNumber;
+}
+
+export default ThumnbnailEditor;

@@ -10,7 +10,8 @@ const contentReducer = (currentState, action) => {
       title: '',
       contact: '',
       location: '',
-      fee: '',
+      deposit: undefined,
+      fee: undefined,
       mainText: '',
       imageList: [null, null, null, null],
     };
@@ -28,7 +29,7 @@ const contentReducer = (currentState, action) => {
       newState.location = action.text;
       break;
     case 'FEE_CHANGE':
-      newState.fee = action.text;
+      newState.fee = action.number;
       break;
     case 'MAINTEXT_CHANGE':
       newState.mainText = action.text;
@@ -38,6 +39,9 @@ const contentReducer = (currentState, action) => {
       break;
     case 'IMAGE_DELETE':
       newState.imageList[action.index] = null;
+      break;
+    case 'DEPOSIT_CHANGE':
+      newState.deposit = action.number;
       break;
     default:
       console.log('error: content redux error, no type');
