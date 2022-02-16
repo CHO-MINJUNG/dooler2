@@ -8,11 +8,8 @@ import ImageUploader from "./ImageUploader";
 import ThumnbnailEditor from "./ThumbnailEditor";
 
 const FormContainer = () => {
-
   const contentStore = createStore(contentReducer);
   const [phoneNumber, setPhoneNumber] = useState('');
-
-
 
   return (
     <div style={{paddingTop: '10px'}}>

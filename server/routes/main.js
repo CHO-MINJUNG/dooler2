@@ -99,6 +99,6 @@ router.get('/:id/img', (req,res) => {
             res.send(rows);
         }
     )
-})
+});
 
 module.exports = router;
