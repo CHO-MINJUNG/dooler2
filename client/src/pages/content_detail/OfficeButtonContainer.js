@@ -11,16 +11,18 @@ const OfficeButtonContainer = ({office_id}) => {
   let navigate = useNavigate();
 
   const onDeleteClick = () => {
-    axios({
-      method: 'post',
-      url: `${API_BASE_URL}/api/office_info/delete/${office_id}`,
-    }).then((response) => {
-      if(response.data.deleteSuccess) {
-        alert("삭제가 완료되었습니다")
-        navigate('/');
-      } 
-      
-    });
+    if (window.confirm('삭제하시겠습니까?')) {
+      axios({
+        method: 'post',
+        url: `${API_BASE_URL}/api/office_info/delete/${office_id}`,
+      }).then((response) => {
+        if(response.data.deleteSuccess) {
+          alert("삭제가 완료되었습니다")
+          navigate('/');
+        } 
+        
+      });
+    }
   }
 
   return (
