@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import { getDateReadable } from './getDateReadable';
 
 export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
@@ -16,6 +17,7 @@ class Thumbnail extends Component {
 		const id = item.id;
 		const fee = item.office_fee;
 		const views_count = item.views_count;
+		const create_time = item.create_time;
 
 		const domain = `${API_BASE_URL}/api/crop_image/`;
         
@@ -47,10 +49,17 @@ class Thumbnail extends Component {
 									{fee}
 								</Typography>
 							</Grid>
-							<Grid container justifyContent={'end'}>
-								<Typography sx={{fontSize: 13, marginTop: '5px'}} fontWeight={350} color="text.secondary">
-									조회수 {views_count}
-								</Typography>
+							<Grid container justifyContent={'end'} spacing={1}>
+								<Grid item>
+									<Typography sx={{fontSize: 13, marginTop: '5px'}} fontWeight={350} color="text.secondary">
+										{getDateReadable(create_time)}
+									</Typography>
+								</Grid>
+								<Grid item>
+									<Typography sx={{fontSize: 13, marginTop: '5px'}} fontWeight={350} color="text.secondary">
+										조회수: {views_count}
+									</Typography>
+								</Grid>
 							</Grid>
 						</CardContent>
 					</Card>
