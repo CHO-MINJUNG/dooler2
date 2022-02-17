@@ -61,7 +61,7 @@ router.get('/:id', (req,res) => {
     id,
     (err,rows,field) => {
       user_id = rows[0].user_id
-        // 사용자와 게시자가 맞는지
+        // 사용자와 게시자가 일치하는지
         if (post_user_id === user_id){
         officeImage.userIsCorrect = true;
       } else{
@@ -69,8 +69,6 @@ router.get('/:id', (req,res) => {
       }
     }
   )
-
-  
 
   connection.query(
     `select file_name

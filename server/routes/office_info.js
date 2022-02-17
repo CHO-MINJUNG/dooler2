@@ -105,22 +105,6 @@ router.post('/update/:id', (req, res) => {
   )
 })
 
-router.post('/delete/:id', isLoggedIn, (req, res) => {
-  const id = req.params.id;
-  
-  connection.query(
-    `delete from Office_Image where office_id = ?`,
-    id, (err) =>{
-      return res.send({deleteSuccess:false})
-    }
-  )
-  connection.query(
-    `delete from Office_Info where id = ?`,
-    id, (err) =>{
-      return res.send({deleteSuccess:false})
-    }
-  )
-    return res.send({deleteSuccess:true})
-})
+
 
 module.exports = router;

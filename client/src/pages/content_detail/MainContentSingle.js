@@ -63,9 +63,7 @@ const renderImageListOrDefault = function (officeImageData) {
 		return imageList;
 	} else {
 		imageList.push(office);
-		console.log('renderImageListOrDefault before iteration', officeImageData);
 		imageList = renderImageListOrDefault(imageList);
-		console.log('renderImageListOrDefault RETURN', officeImageData);
 		return imageList;
 	}
 }
