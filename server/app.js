@@ -20,6 +20,7 @@ const mainRouter = require('./routes/main');
 const authRouter = require('./routes/auth');
 const officeInfoRouter = require('./routes/office_info');
 const officeDeleteRouter = require('./routes/office_delete');
+const officeReuploadRouter = require('./routes/office_reupload');
 // const smsauthRouter = require('./routes/sms_auth');
 
 
@@ -70,6 +71,7 @@ app.use('/api', mainRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/office_info', officeInfoRouter);
 app.use('/api/office_info', officeDeleteRouter);
+app.use('/api/office_info', officeReuploadRouter);
 // app.use('/api/sms_auth', smsauthRouter);
 
 // app.get('api/uploads/:ImagePath',(req,res) => {

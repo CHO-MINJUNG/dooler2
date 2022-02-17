@@ -19,10 +19,7 @@ router.get('/', (req,res) => {
 
 router.get('/:id', (req,res) => {
   let post_user_id = null;
-  if(req.isAuthenticated()){
-    // 현재 post를 보낸 사람의 id
-    post_user_id = req.user.id;
-  }
+  
   const id = req.params.id;
   var officeImage = {};
   connection.query(
@@ -49,6 +46,12 @@ router.get('/:id', (req,res) => {
     id,
     (err,rows,field) => {
       officeImage=rows[0];
+      if(req.isAuthenticated()){
+        // 현재 post를 보낸 사람의 id
+        post_user_id = req.user.id;
+      } else{
+        officeImage.user_phone = "로그인이 필요합니다"
+      }
     }
   )
   // 해당 게시물을 작성한 사람의 id
