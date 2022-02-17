@@ -9,7 +9,7 @@ db_config.connect(connection);
 
 router.get('/', (req,res) => {
     connection.query(
-        `select id, thumbnail, office_title, office_location, office_fee from Office_Info
+        `select id, thumbnail, office_title, office_location, office_fee, views_count from Office_Info
         ORDER BY create_time DESC`,
         (err,rows,field) => {
             res.send(rows);
