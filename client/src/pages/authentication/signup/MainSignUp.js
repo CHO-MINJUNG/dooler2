@@ -1,3 +1,6 @@
+
+import { isEmailError, isPasswordError } from '../authValidation';
+
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -14,8 +17,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SendIcon from '@mui/icons-material/Send';
 import { grey } from '@mui/material/colors';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import axios from 'axios';
 axios.defaults.withCredentials=true;
+
 
 export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
@@ -46,12 +51,16 @@ export default function SignUp() {
   const [datevalue, setDateValue] = React.useState(new Date());
   const [SignupState, setSignupState] = React.useState("");
 
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+
   const handleDateChange = (newValue) => {
     setDateValue(newValue);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     let userInputData = {
       name: event.target.name.value, 
       email: event.target.email.value,
@@ -60,25 +69,36 @@ export default function SignUp() {
       birth: event.target.birth.value,
       phone: event.target.phone.value
     }
-    axios({
-      method:'post',
-      url: `${API_BASE_URL}/api/auth/join`,
-      data: {
-        name: userInputData.name,
-        email: userInputData.email, 
-        password: userInputData.password,
-        re_password: userInputData.re_password,
-        birth: userInputData.birth,
-        phone: userInputData.phone
-      }
-      }).then((result) => {
-        if(result.data.createUser===true){
-          alert("회원가입이 완료되었습니다.")
-          navigate('/');
-        }
-        setSignupState(result.data.message)
-    })
 
+    if (isEmailError(userInputData.email, setEmailError)) {
+      alert('4글자 이상의 숫자, 영어 대소문자로만 아이디를 만들어주세요');
+    }
+    else if (userInputData.password !== userInputData.re_password) {
+      alert('비밀번호와 비밀번호 확인에 입력된 값이 다릅니다.');
+    }
+    else if (isPasswordError(userInputData.password, setPasswordError)) {
+      alert('8글자 이상의 숫자, 영어 대소문자, 특수문자를 하나씩 포함하여 비밀번호를 입력해주세요 (가능한 특수문자: #?!@$%^&*-)');
+    }
+    else {
+      axios({
+        method:'post',
+        url: `${API_BASE_URL}/api/auth/join`,
+        data: {
+          name: userInputData.name,
+          email: userInputData.email, 
+          password: userInputData.password,
+          re_password: userInputData.re_password,
+          birth: userInputData.birth,
+          phone: userInputData.phone
+        }
+        }).then((result) => {
+          if(result.data.createUser===true){
+            alert("회원가입이 완료되었습니다.")
+            navigate('/');
+          }
+          setSignupState(result.data.message)
+      })
+    }
   };
 
   return (
@@ -121,11 +141,15 @@ export default function SignUp() {
               <Grid item xs={12}>
                 <TextField
                   required
+                  error={emailError}
                   fullWidth
                   id="email"
                   label="아이디"
                   name="email"
                   autoComplete="user-id"
+                  onChange={(e) => {
+                    isEmailError(e.target.value, setEmailError);
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>

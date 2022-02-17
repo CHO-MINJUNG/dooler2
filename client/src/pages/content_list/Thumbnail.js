@@ -15,6 +15,9 @@ class Thumbnail extends Component {
 		const location = item.office_location;
 		const id = item.id;
 		const fee = item.office_fee;
+		const views_count = item.views_count;
+		console.log(item);
+		console.log(item.views_count);
 
 		const domain = `${API_BASE_URL}/api/crop_image/`;
 
@@ -46,6 +49,11 @@ class Thumbnail extends Component {
 								</Typography>
 								<Typography sx={{fontSize: 15, marginTop: '5px'}} fontWeight={600}>
 									{fee}
+								</Typography>
+							</Grid>
+							<Grid container justifyContent={'end'}>
+								<Typography sx={{fontSize: 13, marginTop: '5px'}} fontWeight={350} color="text.secondary">
+									조회수 {views_count}
 								</Typography>
 							</Grid>
 						</CardContent>
