@@ -88,7 +88,6 @@ export const LoginWindow = () => {
              {/* //TODO: required가 작동하지 않는 문제 해결. reducer에서 점검하면 state 바꾸는 게 애매해짐. */}
             <TextField
               margin="normal"
-              error={emailError}
               required
               fullWidth
               id="email"
@@ -96,13 +95,9 @@ export const LoginWindow = () => {
               name="email"
               autoComplete="email"
               autoFocus
-              onChange={(e) => {
-                isEmailError(e.target.value, setEmailError);
-              }}
             />
             <TextField
               margin="normal"
-              error={passwordError}
               required
               fullWidth
               name="password"
@@ -110,9 +105,6 @@ export const LoginWindow = () => {
               type="password"
               id="password"
               autoComplete="current-password"
-              onChange={(e) => {
-                isPasswordError(e.target.value, setPasswordError);
-              }}
             />
             <Typography>{fail_message}</Typography>
             <Button
