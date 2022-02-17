@@ -47,6 +47,7 @@ const OfficeInfoContainer = ({office}) => {
 	const userName = office.user_name;
 	const phoneNumber = office.user_phone;
 	const views_count = office.views_count;
+	const create_time = office.create_time;
 
 	return (
 		<div
@@ -55,7 +56,7 @@ const OfficeInfoContainer = ({office}) => {
 				paddingBottom: '50px',
 			}}
 		>
-			<MetaInfo views_count={views_count}></MetaInfo>
+			<MetaInfo views_count={views_count} create_time={create_time}></MetaInfo>
 			<MediaQuery maxWidth={900}>
 			<Grid container spacing={2} direction={'column'}>
 					<Grid item xs={4} border={true}>
