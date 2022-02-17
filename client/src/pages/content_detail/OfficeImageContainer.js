@@ -6,19 +6,19 @@ export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
 const OfficeImageContainer = ({imageList}) => {
     // const domain = `${API_BASE_URL}/api/image/`;
-    
+    console.log(imageList);
     return (
         <Carousel
 					defaultControlsConfig={{prevButtonText: '<', nextButtonText: '>'}}
 					heightMode="current"
 				>
-					<img src={imageList[0]} style={imgStyle()}></img>
-					<img src={imageList[1]} style={imgStyle()}></img>
-					<img src={imageList[2]} style={imgStyle()}></img>
-					<img src={imageList[3]} style={imgStyle()}></img>
+					{imageList.map((item) => (
+						<img src={item} style={imgStyle()}></img>
+					))}
         </Carousel>
     );
 };
+
 
 const imgStyle = () => {
 	return {

@@ -50,22 +50,11 @@ const MainContentSingle = () => {
 				<Divider></Divider>
 				<Title title={title}></Title>
 				{ userIsCorrect && <OfficeButtonContainer office_id={param.id} ></OfficeButtonContainer>}
-				<OfficeImageContainer imageList={renderImageListOrDefault(data.image_link)}></OfficeImageContainer>
+				<OfficeImageContainer imageList={data.image_link}></OfficeImageContainer>
 				<OfficeInfoContainer office={data}></OfficeInfoContainer>
 			</Container>
 		);
 	}
 };
-
-const renderImageListOrDefault = function (officeImageData) {
-	var imageList = Array.from(officeImageData);
-	if (imageList.length >= 4) {
-		return imageList;
-	} else {
-		imageList.push(office);
-		imageList = renderImageListOrDefault(imageList);
-		return imageList;
-	}
-}
 
 export default MainContentSingle;
