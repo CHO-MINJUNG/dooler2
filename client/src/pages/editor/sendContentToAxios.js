@@ -25,7 +25,6 @@ const sendContentToAxios = (content) => {
     data: formData,
     headers: { "Content-type" : "multipart/form-data"},
   }).then((response) => {
-    console.log(response.data.createSuccess)
     createSuccess = response.data.createSuccess
   });
   return createSuccess

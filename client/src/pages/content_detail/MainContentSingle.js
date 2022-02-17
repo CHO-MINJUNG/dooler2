@@ -8,6 +8,8 @@ import Header from '../../components/Header';
 import office from '../../assets/office1.jpeg';
 import OfficeImageContainer from './OfficeImageContainer';
 import OfficeInfoContainer from './OfficeInfoContainer';
+import OfficeButtonContainer from './OfficeButtonContainer';
+
 
 import './style.css';
 
@@ -16,6 +18,7 @@ export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 const MainContentSingle = () => {
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [userIsCorrect, setUserIsCorrect] = useState(false);
 	const param = useParams();
 
 	const callApi = async () => {
@@ -25,6 +28,7 @@ const MainContentSingle = () => {
 			const response = await axios.get(`${API_BASE_URL}/api/${id}`);
 			setData(response.data);
 			setLoading(false);
+			setUserIsCorrect(response.data.userIsCorrect);
 		} catch(err) {
 			console.log("Error >>", err);
 		}
@@ -50,7 +54,9 @@ const MainContentSingle = () => {
 					}}
 				>
 					<Typography variant='h1' fontWeight={600} fontSize={30}>{title}</Typography>
+					
 				</div>
+				{ userIsCorrect && <OfficeButtonContainer office_id={param.id} ></OfficeButtonContainer>}
 				<OfficeImageContainer imageList={renderImageListOrDefault(data.image_link)}></OfficeImageContainer>
 				<OfficeInfoContainer office={data}></OfficeInfoContainer>
 			</Container>

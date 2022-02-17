@@ -13,16 +13,15 @@ let s3 = require("./utils/img_s3")
 router.get('/create', isLoggedIn, (req,res) => {
 })
 
-router.post('/create', s3.upload.array('image'), (req,res) => {
+router.post('/create', isLoggedIn, s3.upload.array('image'), (req,res) => {
   const {contact, fee, location, mainText, title} = req.body;  
-  const test_id = 0;
+  const user_id = req.user.id;
   let now_office_id = null;
-  console.log(req.files);
   
   const insert_office = {
     office_title: title, 
     thumbnail: req.files[0].location, 
-    user_id: test_id, 
+    user_id: user_id, 
     user_phone: contact, 
     office_location: location, 
     office_fee: fee, 
@@ -84,7 +83,6 @@ router.get('/update/:id', (req, res) => {
         imgList.push(data.file_name);
       }
       officeImage.image_link = imgList
-      console.log(officeImage)
       res.send(officeImage)
     }
   )
@@ -105,6 +103,24 @@ router.post('/update/:id', (req, res) => {
     }
 
   )
+})
+
+router.post('/delete/:id', isLoggedIn, (req, res) => {
+  const id = req.params.id;
+  
+  connection.query(
+    `delete from Office_Image where office_id = ?`,
+    id, (err) =>{
+      return res.send({deleteSuccess:false})
+    }
+  )
+  connection.query(
+    `delete from Office_Info where id = ?`,
+    id, (err) =>{
+      return res.send({deleteSuccess:false})
+    }
+  )
+    return res.send({deleteSuccess:true})
 })
 
 module.exports = router;

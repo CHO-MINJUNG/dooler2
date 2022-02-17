@@ -20,8 +20,6 @@ class Thumbnail extends Component {
 		console.log(item.views_count);
 
 		const domain = `${API_BASE_URL}/api/crop_image/`;
-
-		var imgSrc = domain +item.thumbnail+'/300';
         
 		return (
 			<Grid item key={item} xs={12} sm={6} md={4} sx={
