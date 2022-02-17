@@ -50,9 +50,6 @@ export const LoginWindow = () => {
   let fail_message = useSelector(state => state.message);
   let isUser = useSelector(state => state.isLoggedIn)
 
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-
   const loginSubmit = (event) => {
     event.preventDefault();
 
@@ -61,20 +58,12 @@ export const LoginWindow = () => {
       password: event.target.password.value,
     }
 
-    if (isEmailError(userInputData.email, setEmailError)) {
-      alert('4글자 이상의 숫자, 영어 대소문자로만 아이디를 만들어주세요');
-    }
-    else if (isPasswordError(userInputData.password, setPasswordError)) {
-      alert('8글자 이상의 숫자, 영어 대소문자, 특수문자를 하나씩 포함하여 비밀번호를 입력해주세요 (가능한 특수문자: #?!@$%^&*-)');
-    }
-    else {
-      dispatch(authAction(userInputData))
-      .then(response => {
-        if(response.payload.userLogin){
-          navigate('/');
-        }
-      });
-    }
+    dispatch(authAction(userInputData))
+    .then(response => {
+      if(response.payload.userLogin){
+        navigate('/');
+      }
+    });
   }
 
   return (

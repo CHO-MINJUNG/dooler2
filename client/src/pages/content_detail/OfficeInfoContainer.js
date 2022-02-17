@@ -4,6 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import MediaQuery from 'react-responsive';
+import { MetaInfo } from "./MetaInfo";
 
 const OfficeInfoCard = ({title, content}) => {
     return (
@@ -39,43 +40,44 @@ const ContactCard = ({userName, phoneNumber}) => {
 }
 
 const OfficeInfoContainer = ({office}) => {
-    const title = office.office_title;
-    const location = office.office_location;
-    const content = office.office_content;
+	const title = office.office_title;
+	const location = office.office_location;
+	const content = office.office_content;
 
-    const userName = office.user_name;
-    const phoneNumber = office.user_phone;
+	const userName = office.user_name;
+	const phoneNumber = office.user_phone;
+	const views_count = office.views_count;
 
-
-    return (
-			<div
-				style={{
-					paddingTop: '50px',
-					paddingBottom: '50px',
-				}}
-			>
-				<MediaQuery maxWidth={900}>
-        <Grid container spacing={2} direction={'column'}>
-						<Grid item xs={4} border={true}>
+	return (
+		<div
+			style={{
+				paddingTop: '50px',
+				paddingBottom: '50px',
+			}}
+		>
+			<MetaInfo views_count={views_count}></MetaInfo>
+			<MediaQuery maxWidth={900}>
+			<Grid container spacing={2} direction={'column'}>
+					<Grid item xs={4} border={true}>
+						<Card variant="outlined"><ContactCard userName={userName} phoneNumber={phoneNumber}></ContactCard></Card>
+					</Grid>
+					<Grid item xs={8}>
+							<Card variant="outlined"><OfficeInfoCard title={title} content={content}></OfficeInfoCard></Card>
+					</Grid>
+			</Grid>
+			</MediaQuery>
+			<MediaQuery minWidth={901}>
+			<Grid container spacing={4}>
+					<Grid item xs={8}>
+							<Card variant="outlined"><OfficeInfoCard title={title} content={content}></OfficeInfoCard></Card>
+					</Grid>
+					<Grid item xs={4} border={true}>
 							<Card variant="outlined"><ContactCard userName={userName} phoneNumber={phoneNumber}></ContactCard></Card>
-            </Grid>
-            <Grid item xs={8}>
-                <Card variant="outlined"><OfficeInfoCard title={title} content={content}></OfficeInfoCard></Card>
-            </Grid>
-        </Grid>
-				</MediaQuery>
-				<MediaQuery minWidth={901}>
-        <Grid container spacing={4}>
-            <Grid item xs={8}>
-                <Card variant="outlined"><OfficeInfoCard title={title} content={content}></OfficeInfoCard></Card>
-            </Grid>
-            <Grid item xs={4} border={true}>
-                <Card variant="outlined"><ContactCard userName={userName} phoneNumber={phoneNumber}></ContactCard></Card>
-            </Grid>
-        </Grid>
-				</MediaQuery>
-			</div>
-    );
+					</Grid>
+			</Grid>
+			</MediaQuery>
+		</div>
+	);
 };
 
 export default OfficeInfoContainer;

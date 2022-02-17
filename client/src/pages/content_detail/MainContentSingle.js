@@ -12,6 +12,7 @@ import OfficeButtonContainer from './OfficeButtonContainer';
 
 
 import './style.css';
+import { Title } from './Title';
 
 export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
@@ -47,15 +48,7 @@ const MainContentSingle = () => {
 			<Container fixed maxWidth="md">
 				<Header></Header>
 				<Divider></Divider>
-				<div 
-					style={{
-						paddingTop: '20px',
-						paddingBottom: '20px',
-					}}
-				>
-					<Typography variant='h1' fontWeight={600} fontSize={30}>{title}</Typography>
-					
-				</div>
+				<Title title={title}></Title>
 				{ userIsCorrect && <OfficeButtonContainer office_id={param.id} ></OfficeButtonContainer>}
 				<OfficeImageContainer imageList={renderImageListOrDefault(data.image_link)}></OfficeImageContainer>
 				<OfficeInfoContainer office={data}></OfficeInfoContainer>
