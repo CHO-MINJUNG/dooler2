@@ -16,8 +16,6 @@ class Thumbnail extends Component {
 		const id = item.id;
 		const fee = item.office_fee;
 		const views_count = item.views_count;
-		console.log(item);
-		console.log(item.views_count);
 
 		const domain = `${API_BASE_URL}/api/crop_image/`;
         
