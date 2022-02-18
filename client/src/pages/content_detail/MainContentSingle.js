@@ -10,6 +10,7 @@ import OfficeImageContainer from './OfficeImageContainer';
 import OfficeInfoContainer from './OfficeInfoContainer';
 import OfficeButtonContainer from './OfficeButtonContainer';
 
+import {Helmet} from "react-helmet";
 
 import './style.css';
 import { Title } from './Title';
@@ -45,6 +46,17 @@ const MainContentSingle = () => {
 	} else {
     const title = data.office_title;
 		return (
+			<>
+			<Helmet>
+				<meta property="og:title" content={title} />
+				{/* 페이지 상세 정보 */}
+				<meta
+					property="og:description"
+					content={data.office_content}
+				/>
+				{/* 페이지 대표 이미지 정보 */}
+				<meta property="og:image" content={data.image_link[0]} />
+			</Helmet>
 			<Container fixed maxWidth="md">
 				<Header></Header>
 				<Divider></Divider>
@@ -53,6 +65,7 @@ const MainContentSingle = () => {
 				<OfficeImageContainer imageList={data.image_link}></OfficeImageContainer>
 				<OfficeInfoContainer office={data}></OfficeInfoContainer>
 			</Container>
+			</>
 		);
 	}
 };

@@ -15,6 +15,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import ThumnbnailEditor from "./ThumbnailEditor";
 
+import MainAddressPopup from "./addressPopup/MainAddressPopup"
+
 const OfficeInfoCard = () => {  
   const dispatch = useDispatch();
 
@@ -44,6 +46,7 @@ const OfficeInfoCard = () => {
         }}
       ></TextField>
       </CardContent>
+      <MainAddressPopup />
     </React.Fragment>
   );
 }
@@ -114,8 +117,9 @@ const OfficeInfoEditor = () => {
                   const isFirstImage = (content.imageList[0] != null);
                   const isMainText = (content.mainText != null) && (content.mainText != '');
                   const isContact = (content.contact != null) && (content.contact != '');
+                  const isAddress = (content.address != null) && (content.address != '');
                   
-                  if (isTitle && isFirstImage && isMainText && isContact) {
+                  if (isTitle && isFirstImage && isMainText && isContact && isAddress) {
                     handleClickOpen();
                   } else {
                     alert('내용을 모두 입력해주세요');

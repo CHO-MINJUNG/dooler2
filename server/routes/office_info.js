@@ -14,7 +14,7 @@ router.get('/create', isLoggedIn, (req,res) => {
 })
 
 router.post('/create', isLoggedIn, s3.upload.array('image'), (req,res) => {
-  const {contact, fee, location, mainText, title} = req.body;  
+  const {contact, fee, location, mainText, title, address} = req.body;  
   const user_id = req.user.id;
   let now_office_id = null;
   
@@ -25,7 +25,10 @@ router.post('/create', isLoggedIn, s3.upload.array('image'), (req,res) => {
     user_phone: contact, 
     office_location: location, 
     office_fee: fee, 
-    office_content: mainText
+    office_content: mainText,
+    address_zipcode: address.zipcode,
+    address_road: address.road,
+    address_detail: address.detail
   }
   let insert_db = async () => {
     try{

@@ -12,7 +12,7 @@ router.get('/', (req,res) => {
         `select id, thumbnail, office_title, office_location, office_fee, views_count, create_time from Office_Info
         ORDER BY create_time DESC`,
         (err,rows,field) => {
-            res.send(rows);
+            return res.send(rows);
         }
     )
 })
@@ -38,6 +38,7 @@ router.get('/:id', (req,res) => {
     user_id,
     user_phone,
     office_location,
+    address_road,
     office_content,
     create_time,
     views_count

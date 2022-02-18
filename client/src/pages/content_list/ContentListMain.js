@@ -6,7 +6,6 @@ import fetchOfficeData from './fetchOfficeData';
 const ContentListMain = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     fetchOfficeData(setData);
   }, loading);

@@ -10,6 +10,7 @@ const contentReducer = (currentState, action) => {
       title: '',
       contact: '',
       location: '',
+      address: undefined,
       deposit: undefined,
       fee: undefined,
       mainText: '',
@@ -42,6 +43,9 @@ const contentReducer = (currentState, action) => {
       break;
     case 'DEPOSIT_CHANGE':
       newState.deposit = action.number;
+      break;
+    case 'ADDRESS_CHANGE':
+      newState.address = action.addressDict;
       break;
     default:
       console.log('error: content redux error, no type');
