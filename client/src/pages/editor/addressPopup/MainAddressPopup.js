@@ -36,8 +36,12 @@ const MainAddressPopup = () => {
 				"zonecode": data.zonecode,
 				"extra": extraRoadAddr
 			})
+			},
+		onclose: function(state) {
+			if(state === 'COMPLETE_CLOSE'){
 				detailField.focus()
 			}
+		}
     }).open();
 	}
 
