@@ -23,6 +23,9 @@ class Thumbnail extends Component {
 		const fee = item.office_fee;
 		const views_count = item.views_count;
 		const create_time = item.create_time;
+		const sido = item.sido;
+		const sigungu = item.sigungu;
+		const roadname = item.roadname;
 
 		const domain = `${API_BASE_URL}/api/crop_image/`;
 
@@ -53,7 +56,7 @@ class Thumbnail extends Component {
 								월 {fee}
 							</Typography>
 							<Typography sx={{fontSize: 14}} fontWeight={350}>
-								{location}
+								{sido ? sido + ' ' + sigungu + ' ' + roadname: '위치 오류'}
 							</Typography>
 							<Typography noWrap={true} sx={{color: color2, fontSize: 14, marginTop: '5px'}} fontWeight={350}>
 								{title}
@@ -95,15 +98,11 @@ class Thumbnail extends Component {
 
 	getNewSign (timestamp) {
 		var date = new Date(timestamp);
-	
 		const now = new Date(Date.now());
 	
 		var difference = now - date;
-	
 		var daysDifference = Math.floor(difference/1000/60/60/24);
-	
-		var readable = '';
-		console.log(daysDifference);
+
 		if (daysDifference < 2) {
 			return (
 				<img 

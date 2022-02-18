@@ -13,6 +13,7 @@ const contentReducer = (currentState, action) => {
       address: undefined,
       deposit: undefined,
       fee: undefined,
+      addressClassifier: undefined,
       mainText: '',
       imageList: [null, null, null, null],
     };
@@ -46,6 +47,9 @@ const contentReducer = (currentState, action) => {
       break;
     case 'ADDRESS_CHANGE':
       newState.address = action.addressDict;
+      break;
+    case 'ADDRESS_CLASSIFIER_CHANGE':
+      newState.addressClassifier = action.addressClassifierDict;
       break;
     default:
       console.log('error: content redux error, no type');
