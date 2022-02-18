@@ -23,32 +23,26 @@ class Thumbnail extends Component {
         
 		return (
 			<Grid item key={item} xs={12} sm={6} md={4} sx={
-				{'&:hover': {  
+				{
+					width: "100%",
+					'&:hover': {  
 					transitionDuration: '500ms',
 					transform:'scale(1.1)',
 				}}}>
 				<a href={'dreams/' + id} style={{textDecoration: 'none'}}>
 					<Card
-						sx={{ height: '100%', display: 'flex', flexDirection: 'column',}}
+						sx={{ height: '100%', display: 'flex',}}
 					>
 						<CardMedia
 							component="img"
-							height={192}
+							sx={{ width: '40%', height: '200px'}}
 							image={item.thumbnail}
 							alt="사무실 사진"
 						/>
-						<CardContent sx={{ flexGrow: 1 }}>
-							<Typography fontWeight={500} noWrap={true}>
+						<CardContent sx={{ flexGrow: 1}}>
+							<Typography fontWeight={500} sx={{fontSize: 15, marginBottom: '5%'}} >
 								{title}
 							</Typography>
-							<Grid container direction={"row"} justifyContent={'space-between'}>
-								<Typography sx={{fontSize: 13, marginTop: '5px'}} fontWeight={350} color="text.secondary">
-									{location}
-								</Typography>
-								<Typography sx={{fontSize: 15, marginTop: '5px'}} fontWeight={600}>
-									{fee}
-								</Typography>
-							</Grid>
 							<Grid container justifyContent={'end'} spacing={1}>
 								<Grid item>
 									<Typography sx={{fontSize: 13, marginTop: '5px'}} fontWeight={350} color="text.secondary">
@@ -60,6 +54,14 @@ class Thumbnail extends Component {
 										조회수: {views_count}
 									</Typography>
 								</Grid>
+							</Grid>
+							<Grid container direction={"row"} justifyContent={'space-between'}>
+								<Typography sx={{fontSize: 18, marginTop: '5px'}} fontWeight={350} color="text.secondary">
+									{location}
+								</Typography>
+								<Typography sx={{fontSize: 18, marginTop: '5px'}} fontWeight={600}>
+									{fee}
+								</Typography>
 							</Grid>
 						</CardContent>
 					</Card>
