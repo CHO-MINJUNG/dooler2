@@ -19,8 +19,25 @@ const OfficeButtonContainer = ({office_id}) => {
         if(response.data.deleteSuccess) {
           alert("삭제가 완료되었습니다")
           navigate('/');
-        } 
-        
+        } else{
+          alert("삭제에 실패하였습니다. 다시 시도해주세요")
+        }
+      });
+    }
+  }
+
+  const onReuploadClick = () => {
+    if (window.confirm('다시 올리시겠습니까?')){
+      axios({
+        method: 'post',
+        url: `${API_BASE_URL}/api/office_info/reupload/${office_id}`,
+      }).then((response) => {
+        if(response.data.reuploadSuccess) {
+          alert("재업로드가 완료되었습니다")
+          navigate('/');
+        } else{
+          alert("재업로드에 실패하였습니다. 다시 시도해주세요")
+        }
       });
     }
   }
@@ -34,7 +51,7 @@ const OfficeButtonContainer = ({office_id}) => {
       <Stack direction="row" spacing={0.5} >
         <Button variant="outlined">수정</Button>
         <Button variant="outlined" onClick={onDeleteClick}>삭제</Button>
-        <Button variant="outlined">다시 올리기</Button>
+        <Button variant="outlined" onClick={onReuploadClick}>다시 올리기</Button>
       </Stack>
       </div>
     

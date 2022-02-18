@@ -12,17 +12,14 @@ router.get('/', (req,res) => {
         `select id, thumbnail, office_title, office_location, office_fee, views_count, create_time from Office_Info
         ORDER BY create_time DESC`,
         (err,rows,field) => {
-            res.send(rows);
+            return res.send(rows);
         }
     )
 })
 
 router.get('/:id', (req,res) => {
   let post_user_id = null;
-  if(req.isAuthenticated()){
-    // 현재 post를 보낸 사람의 id
-    post_user_id = req.user.id;
-  }
+  
   const id = req.params.id;
   var officeImage = {};
   connection.query(
@@ -41,6 +38,7 @@ router.get('/:id', (req,res) => {
     user_id,
     user_phone,
     office_location,
+    address_road,
     office_content,
     create_time,
     views_count
@@ -49,6 +47,12 @@ router.get('/:id', (req,res) => {
     id,
     (err,rows,field) => {
       officeImage=rows[0];
+      if(req.isAuthenticated()){
+        // 현재 post를 보낸 사람의 id
+        post_user_id = req.user.id;
+      } else{
+        officeImage.user_phone = "로그인이 필요합니다"
+      }
     }
   )
   // 해당 게시물을 작성한 사람의 id
