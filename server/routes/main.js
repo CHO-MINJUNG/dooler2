@@ -41,7 +41,10 @@ router.get('/:id', (req,res) => {
     address_road,
     office_content,
     create_time,
-    views_count
+    views_count,
+    sido,
+    sigungu,
+    roadname
     from Office_Info
     where id = ?`,
     id,

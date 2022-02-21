@@ -71,4 +71,12 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
     return res.send({logoutSuccess:true})
   })
 
+  router.get('/kakao', passport.authenticate('kakao'));
+  
+  router.get('/kakao/callback', passport.authenticate('kakao', {
+    failureRedirect: '/',
+  }), (req, res) => {
+    res.send({userLogin:true});
+  })
+
 module.exports = router;

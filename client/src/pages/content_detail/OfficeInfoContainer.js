@@ -5,8 +5,9 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import MediaQuery from 'react-responsive';
 import { MetaInfo } from "./MetaInfo";
+import MapContainer from "./MapContainer";
 
-const OfficeInfoCard = ({title, content}) => {
+const OfficeInfoCard = ({title, content, address}) => {
     return (
         <React.Fragment>
 					<CardContent>
@@ -16,6 +17,7 @@ const OfficeInfoCard = ({title, content}) => {
 						<Typography variant="body2" color="text.secondary" style={{whiteSpace: 'pre-line'}}>
 								{content}
 						</Typography>
+						<MapContainer address_road={address} />
 					</CardContent>
         </React.Fragment>
     );
@@ -49,6 +51,14 @@ const OfficeInfoContainer = ({office}) => {
 	const views_count = office.views_count;
 	const create_time = office.create_time;
 
+  let address = null;
+
+	if(office.address_road === null) {
+    address = `${office.sido}시 ${office.sigungu} ${office.roadname}`;
+	} else{
+		address = office.address_road;
+  }
+
 	return (
 		<div
 			style={{
@@ -63,14 +73,14 @@ const OfficeInfoContainer = ({office}) => {
 						<Card variant="outlined"><ContactCard userName={userName} phoneNumber={phoneNumber}></ContactCard></Card>
 					</Grid>
 					<Grid item xs={8}>
-							<Card variant="outlined"><OfficeInfoCard title={title} content={content}></OfficeInfoCard></Card>
+							<Card variant="outlined"><OfficeInfoCard title={title} content={content} address={address}></OfficeInfoCard></Card>
 					</Grid>
 			</Grid>
 			</MediaQuery>
 			<MediaQuery minWidth={901}>
 			<Grid container spacing={4}>
 					<Grid item xs={8}>
-							<Card variant="outlined"><OfficeInfoCard title={title} content={content}></OfficeInfoCard></Card>
+							<Card variant="outlined"><OfficeInfoCard title={title} content={content} address={address}></OfficeInfoCard></Card>
 					</Grid>
 					<Grid item xs={4} border={true}>
 							<Card variant="outlined"><ContactCard userName={userName} phoneNumber={phoneNumber}></ContactCard></Card>
