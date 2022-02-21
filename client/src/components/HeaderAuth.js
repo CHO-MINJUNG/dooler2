@@ -51,11 +51,12 @@ export const logoutMypageButton = () => {
 				로그아웃
 			</a>
 			/
-			<a href=""
+			<a href="/"
 				style={{
 					textDecoration:'none',
 					color: 'black',
 				}}
+				// onClick={alert("준비중인 서비스입니다")}
 			>
 				마이페이지
 			</a>

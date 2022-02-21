@@ -10,6 +10,10 @@ export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 const OfficeButtonContainer = ({office_id}) => {
   let navigate = useNavigate();
 
+  const onUpdateClick = () => {
+    alert("준비중인 서비스입니다")
+  }
+
   const onDeleteClick = () => {
     if (window.confirm('삭제하시겠습니까?')) {
       axios({
@@ -49,7 +53,7 @@ const OfficeButtonContainer = ({office_id}) => {
       }}
       >
       <Stack direction="row" spacing={0.5} >
-        <Button variant="outlined">수정</Button>
+        <Button variant="outlined" onClick={onUpdateClick}>수정</Button>
         <Button variant="outlined" onClick={onDeleteClick}>삭제</Button>
         <Button variant="outlined" onClick={onReuploadClick}>다시 올리기</Button>
       </Stack>
