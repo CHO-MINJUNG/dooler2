@@ -14,12 +14,10 @@ const { isLoggedIn, isNotLoggedIn } = require('./middlewares/auth_middleware');
 
 router.post('/delete/:id', isLoggedIn, (req, res) => {
   const id = req.params.id;
-  console.log("왜");
   connection.query(
     `select * from Office_Image where office_id = ${id}`,
     (err, rows) =>{
       // if(err) console.log(err);
-      console.log("이것도?")
       let deleteList = {}
       let s3_params = {
         Bucket: "doolerbucket",

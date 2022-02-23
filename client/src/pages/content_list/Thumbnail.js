@@ -20,6 +20,7 @@ class Thumbnail extends Component {
 		const title = item.office_title;
 		const location = item.office_location;
 		const id = item.id;
+		const deposit = item.office_deposit;
 		const fee = item.office_fee;
 		const views_count = item.views_count;
 		const create_time = item.create_time;
@@ -50,7 +51,7 @@ class Thumbnail extends Component {
 						{this.getNewSign(create_time)}
 						<CardContent sx={{ flexGrow: 1}}>
 						<Typography fontSize={20} fontWeight={700}>
-								월 {fee}
+								월{deposit}/{fee}
 							</Typography>
 							<Typography sx={{fontSize: 14}} fontWeight={350}>
 								{location}
