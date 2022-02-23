@@ -21,7 +21,7 @@ router.get('/:id', (req,res) => {
   let post_user_id = null;
   
   const id = req.params.id;
-  var officeImage = {};
+  var officeDataset = {};
   connection.query(
     `update Office_Info set views_count=views_count+1 
     where id = ?`,
@@ -41,17 +41,20 @@ router.get('/:id', (req,res) => {
     address_road,
     office_content,
     create_time,
-    views_count
+    views_count,
+    sido,
+    sigungu,
+    roadname
     from Office_Info
     where id = ?`,
     id,
     (err,rows,field) => {
-      officeImage=rows[0];
+      officeDataset=rows[0];
       if(req.isAuthenticated()){
         // 현재 post를 보낸 사람의 id
         post_user_id = req.user.id;
       } else{
-        officeImage.user_phone = "로그인이 필요합니다"
+        officeDataset.user_phone = "로그인이 필요합니다"
       }
     }
   )
@@ -67,9 +70,9 @@ router.get('/:id', (req,res) => {
       user_id = rows[0].user_id
         // 사용자와 게시자가 일치하는지
         if (post_user_id === user_id){
-        officeImage.userIsCorrect = true;
+        officeDataset.userIsCorrect = true;
       } else{
-        officeImage.userIsCorrect = false;
+        officeDataset.userIsCorrect = false;
       }
     }
   )
@@ -84,8 +87,8 @@ router.get('/:id', (req,res) => {
       for(var data of rows){
         imgList.push(data.file_name);
       }
-      officeImage.image_link = imgList
-      res.send(officeImage)
+      officeDataset.image_link = imgList
+      res.send(officeDataset)
     }
   )
 })

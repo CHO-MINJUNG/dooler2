@@ -111,7 +111,6 @@ const ThumnbnailEditor = () => {
             const isFee = (content.fee != null) && (content.fee != '');
             if (isLocation && isFee) {
               const success = sendContentToAxios(content)
-              console.log(success);
               if (success) {
                 alert('게시물 작성이 완료되었습니다')
                 navigate('/')

@@ -19,6 +19,10 @@ const buttonStyle = {
 const OfficeButtonContainer = ({office_id}) => {
   let navigate = useNavigate();
 
+  const onUpdateClick = () => {
+    alert("준비중인 서비스입니다")
+  }
+
   const onDeleteClick = () => {
     if (window.confirm('삭제하시겠습니까?')) {
       axios({
@@ -68,6 +72,7 @@ const OfficeButtonContainer = ({office_id}) => {
           onClick={onDeleteClick}
         >삭제</Button>
         {/* <Button variant="outlined" onClick={onReuploadClick}>다시 올리기</Button> */}
+
       </Stack>
       </div>
     
