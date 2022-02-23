@@ -7,6 +7,7 @@ import office from '../../assets/office1.jpeg';
 const contentReducer = (currentState, action) => {
   if (currentState === undefined) {
     return {
+      postType: 'CREATE',
       title: '',
       contact: '',
       location: '',
@@ -21,6 +22,9 @@ const contentReducer = (currentState, action) => {
 
   const newState = { ...currentState };
   switch (action.type) {
+    case 'POST_TYPE_SET':
+      newState.postType = action.postType;
+      break;
     case 'TITLE_CHANGE':
       newState.title = action.text;
       break;

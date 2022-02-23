@@ -7,6 +7,15 @@ axios.defaults.withCredentials=true;
 
 export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
+const buttonStyle = {
+    border: '1px solid black',
+    color: 'black',
+    '&:hover': {
+      color: 'white',
+      backgroundColor: '#000000',
+    }
+  };
+
 const OfficeButtonContainer = ({office_id}) => {
   let navigate = useNavigate();
 
@@ -48,10 +57,17 @@ const OfficeButtonContainer = ({office_id}) => {
         paddingBottom: '20px',
       }}
       >
-      <Stack direction="row" spacing={0.5} >
-        <Button variant="outlined">수정</Button>
-        <Button variant="outlined" onClick={onDeleteClick}>삭제</Button>
-        <Button variant="outlined" onClick={onReuploadClick}>다시 올리기</Button>
+      <Stack direction="row" spacing={1}>
+        <Button 
+          variant="outlined"
+          sx={buttonStyle}
+        >수정</Button>
+        <Button
+          variant="outlined"
+          sx={buttonStyle}
+          onClick={onDeleteClick}
+        >삭제</Button>
+        {/* <Button variant="outlined" onClick={onReuploadClick}>다시 올리기</Button> */}
       </Stack>
       </div>
     
