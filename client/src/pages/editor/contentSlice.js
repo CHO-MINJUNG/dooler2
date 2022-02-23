@@ -7,12 +7,14 @@ import office from '../../assets/office1.jpeg';
 const contentReducer = (currentState, action) => {
   if (currentState === undefined) {
     return {
+      postType: 'CREATE',
       title: '',
       contact: '',
       location: '',
       address: undefined,
       deposit: undefined,
       fee: undefined,
+      addressClassifier: undefined,
       mainText: '',
       imageList: [null, null, null, null],
     };
@@ -20,6 +22,9 @@ const contentReducer = (currentState, action) => {
 
   const newState = { ...currentState };
   switch (action.type) {
+    case 'POST_TYPE_SET':
+      newState.postType = action.postType;
+      break;
     case 'TITLE_CHANGE':
       newState.title = action.text;
       break;
@@ -46,6 +51,9 @@ const contentReducer = (currentState, action) => {
       break;
     case 'ADDRESS_CHANGE':
       newState.address = action.addressDict;
+      break;
+    case 'ADDRESS_CLASSIFIER_CHANGE':
+      newState.addressClassifier = action.addressClassifierDict;
       break;
     default:
       console.log('error: content redux error, no type');
