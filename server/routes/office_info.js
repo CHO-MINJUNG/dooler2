@@ -14,21 +14,20 @@ router.get('/create', isLoggedIn, (req,res) => {
 })
 
 router.post('/create', isLoggedIn, s3.upload.array('image'), (req,res) => {
-  const {contact, fee, location, mainText, title, address} = req.body;  
+  const {contact, fee, location, mainText, title, zipcode, road, detail} = req.body;  
   const user_id = req.user.id;
   let now_office_id = null;
-  
   const insert_office = {
     office_title: title, 
     thumbnail: req.files[0].location, 
     user_id: user_id, 
     user_phone: contact, 
     office_location: location, 
+    address_zipcode: zipcode,
+    address_road: road,
+    address_detail: detail,
     office_fee: fee, 
-    office_content: mainText,
-    address_zipcode: address.zipcode,
-    address_road: address.road,
-    address_detail: address.detail
+    office_content: mainText
   }
   let insert_db = async () => {
     try{
@@ -56,57 +55,6 @@ insert_db()
 
 })
 
-router.get('/update/:id', (req, res) => {
-  const id = req.params.id;
-  connection.query(
-    `select id,
-    office_title,
-    user_id,
-    user_phone,
-    office_location,
-    office_content,
-    create_time,
-    from Office_Info
-    where id = ?`,
-    id,
-    (err,rows,field) => {
-    }
-  )
-  if(officeImage ==={}){
-  }
-
-  connection.query(
-    `select file_name
-    from Office_Image
-    where office_id = ?`,
-    id,
-    (err,rows,field) => {
-      var imgList=[];
-      for(var data of rows){
-        imgList.push(data.file_name);
-      }
-      officeImage.image_link = imgList
-      res.send(officeImage)
-    }
-  )
-})
-
-router.post('/update/:id', (req, res) => {
-  const id = req.params.id;
-  const { } = req.body; 
-  connection.query(
-    `update Office_Info
-    set office_title=?, thumbnail=?, user_id=?, user_phone=?, office_location=?, office_content=?
-    where office_id =?
-    `,
-    [,id],
-    (err,rows,field) => {
-      if(err) console.log("err: "+err);
-        // res.render('update success');
-    }
-
-  )
-})
 
 
 

@@ -54,6 +54,18 @@ export default function SignUp() {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
+  const kakaoClick = () => {
+    axios({
+      method: 'get',
+      url: `${API_BASE_URL}/api/auth/kakao`,
+      })
+      .then((response) => {
+        if(response.data.loginSuccess){
+          navigate('/')
+        }
+      })
+  }
+
   const handleDateChange = (newValue) => {
     setDateValue(newValue);
   };
@@ -228,6 +240,9 @@ export default function SignUp() {
               </Grid>
             </Grid>
           </Box>
+          <button
+            onClick={kakaoClick}
+          > 카카오톡 로그인 </button>
         </Box>
         <Copyright sx={{ mt: 5 }} />
       </Container>

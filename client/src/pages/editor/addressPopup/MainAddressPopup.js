@@ -46,8 +46,18 @@ const MainAddressPopup = () => {
 					}
 				})
 
-				detailField.focus();
+			setAddressInfo({
+				"road": roadAddr,
+				"jibun" : data.jibunAddress,
+				"zonecode": data.zonecode,
+				"extra": extraRoadAddr
+			})
+			},
+		onclose: function(state) {
+			if(state === 'COMPLETE_CLOSE'){
+				detailField.focus()
 			}
+		}
     }).open();
 	}
 

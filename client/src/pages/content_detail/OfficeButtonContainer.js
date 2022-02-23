@@ -19,6 +19,10 @@ const buttonStyle = {
 const OfficeButtonContainer = ({office_id}) => {
   let navigate = useNavigate();
 
+  const onUpdateClick = () => {
+    alert("준비중인 서비스입니다")
+  }
+
   const onDeleteClick = () => {
     if (window.confirm('삭제하시겠습니까?')) {
       axios({
