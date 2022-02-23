@@ -10,7 +10,6 @@ import axios from 'axios';
 axios.defaults.withCredentials=true;
 
 
-
 export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
 const MainEditor = () => {
@@ -26,7 +25,6 @@ const MainEditor = () => {
 			alert(response.data.message);
 		}
 	})
-	//  const title = data.office_title;
 
 	return (
 		<Container fixed maxWidth="md">

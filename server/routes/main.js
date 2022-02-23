@@ -8,21 +8,22 @@ const connection = db_config.init();
 db_config.connect(connection);
 
 router.get('/', (req,res) => {
-    connection.query(
-        `select id, 
-          thumbnail, 
-          office_title, 
-          office_location, 
-          office_deposit,
-          office_fee, 
-          views_count, 
-          create_time 
-        from Office_Info
-        ORDER BY create_time DESC`,
-        (err,rows,field) => {
-            return res.send(rows);
-        }
-    )
+  connection.query(
+    `select id, 
+      thumbnail, 
+      office_title, 
+      office_location, 
+      address_road,
+      office_deposit,
+      office_fee, 
+      views_count, 
+      create_time 
+    from Office_Info
+    ORDER BY create_time DESC`,
+    (err,rows,field) => {
+      return res.send(rows);
+    }
+  )
 })
 
 router.get('/:id', (req,res) => {

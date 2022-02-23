@@ -20,10 +20,14 @@ class Thumbnail extends Component {
 		const title = item.office_title;
 		const location = item.office_location;
 		const id = item.id;
+		const roadname = item.address_road
 		const deposit = item.office_deposit;
 		const fee = item.office_fee;
 		const views_count = item.views_count;
 		const create_time = item.create_time;
+		// const sido = item.sido;
+		// const sigungu = item.sigungu;
+		// const roadname = item.roadname;
 
 		const domain = `${API_BASE_URL}/api/crop_image/`;
 
@@ -51,10 +55,10 @@ class Thumbnail extends Component {
 						{this.getNewSign(create_time)}
 						<CardContent sx={{ flexGrow: 1}}>
 						<Typography fontSize={20} fontWeight={700}>
-								월{deposit}/{fee}
+								월 {deposit}/{fee}
 							</Typography>
 							<Typography sx={{fontSize: 14}} fontWeight={350}>
-								{location}
+								{roadname ? roadname: '위치 오류'}
 							</Typography>
 							<Typography noWrap={true} sx={{color: color2, fontSize: 14, marginTop: '5px'}} fontWeight={350}>
 								{title}
@@ -96,15 +100,11 @@ class Thumbnail extends Component {
 
 	getNewSign (timestamp) {
 		var date = new Date(timestamp);
-	
 		const now = new Date(Date.now());
 	
 		var difference = now - date;
-	
 		var daysDifference = Math.floor(difference/1000/60/60/24);
-	
-		var readable = '';
-		console.log(daysDifference);
+
 		if (daysDifference < 2) {
 			return (
 				<img 
