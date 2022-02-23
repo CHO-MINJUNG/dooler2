@@ -8,6 +8,10 @@ const connection = db_config.init();
 db_config.connect(connection);
 
 router.get('/', (req,res) => {
+  const PAGECOUNT = 12;
+  const page = parseInt(req.query.page);
+  const start = (page-1)*PAGECOUNT;
+
   connection.query(
     `select id, 
       thumbnail, 
@@ -19,9 +23,19 @@ router.get('/', (req,res) => {
       views_count, 
       create_time 
     from Office_Info
-    ORDER BY create_time DESC`,
+    ORDER BY create_time DESC
+    limit 12 offset ${start}`,
     (err,rows,field) => {
       return res.send(rows);
+    }
+  )
+})
+
+router.get('/pageCount', (req,res) => {
+  connection.query(
+    `select count(id) as cnt from Office_Info`,
+    (err,rows) =>{
+      return res.send(rows[0]);
     }
   )
 })
