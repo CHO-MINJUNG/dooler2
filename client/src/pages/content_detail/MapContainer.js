@@ -28,14 +28,12 @@ const MapContainer = (address) => {
   }, []);
 
   return(
-    <>
     <div  
       className="map" 
-      style={{width:"500px", height: "400px"}}
+      style={{width:"100%", height: "400px"}}
       ref = {container}
       >  
     </div>
-    </>
   )
 }
 
