@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const passport = require('passport');
 const cors = require('cors');
-const sharp = require('sharp');
 
 dotenv.config();
 
