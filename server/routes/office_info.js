@@ -14,7 +14,7 @@ router.get('/create', isLoggedIn, (req,res) => {
 })
 
 router.post('/create', isLoggedIn, s3.upload.array('image'), (req,res) => {
-  const {contact, fee, location, mainText, title, zipcode, road, detail} = req.body;  
+  const {contact, deposit, fee, location, mainText, title, zipcode, road, detail} = req.body;  
   const user_id = req.user.id;
   let now_office_id = null;
   const insert_office = {
@@ -26,6 +26,7 @@ router.post('/create', isLoggedIn, s3.upload.array('image'), (req,res) => {
     address_zipcode: zipcode,
     address_road: road,
     address_detail: detail,
+    office_deposit: deposit,
     office_fee: fee, 
     office_content: mainText
   }

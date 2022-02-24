@@ -46,6 +46,9 @@ const OfficeInfoContainer = ({office}) => {
 	const location = office.office_location;
 	const content = office.office_content;
 
+	const deposit = office.office_deposit;
+	const fee = office.office_fee;
+
 	const userName = office.user_name;
 	const phoneNumber = office.user_phone;
 	const views_count = office.views_count;

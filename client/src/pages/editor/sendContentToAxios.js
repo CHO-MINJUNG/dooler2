@@ -14,6 +14,7 @@ const sendContentToAxios = (content) => {
   }
   
   formData.append('contact', content.contact)
+  formData.append('deposit', content.deposit)
   formData.append('fee', content.fee)
   formData.append('location', content.location)
   formData.append('mainText', content.mainText)
