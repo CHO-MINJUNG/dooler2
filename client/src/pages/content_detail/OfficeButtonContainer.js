@@ -72,7 +72,6 @@ const OfficeButtonContainer = ({office_id}) => {
           onClick={onDeleteClick}
         >삭제</Button>
         {/* <Button variant="outlined" onClick={onReuploadClick}>다시 올리기</Button> */}
-
       </Stack>
       </div>
     

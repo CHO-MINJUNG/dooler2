@@ -29,10 +29,15 @@ function App() {
             property="og:description"
             content="개인사무실 공유 플랫폼 둘러입니다"
         />
+        <meta
+          name="description"
+          content="개인 사무실 공유. 당신의 작은 시작, 당신의 큰 꿈. 둘러입니다."
+        />
         {/* 페이지 대표 이미지 정보 */}
         <meta property="og:image" content={logo} />
       </Helmet>
       <BrowserRouter>
+        {/*Switch를 통해서 404페이지 만들 수 있음 (https://www.daleseo.com/react-router-basic/)*/}
         <Routes>
           <Route path="/" exact={true} element={<MainContentList/>} /> 
           <Route path="/dreams/:id" exact={true} element={<MainContentSingle/>} />
