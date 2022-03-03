@@ -13,9 +13,7 @@ const MainContentList = () => {
   const pageStore = createStore(pageReducer);
 
   return (
-    <Container fixed maxWidth="md">
-      <Header></Header>
-      <Divider></Divider>
+    <Container fixed >
       <br></br>
       <ArtBoard></ArtBoard>
       <br></br>

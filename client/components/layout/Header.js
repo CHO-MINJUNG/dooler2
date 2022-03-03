@@ -1,5 +1,5 @@
 import {React, useState} from 'react';
-import { AppBar, Divider, Toolbar, Typography } from '@mui/material';
+import { Toolbar } from '@mui/material';
 import logo from '../../public/logo.png';
 
 import {authButtons} from './HeaderAuth';
