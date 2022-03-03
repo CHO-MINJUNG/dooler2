@@ -2,10 +2,10 @@
 // import ContentListMain from './ContentListMain';
 // import Header from '../../components/Header';
 import {Container, Divider} from '@mui/material';
-// import ArtBoard from './ArtBoard';
+import ArtBoard from './ArtBoard';
 // import ButtonsOfMainPage from './ButtonsOfMainPage';
 // import Paging from './Paging';
-// import { Provider } from "react-redux";
+import { Provider } from "react-redux";
 // import { createStore } from "redux";
 // import pageReducer from './pageSlice';
 
@@ -14,13 +14,13 @@ const MainContentList = () => {
 
   return (
     <Container fixed maxWidth="md">
-      여기서
       <Header></Header>
-      {/*<Divider></Divider>*/}
-      {/*<br></br>*/}
-      {/*<ArtBoard></ArtBoard>*/}
-      {/*<br></br>*/}
+      <Divider></Divider>
+      <br></br>
+      <ArtBoard></ArtBoard>
+      <br></br>
       {/*<Provider store={pageStore}>*/}
+      <div>hi</div>
       {/*<ButtonsOfMainPage></ButtonsOfMainPage>*/}
       {/*<ContentListMain></ContentListMain>*/}
       {/*<Paging />*/}
