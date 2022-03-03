@@ -1,6 +1,6 @@
 // import React, { useEffect } from 'react';
 // import ContentListMain from './ContentListMain';
-// import Header from '../../components/Header';
+import Header from '../layout/Header';
 import {Container, Divider} from '@mui/material';
 import ArtBoard from './ArtBoard';
 // import ButtonsOfMainPage from './ButtonsOfMainPage';
@@ -13,9 +13,7 @@ const MainContentList = () => {
   // const pageStore = createStore(pageReducer);
 
   return (
-    <Container fixed maxWidth="md">
-      <Header></Header>
-      <Divider></Divider>
+    <Container fixed >
       <br></br>
       <ArtBoard></ArtBoard>
       <br></br>
@@ -25,7 +23,7 @@ const MainContentList = () => {
       {/*<ContentListMain></ContentListMain>*/}
       {/*<Paging />*/}
       {/*</Provider>*/}
-    </Container>
+    // </Container>
   );
 };
 
