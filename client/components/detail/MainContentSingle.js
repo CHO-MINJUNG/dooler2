@@ -7,8 +7,8 @@ import {Container, Divider, Typography} from '@mui/material';
 // import OfficeButtonContainer from './OfficeButtonContainer';
 
 
-import './style.css';
-import { Title } from './Title';
+// import './style.css';
+// import { Title } from './Title';
 
 export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 

@@ -4,7 +4,7 @@ import Header from '../layout/Header';
 import {Container, Divider} from '@mui/material';
 import ArtBoard from './ArtBoard';
 import ButtonsOfMainPage from './ButtonsOfMainPage';
-// import Paging from './Paging';
+import Paging from './Paging';
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import pageReducer from './pageSlice';
@@ -20,7 +20,7 @@ const MainContentList = () => {
       <Provider store={pageStore}>
       <ButtonsOfMainPage></ButtonsOfMainPage>
       <ContentListMain></ContentListMain>
-      {/*<Paging />*/}
+      <Paging />
       </Provider>
     </Container>
   );

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-// import ThumbnailContainer from './ThumbnailContainer';
+import ThumbnailContainer from './ThumbnailContainer';
 import fetchOfficeData from './fetchOfficeData';
 import { useSelector } from "react-redux";
 
@@ -18,7 +18,7 @@ const ContentListMain = () => {
   return (
       <div>
         <br></br>
-        {/*<ThumbnailContainer itemData={data}></ThumbnailContainer>*/}
+        <ThumbnailContainer itemData={data}></ThumbnailContainer>
       </div>
   );
 }
