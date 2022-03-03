@@ -1,6 +1,5 @@
 import {React, useState} from 'react';
 import { Toolbar } from '@mui/material';
-import logo from '../../public/logo.png';
 
 import {authButtons} from './HeaderAuth';
 import axios from 'axios';
@@ -9,7 +8,6 @@ export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
 const Header = ({isAuthNeeded = true}) => {
 	const [isLogin, setIsLogin] = useState(false);
-
 	axios({
 		method:'get',
 		url: `${API_BASE_URL}/api/auth/session`})  
