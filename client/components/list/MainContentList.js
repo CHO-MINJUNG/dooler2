@@ -15,7 +15,7 @@ const MainContentList = () => {
   return (
     <Container fixed maxWidth="md">
       여기서
-      {/*<Header></Header>*/}
+      <Header></Header>
       {/*<Divider></Divider>*/}
       {/*<br></br>*/}
       {/*<ArtBoard></ArtBoard>*/}
