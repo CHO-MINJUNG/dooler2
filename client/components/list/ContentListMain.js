@@ -13,11 +13,11 @@ const ContentListMain = () => {
       behavior: "smooth"
     });
   }, [page]);
+  console.log(data);
 
   return (
       <div>
         <br></br>
-        {data}
         {/*<ThumbnailContainer itemData={data}></ThumbnailContainer>*/}
       </div>
   );
