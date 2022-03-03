@@ -1,16 +1,16 @@
 // import React, { useEffect } from 'react';
 // import ContentListMain from './ContentListMain';
-// import Header from '../../components/Header';
+import Header from '../layout/Header';
 import {Container, Divider} from '@mui/material';
 import ArtBoard from './ArtBoard';
 // import ButtonsOfMainPage from './ButtonsOfMainPage';
 // import Paging from './Paging';
 import { Provider } from "react-redux";
-// import { createStore } from "redux";
-// import pageReducer from './pageSlice';
+import { createStore } from "redux";
+import pageReducer from './pageSlice';
 
 const MainContentList = () => {
-  // const pageStore = createStore(pageReducer);
+  const pageStore = createStore(pageReducer);
 
   return (
     <Container fixed maxWidth="md">
@@ -19,12 +19,12 @@ const MainContentList = () => {
       <br></br>
       <ArtBoard></ArtBoard>
       <br></br>
-      {/*<Provider store={pageStore}>*/}
+      <Provider store={pageStore}>
       <div>hi</div>
       {/*<ButtonsOfMainPage></ButtonsOfMainPage>*/}
       {/*<ContentListMain></ContentListMain>*/}
       {/*<Paging />*/}
-      {/*</Provider>*/}
+      </Provider>
     </Container>
   );
 };
