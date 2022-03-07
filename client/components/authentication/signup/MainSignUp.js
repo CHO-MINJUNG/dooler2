@@ -14,9 +14,8 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import SendIcon from '@mui/icons-material/Send';
 import { grey } from '@mui/material/colors';
-import { useNavigate } from 'react-router-dom';
+import router from "next/router";
 import { useState } from 'react';
 import axios from 'axios';
 axios.defaults.withCredentials=true;
@@ -46,7 +45,6 @@ const theme = createTheme({
 });
 
 export default function SignUp() {
-  let navigate = useNavigate();
 
   const [datevalue, setDateValue] = React.useState(new Date());
   const [SignupState, setSignupState] = React.useState("");
@@ -61,7 +59,7 @@ export default function SignUp() {
       })
       .then((response) => {
         if(response.data.loginSuccess){
-          navigate('/')
+          // navigate('/')
         }
       })
   }
@@ -240,9 +238,9 @@ export default function SignUp() {
               </Grid>
             </Grid>
           </Box>
-          <button
+          {/* <button
             onClick={kakaoClick}
-          > 카카오톡 로그인 </button>
+          > 카카오톡 로그인 </button> */}
         </Box>
         <Copyright sx={{ mt: 5 }} />
       </Container>

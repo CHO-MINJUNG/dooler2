@@ -9,13 +9,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { grey } from '@mui/material/colors';
-import { useDispatch } from 'react-redux';
 
-import {authAction} from './loginSlice';
-// import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import Router from 'next/router' ;
-
+import {loginAxios} from './loginAxios';
+import router from "next/router";
 
 const Copyright = (props) => {
   return (
@@ -39,13 +35,13 @@ const theme = createTheme({
 });
 
 export const LoginWindow = () => {
-  const dispatch = useDispatch();
-  // let navigate = useNavigate();
+  const [userInfo, setUserInfo] = useState({
+    isLoggedIn: false,
+    userId: '',
+    message:''
+  });
 
-  let fail_message = useSelector(state => state.message);
-  let isUser = useSelector(state => state.isLoggedIn)
-
-  const loginSubmit = (event) => {
+  const loginSubmit = async (event) => {
     event.preventDefault();
 
     let userInputData = {
@@ -53,7 +49,15 @@ export const LoginWindow = () => {
       password: event.target.password.value,
     }
 
-    dispatch(authAction(userInputData))
+    await loginAxios(userInputData, setUserInfo)
+      .then(function (user) {
+        if (user.isLoggedIn === true) {
+          router.push("/")
+        }
+      // if(userInfo ===true) {
+      //   router.push("/")
+      // }
+    })
     // .then(response => {
     //   if(response.payload.userLogin){
     //     // navigate('/')
@@ -61,12 +65,12 @@ export const LoginWindow = () => {
     // });
   }
 
-  useEffect(() => {
-    if(isUser){
-      Router.push('/');
-      console.log("왜그래 ㅠ")
-    }
-  }, isUser)
+  // useEffect(() => {
+  //   if(isUser){
+  //     Router.push('/');
+  //     console.log("왜그래 ㅠ")
+  //   }
+  // }, isUser)
 
   return (
     <ThemeProvider theme={theme}>
@@ -108,7 +112,7 @@ export const LoginWindow = () => {
               id="password"
               autoComplete="current-password"
             />
-            <Typography>{fail_message}</Typography>
+            <Typography>{userInfo.message}</Typography>
             <Button
               type="submit"
               fullWidth
