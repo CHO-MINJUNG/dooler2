@@ -21,7 +21,7 @@ import axios from 'axios';
 axios.defaults.withCredentials=true;
 
 
-export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+export const API_BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_API_ROOT;
 
 function Copyright(props) {
   return (
@@ -104,7 +104,7 @@ export default function SignUp() {
         }).then((result) => {
           if(result.data.createUser===true){
             alert("회원가입이 완료되었습니다.")
-            navigate('/');
+            router.push("/")
           }
           setSignupState(result.data.message)
       })

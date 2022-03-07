@@ -12,9 +12,9 @@ export const loginAxios = async (userInputData, setUserInfo) => {
   })
     .then((response) => {
       if (response.data.userLogin === true) {
-        console.log(response.data)
         router.push("/")
-      } else{
+      } 
+      else{
         setUserInfo(prevState => ({
           ...prevState,
           isLoggedIn: response.data.userLogin,
