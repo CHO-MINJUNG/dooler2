@@ -9,7 +9,7 @@ const fetchOfficeData = async (setData, page) => {
   try {
     axios({
       method:'get',
-      url: `/api?page=${page}`})
+      url: `${API_BASE_URL}/api?page=${page}`})
       .then(response => {
         setData(response.data)
         console.log(`fetchOfficeData.js ${response.data}`)});
