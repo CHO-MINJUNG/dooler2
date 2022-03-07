@@ -50,27 +50,8 @@ export const LoginWindow = () => {
     }
 
     await loginAxios(userInputData, setUserInfo)
-      .then(function (user) {
-        if (user.isLoggedIn === true) {
-          router.push("/")
-        }
-      // if(userInfo ===true) {
-      //   router.push("/")
-      // }
-    })
-    // .then(response => {
-    //   if(response.payload.userLogin){
-    //     // navigate('/')
-    //   }
-    // });
   }
 
-  // useEffect(() => {
-  //   if(isUser){
-  //     Router.push('/');
-  //     console.log("왜그래 ㅠ")
-  //   }
-  // }, isUser)
 
   return (
     <ThemeProvider theme={theme}>
