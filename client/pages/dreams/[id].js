@@ -1,11 +1,18 @@
 import MainContentSingle from "../../components/detail/MainContentSingle";
 import { useRouter } from "next/router";
+import axios from 'axios';
 
-const Detail = () => {
-  const router = useRouter();
-  const query = router.query;
-  console.log(query)
-  return <MainContentSingle query={query}/>;
+export const API_BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_API_ROOT;
+
+export default function Detail({response}) {
+  return <MainContentSingle response={response}/>;
 }
 
-export default Detail
+export async function getServerSideProps({query}){
+  const response = await (await axios.get(`${API_BASE_URL}/api/${query.id}`)).data;
+  return {
+    props: {
+      response
+    }
+  }
+}

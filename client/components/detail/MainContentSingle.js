@@ -11,28 +11,15 @@ import { Title } from './Title';
 
 export const API_BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_API_ROOT;
 
-const MainContentSingle = ({query}) => {
+export default function MainContentSingle({response}){
 	const [data, setData] = useState({});
 	const [loading, setLoading] = useState(true);
 	const [userIsCorrect, setUserIsCorrect] = useState(false);
- 
-
-	const callApi = async () => {
-		const id = query.id;
-		console.log(query.id)
-		
-		try {
-			const response = await axios.get(`${API_BASE_URL}/api/${id}`);
-			setData(response.data);
-			setLoading(false);
-			setUserIsCorrect(response.data.userIsCorrect);
-		} catch(err) {
-			console.log("Error >>", err);
-		}
-	}
 
   useEffect(() => {
-    callApi();
+    setData(response)
+    setLoading(false);
+    setUserIsCorrect(response.userIsCorrect);
   }, loading);
 
 	if (loading) {
@@ -52,6 +39,6 @@ const MainContentSingle = ({query}) => {
 			</>
 		);
 	}
+
 };
 
-export default MainContentSingle;

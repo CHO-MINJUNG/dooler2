@@ -3,7 +3,7 @@ import {Stack, Typography} from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
 export function Title ({title, views_count}) {
-		const color3 = '#7b7b7b';
+	const color3 = '#7b7b7b';
 
   return(
     <Stack
