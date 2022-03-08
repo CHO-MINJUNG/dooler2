@@ -2,7 +2,6 @@ import React from "react";
 import { Typography } from "@mui/material";
 
 export function Title ({title}) {
-  console.log(title);
   return(
     <div 
       style={{

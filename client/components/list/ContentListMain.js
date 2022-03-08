@@ -13,7 +13,6 @@ const ContentListMain = () => {
       behavior: "smooth"
     });
   }, [page]);
-  console.log(data);
 
   return (
       <div>

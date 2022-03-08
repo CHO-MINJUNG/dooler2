@@ -6,7 +6,6 @@ export const API_BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_API_ROOT;
 
 const OfficeImageContainer = ({imageList}) => {
     // const domain = `${API_BASE_URL}/api/image/`;
-    console.log(imageList);
     return (
         <Carousel
 					defaultControlsConfig={{prevButtonText: '<', nextButtonText: '>'}}
