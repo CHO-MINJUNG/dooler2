@@ -28,10 +28,11 @@ export default function MainContentSingle({response}){
 		return (<div>로딩중</div>);
 	} else {
     const title = data.office_title;
+		const views_count = data.views_count;
 		return (
 			<>
 			<Container fixed maxWidth="md">
-				<Title title={title}></Title>
+				<Title title={title} views_count={views_count}></Title>
 				{ userIsCorrect && <OfficeButtonContainer office_id={query.id} ></OfficeButtonContainer>}
 				<OfficeImageContainer imageList={data.image_link}></OfficeImageContainer>
 				<OfficeInfoContainer office={data}></OfficeInfoContainer>

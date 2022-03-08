@@ -1,4 +1,4 @@
-import { Grid} from "@mui/material";
+import {Button, Grid} from "@mui/material";
 import React from "react";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -23,19 +23,32 @@ const OfficeInfoCard = ({title, content, address}) => {
   );
 }
 
-const ContactCard = ({userName, phoneNumber}) => {
+const BillLikeCard = ({userName, phoneNumber, create_time, views_count, deposit, fee, address}) => {
   return (
   <React.Fragment>
-    <CardContent sx={{backgroundColor:'#eeeeee'}}>
-      <Typography sx={{ fontSize: 18, fontWeight:'bold'}} color="black" gutterBottom>
-        연락처
+    <CardContent>
+			<MetaInfo views_count={views_count} create_time={create_time}></MetaInfo>
+      <Typography sx={{ marginTop: '20px', fontSize: 22 }} color="black">
+        월세 {deposit} / {fee}
       </Typography>
-      <Typography variant="body2" color="text.secondary">
-        전화번호: {phoneNumber}
+      <Typography sx={{ fontSize: 14, fontWeight: 'light'}} color="black" gutterBottom>
+				{address}
       </Typography>
-      <Typography variant="caption" color="text.secondary">
-        전화 문의시 ‘둘러에서 보고 전화드렸어요’ 라고 하시면 문의가 쉽습니다.
-      </Typography>
+			<Button
+				fullWidth
+				style={{
+					marginTop: '20px',
+					backgroundColor: '#F6A730',
+					color: '#ffffff',
+				}}
+			>연락처 보기</Button>
+			{/*TODO: 연락처 보기 누르면 뜨는 것으로 수정*/}
+      {/*<Typography variant="body2" color="text.secondary">*/}
+      {/*  전화번호: {phoneNumber}*/}
+      {/*</Typography>*/}
+      {/*<Typography variant="caption" color="text.secondary">*/}
+      {/*  전화 문의시 ‘둘러에서 보고 전화드렸어요’ 라고 하시면 문의가 쉽습니다.*/}
+      {/*</Typography>*/}
     </CardContent>
   </React.Fragment>
   );
@@ -69,25 +82,45 @@ const OfficeInfoContainer = ({office}) => {
 				paddingBottom: '50px',
 			}}
 		>
-			<MetaInfo views_count={views_count} create_time={create_time}></MetaInfo>
 			<MediaQuery maxWidth={900}>
 			<Grid container spacing={2} direction={'column'}>
-					<Grid item xs={4} border={true}>
-						<Card variant="outlined"><ContactCard userName={userName} phoneNumber={phoneNumber}></ContactCard></Card>
-					</Grid>
-					<Grid item xs={8}>
-							<Card variant="outlined"><OfficeInfoCard title={title} content={content} address={address}></OfficeInfoCard></Card>
-					</Grid>
+				<Grid item xs={4} border={true}>
+					<Card variant="outlined">
+						<BillLikeCard
+							userName={userName}
+							phoneNumber={phoneNumber}
+							create_time={create_time}
+							views_count={views_count}
+							deposit={deposit}
+							fee={fee}
+							address={address}
+						/>
+					</Card>
+				</Grid>
+				<Grid item xs={8}>
+					<Card variant="outlined"><OfficeInfoCard title={title} content={content} address={address}></OfficeInfoCard></Card>
+				</Grid>
 			</Grid>
 			</MediaQuery>
+
 			<MediaQuery minWidth={901}>
 			<Grid container spacing={4}>
-					<Grid item xs={8}>
-							<Card variant="outlined"><OfficeInfoCard title={title} content={content} address={address}></OfficeInfoCard></Card>
-					</Grid>
-					<Grid item xs={4} border={true}>
-							<Card variant="outlined"><ContactCard userName={userName} phoneNumber={phoneNumber}></ContactCard></Card>
-					</Grid>
+				<Grid item xs={8}>
+					<Card variant="outlined"><OfficeInfoCard title={title} content={content} address={address}></OfficeInfoCard></Card>
+				</Grid>
+				<Grid item xs={4} border={true}>
+					<Card variant="outlined">
+						<BillLikeCard
+							userName={userName}
+							phoneNumber={phoneNumber}
+							create_time={create_time}
+							views_count={views_count}
+							deposit={deposit}
+							fee={fee}
+							address={address}
+						/>
+					</Card>
+				</Grid>
 			</Grid>
 			</MediaQuery>
 		</div>

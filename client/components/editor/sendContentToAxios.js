@@ -15,13 +15,13 @@ const sendContentToAxios = (content) => {
   
   formData.append('contact', content.contact)
   formData.append('deposit', content.deposit)
+  formData.append('detail', content.address.detail)
   formData.append('fee', content.fee)
   formData.append('location', content.location)
   formData.append('mainText', content.mainText)
+  formData.append('road', content.address.road)
   formData.append('title', content.title)
   formData.append('zipcode', content.address.zipcode)
-  formData.append('road', content.address.road)
-  formData.append('detail', content.address.detail)
 
   axios({
     method: 'post',

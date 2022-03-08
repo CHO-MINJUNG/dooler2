@@ -10,7 +10,7 @@ export function getDateReadable (timestamp) {
   // }
   // readable = readable + `${month}월 ${day}일`;
 
-  const readable = `${year}년 ${month}월 ${day}일`;  
+  const readable = `${year}. ${month}. ${day}`;
   
 
   return readable;
