@@ -8,6 +8,7 @@ const OfficeImageContainer = ({imageList}) => {
     // const domain = `${API_BASE_URL}/api/image/`;
     console.log(imageList);
     return (
+			<>
         <Carousel
 					defaultControlsConfig={{prevButtonText: '<', nextButtonText: '>'}}
 					heightMode="current"
@@ -16,6 +17,7 @@ const OfficeImageContainer = ({imageList}) => {
 						<img src={item} style={imgStyle()}></img>
 					))}
         </Carousel>
+			</>
     );
 };
 
