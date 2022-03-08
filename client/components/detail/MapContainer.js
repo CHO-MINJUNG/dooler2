@@ -7,23 +7,22 @@ const MapContainer = (address) => {
   
   useEffect(() => {
     const $script = document.createElement("script");
-    $script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${APPKEY}`;
+    $script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${APPKEY}&autoload=false&libraries=services`;
     $script.addEventListener("load", () => setMapLoaded(true));
     document.head.appendChild($script);
     }, []);
 
   useEffect(() => {
     if (!mapLoaded) return;
-
     kakao.maps.load(() => {
       var options = { //지도를 생성할 때 필요한 기본 옵션
-        center: new kakao.maps.LatLng(37.585373, 127.031710), //지도의 중심좌표.
+        center: new window.kakao.maps.LatLng(37.585373, 127.031710), //지도의 중심좌표.
         level: 3 //지도의 레벨(확대, 축소 정도)
       };
 
       let map = new window.kakao.maps.Map(container.current, options); //지도 생성 및 객체 리턴
       const geocoder = new window.kakao.maps.services.Geocoder();
-      console.log(address.address_road)
+
       geocoder.addressSearch(address.address_road, function(result, status) {
       if (status === window.kakao.maps.services.Status.OK) {
         var coords = new window.kakao.maps.LatLng(result[0].y, result[0].x);
