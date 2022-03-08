@@ -22,6 +22,7 @@ export default function MainContentSingle({response}){
     setUserIsCorrect(response.userIsCorrect);
   }, loading);
 
+
 	if (loading) {
 		//TODO: loading UI 디자인
 		return (<div>로딩중</div>);

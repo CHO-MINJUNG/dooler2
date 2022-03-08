@@ -5,6 +5,7 @@ import axios from 'axios';
 export const API_BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_API_ROOT;
 
 export default function Detail({response}) {
+  console.log(response)
   return <MainContentSingle response={response}/>;
 }
 
