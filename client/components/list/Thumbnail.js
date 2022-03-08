@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Link from "next/link";
 
 import { Chip, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
@@ -40,7 +41,8 @@ class Thumbnail extends Component {
 					transitionDuration: '500ms',
 					transform:'scale(1.1)',
 				}}}>
-				<a href={'dreams/' + id} style={{textDecoration: 'none'}}>
+        <Link href={'dreams/' + id}>
+				<a style={{textDecoration: 'none'}}>
 					<Card
 						sx={{ position: 'relative', height: '100%', display: 'flex', flexDirection: 'column'}}
 					>
@@ -92,6 +94,7 @@ class Thumbnail extends Component {
 						</CardContent>
 					</Card>
 				</a>
+        </Link>
 			</Grid>
 		);
   }
