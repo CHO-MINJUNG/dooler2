@@ -1,7 +1,7 @@
 import axios from 'axios';
 axios.defaults.withCredentials=true;
 
-export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
+export const API_BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_API_ROOT;
 
 const sendContentToAxios = (content) => {
   let formData = new FormData();
