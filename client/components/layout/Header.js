@@ -8,7 +8,7 @@ export const API_BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_API_ROOT;
 
 const Header = ({isAuthNeeded = true}) => {
 	const [isLogin, setIsLogin] = useState(false);
-  console.log("header: ", API_BASE_URL)
+  
 	axios({
 		method:'get',
 		url: `${API_BASE_URL}/api/auth/session`})  
