@@ -1,5 +1,5 @@
+import React, {useState} from 'react';
 import {Button, Grid} from "@mui/material";
-import React from "react";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -23,12 +23,17 @@ const OfficeInfoCard = ({title, content, address}) => {
   );
 }
 
-const BillLikeCard = ({userName, phoneNumber, create_time, views_count, deposit, fee, address}) => {
+const BillLikeCard = ({create_time, views_count, deposit, fee, address, phoneCard, setPhoneCard}) => {
+  const phoneButtonClick = () => {
+    setPhoneCard(!phoneCard)
+    console.log(phoneCard)
+  }
+  
   return (
   <React.Fragment>
     <CardContent>
 			<MetaInfo views_count={views_count} create_time={create_time}></MetaInfo>
-      <Typography sx={{ marginTop: '20px', fontSize: 22 }} color="black">
+      <Typography sx={{ marginTop: '20px', fontSize: 22,fontWeight: '600' }} color="black">
         월세 {deposit} / {fee}
       </Typography>
       <Typography sx={{ fontSize: 14, fontWeight: 'light'}} color="black" gutterBottom>
@@ -41,20 +46,39 @@ const BillLikeCard = ({userName, phoneNumber, create_time, views_count, deposit,
 					backgroundColor: '#F6A730',
 					color: '#ffffff',
 				}}
-			>연락처 보기</Button>
+				onClick={phoneButtonClick}
+			>연락처 보기
+			</Button>
 			{/*TODO: 연락처 보기 누르면 뜨는 것으로 수정*/}
-      {/*<Typography variant="body2" color="text.secondary">*/}
-      {/*  전화번호: {phoneNumber}*/}
-      {/*</Typography>*/}
-      {/*<Typography variant="caption" color="text.secondary">*/}
-      {/*  전화 문의시 ‘둘러에서 보고 전화드렸어요’ 라고 하시면 문의가 쉽습니다.*/}
-      {/*</Typography>*/}
     </CardContent>
   </React.Fragment>
   );
 }
 
+const PhoneCard = ({phoneNumber}) => {
+	return (
+		<React.Fragment>
+		<CardContent>
+      <Typography sx={{ fontSize: 17, fontWeight: '700'}} color="black" gutterBottom>
+				연락처
+      </Typography>
+			<Typography sx={{background:'#F9F8F5', textAlign: 'center', fontSize: 17, padding: 1}} 
+        variant="body2" 
+        color="text.secondary">
+			{phoneNumber}
+			</Typography>
+			<Typography variant="caption" color="text.secondary">
+        <span style={{color:'#FF8A00'}}>‘둘러에서 보고 전화드립니다.’</span> 
+        라고 하시면 문의가 쉽습니다.
+			</Typography>
+		</CardContent>
+		</React.Fragment>
+	)
+}
+
 const OfficeInfoContainer = ({office}) => {
+  const [phoneCard, setPhoneCard] = useState(false);
+
 	const title = office.office_title;
 	const location = office.office_location;
 	const content = office.office_content;
@@ -87,15 +111,19 @@ const OfficeInfoContainer = ({office}) => {
 				<Grid item xs={4} border={true}>
 					<Card variant="outlined">
 						<BillLikeCard
-							userName={userName}
-							phoneNumber={phoneNumber}
 							create_time={create_time}
 							views_count={views_count}
 							deposit={deposit}
 							fee={fee}
 							address={address}
+              phoneCard={phoneCard}
+              setPhoneCard={setPhoneCard}
 						/>
 					</Card>
+          {phoneCard && 
+            <Card variant="outlined" sx={{mt:2}}>
+              <PhoneCard phoneNumber={phoneNumber}/>	
+            </Card>}
 				</Grid>
 				<Grid item xs={8}>
 					<Card variant="outlined"><OfficeInfoCard title={title} content={content} address={address}></OfficeInfoCard></Card>
@@ -111,15 +139,19 @@ const OfficeInfoContainer = ({office}) => {
 				<Grid item xs={4} border={true}>
 					<Card variant="outlined">
 						<BillLikeCard
-							userName={userName}
-							phoneNumber={phoneNumber}
 							create_time={create_time}
 							views_count={views_count}
 							deposit={deposit}
 							fee={fee}
 							address={address}
+              phoneCard={phoneCard}
+              setPhoneCard={setPhoneCard}
 						/>
 					</Card>
+					{phoneCard && 
+            <Card variant="outlined" sx={{mt:1}}>
+              <PhoneCard phoneNumber={phoneNumber}/>	
+            </Card>}
 				</Grid>
 			</Grid>
 			</MediaQuery>
