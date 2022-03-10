@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRouter } from 'next/router';
 import {Container, Divider, Typography} from '@mui/material';
 
-import FormContainer from './FormContainer';
+import FormContainer from './officeInfoEditor/FormContainer';
 import axios from 'axios';
 axios.defaults.withCredentials=true;
 

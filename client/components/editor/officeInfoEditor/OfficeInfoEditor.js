@@ -1,21 +1,16 @@
-import { Grid, TextField} from "@mui/material";
+import {Grid, TextField, Divider, Stack} from "@mui/material";
 import React from "react";
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useSelector, useDispatch } from "react-redux";
-import sendContentToAxios from './sendContentToAxios';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import ThumnbnailEditor from "./ThumbnailEditor";
+import ThumnbnailEditor from "../ThumbnailEditor";
 
-import MainAddressPopup from "./addressPopup/MainAddressPopup"
+import MainAddressPopup from "../addressPopup/MainAddressPopup"
+import DepositFee from "./DepositFee";
+import PhoneNumber from "./PhoneNumber";
 
 const OfficeInfoCard = () => {  
   const dispatch = useDispatch();
@@ -29,12 +24,13 @@ const OfficeInfoCard = () => {
       <TextField
         name='main-text'
         // value={areaContent}
+        variant={"filled"}
         multiline={true}
         minRows={10}
         placeholder={"사무실 소개 글을 적어주세요"}
         onChange={
           function (e) {
-            dispatch({ 
+            dispatch({
               type: 'MAINTEXT_CHANGE',
               text: e.target.value,
             });
@@ -44,38 +40,21 @@ const OfficeInfoCard = () => {
         sx={{
           marginBottom: '20px',
         }}
-      ></TextField>
+      />
       </CardContent>
-      <MainAddressPopup />
     </React.Fragment>
   );
 }
 
-const ContactCard = () => {
+const BillLikeCard = () => {
 
   const dispatch = useDispatch();
   return (
     <React.Fragment>
-      <CardContent sx={{backgroundColor:'#eeeeee'}}>
-        <Typography sx={{ fontSize: 18, fontWeight:'bold'}} color="black" gutterBottom>
-          연락처
-        </Typography>
-        <TextField
-          size="small"
-          placeholder="010-0000-0000"
-          onChange={
-            function (e) {
-              dispatch({ 
-                type: 'CONTACT_CHANGE',
-                text: e.target.value,
-              });
-            }
-          }
-          />
-        <br></br>
-        <Typography variant="caption" color="text.secondary">
-          전화 문의시 ‘둘러에서 보고 전화드렸어요’ 라고 하시면 문의가 쉽습니다.
-        </Typography>
+      <CardContent>
+        <DepositFee/>
+        <MainAddressPopup />
+        <PhoneNumber/>
       </CardContent>
 
     </React.Fragment>
@@ -83,8 +62,6 @@ const ContactCard = () => {
 }
 
 const OfficeInfoEditor = () => {
-
-
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -109,7 +86,7 @@ const OfficeInfoEditor = () => {
 							<Card variant="outlined"><OfficeInfoCard ></OfficeInfoCard></Card>
 					</Grid>
 					<Grid item xs={4} border={true}>
-							<Card variant="outlined" sx={{marginBottom: '15px',}}><ContactCard></ContactCard></Card>
+							<Card variant="outlined" sx={{marginBottom: '15px',}}><BillLikeCard></BillLikeCard></Card>
               <Button
                 variant="contained"
                 onClick={function (e) {

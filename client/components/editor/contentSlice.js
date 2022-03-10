@@ -61,4 +61,4 @@ const contentReducer = (currentState, action) => {
 
 export const contentStore = createStore(contentReducer);
 
-export default contentReducer;
+export default contentStore;

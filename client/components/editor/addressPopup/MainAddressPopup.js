@@ -3,6 +3,8 @@ import {Helmet} from "react-helmet";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useDispatch } from "react-redux";
+import {Grid} from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 const MainAddressPopup = () => {
 	const [addressInfo, setAddressInfo] = useState("")
@@ -80,32 +82,63 @@ const MainAddressPopup = () => {
 	
 	return(
 		<div>
-		<Helmet>
-			<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" />
-		</Helmet>
-			<div>
-				<TextField defaultValue={"우편번호"} onClick={get_address} value={addressInfo.zonecode} disabled id="outlined-disabled" />
-				<Button variant="outlined" onClick={get_address}>우편번호 검색</Button>
-				<br/>
-				<TextField defaultValue={"도로명주소"} onClick={get_address} value={addressInfo.road} disabled id="outlined-disabled" />
-				<TextField defaultValue={"지번주소"} onClick={get_address} value={addressInfo.jibun} disabled id="outlined-disabled" />
-				<TextField 
-					id="detail" 
-					onClick={onDetailClick} 
-					required 
-					label="상세주소" 
-					variant="outlined"
-					onChange={
-            function (e) {
-							dispatch({ 
-								type: 'ADDRESS_CHANGE',
-								addressDict: {"zipcode":addressInfo.zonecode, "road":addressInfo.road, "detail":e.target.value},
-							});
-						}
-          }/>
-			</div>
+			<Helmet>
+				<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" />
+			</Helmet>
+      <Typography sx={{ fontSize: 15}} color="black" gutterBottom>
+        상세주소 입력
+      </Typography>
+			<Grid container spacing={3}>
+				<Grid item xs={7}>
+					<TextField
+						variant={"standard"}
+						size={"small"}
+						defaultValue={"우편번호"}
+						onClick={get_address}
+						value={addressInfo.zonecode}
+						disabled id="outlined-disabled"
+					/>
+				</Grid>
+				<Grid item xs={5} >
+					<Button
+						variant="outlined"
+						size={'small'}
+						onClick={get_address}
+            fullWidth
+					>
+						주소 검색
+					</Button>
+				</Grid>
+			</Grid>
+			<TextField
+				variant={"standard"}
+				size={"small"}
+				defaultValue={"도로명주소"}
+				onClick={get_address}
+				value={addressInfo.road}
+				disabled
+				fullWidth
+				id="outlined-disabled"
+			/>
+			<TextField
+				variant={"standard"}
+				size={"small"}
+				id="detail"
+				onClick={onDetailClick}
+				required
+				fullWidth
+				placeholder="상세주소"
+				onChange={
+					function (e) {
+						dispatch({
+							type: 'ADDRESS_CHANGE',
+							addressDict: {"zipcode":addressInfo.zonecode, "road":addressInfo.road, "detail":e.target.value},
+						});
+					}
+				}
+			/>
 		</div>
 	);
-  }
+}
 
 export default MainAddressPopup;
