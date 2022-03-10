@@ -17,10 +17,12 @@ const DepositFee = () => {
           <TextField
             placeholder={"보증금"}
             fullWidth
-            variant={"standard"}
+            hiddenLabel
+            variant={"filled"}
             value={content.deposit}
             margin="dense"
             size="small"
+            sx={{padding: '0px'}}
             type={"number"}
             // inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
             onChange={function(e) {
@@ -39,7 +41,8 @@ const DepositFee = () => {
             placeholder={"월세"}
             fullWidth
             value={content.fee}
-            variant={"standard"}
+            hiddenLabel
+            variant={"filled"}
             margin="dense"
             size="small"
             type={"number"}

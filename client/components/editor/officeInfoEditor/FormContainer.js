@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import contentStore from '../contentSlice';
 import ImageUploader from "../ImageUploader";
-import ThumnbnailEditor from "../ThumbnailEditor";
+import ThumbnailPreview from "../ThumbnailPreview";
 
 const FormContainer = () => {
   const [phoneNumber, setPhoneNumber] = useState('');

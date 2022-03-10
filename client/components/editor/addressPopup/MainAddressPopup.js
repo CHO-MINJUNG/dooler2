@@ -81,17 +81,18 @@ const MainAddressPopup = () => {
 	}
 	
 	return(
-		<div>
+		<div style={{marginTop: '20px'}}>
 			<Helmet>
 				<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" />
 			</Helmet>
       <Typography sx={{ fontSize: 15}} color="black" gutterBottom>
         상세주소 입력
       </Typography>
-			<Grid container spacing={3}>
+			<Grid container spacing={3} >
 				<Grid item xs={7}>
 					<TextField
-						variant={"standard"}
+						hiddenLabel
+						variant={"filled"}
 						size={"small"}
 						defaultValue={"우편번호"}
 						onClick={get_address}
@@ -111,7 +112,8 @@ const MainAddressPopup = () => {
 				</Grid>
 			</Grid>
 			<TextField
-				variant={"standard"}
+        hiddenLabel
+        variant={"filled"}
 				size={"small"}
 				defaultValue={"도로명주소"}
 				onClick={get_address}
@@ -119,9 +121,11 @@ const MainAddressPopup = () => {
 				disabled
 				fullWidth
 				id="outlined-disabled"
+				style={{marginTop:'3px'}}
 			/>
 			<TextField
-				variant={"standard"}
+        hiddenLabel
+        variant={"filled"}
 				size={"small"}
 				id="detail"
 				onClick={onDetailClick}
@@ -136,6 +140,7 @@ const MainAddressPopup = () => {
 						});
 					}
 				}
+				style={{marginTop:'3px'}}
 			/>
 		</div>
 	);

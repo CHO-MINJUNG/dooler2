@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useSelector, useDispatch } from "react-redux";
 import Dialog from '@mui/material/Dialog';
-import ThumnbnailEditor from "../ThumbnailEditor";
+import ThumbnailPreview from "../ThumbnailPreview";
 
 import MainAddressPopup from "../addressPopup/MainAddressPopup"
 import DepositFee from "./DepositFee";
@@ -47,16 +47,13 @@ const OfficeInfoCard = () => {
 }
 
 const BillLikeCard = () => {
-
-  const dispatch = useDispatch();
   return (
     <React.Fragment>
       <CardContent>
-        <DepositFee/>
+        <DepositFee />
         <MainAddressPopup />
-        <PhoneNumber/>
+        <PhoneNumber />
       </CardContent>
-
     </React.Fragment>
   );
 }
@@ -82,32 +79,34 @@ const OfficeInfoEditor = () => {
 			}}
 		>
 			<Grid container spacing={4}>
-					<Grid item xs={8}>
-							<Card variant="outlined"><OfficeInfoCard ></OfficeInfoCard></Card>
-					</Grid>
-					<Grid item xs={4} border={true}>
-							<Card variant="outlined" sx={{marginBottom: '15px',}}><BillLikeCard></BillLikeCard></Card>
-              <Button
-                variant="contained"
-                onClick={function (e) {
-                  const isTitle = (content.title != null) && (content.title != '');
-                  const isFirstImage = (content.imageList[0] != null);
-                  const isMainText = (content.mainText != null) && (content.mainText != '');
-                  const isContact = (content.contact != null) && (content.contact != '');
-                  const isAddress = (content.address != null) && (content.address != '');
-                  
-                  if (isTitle && isFirstImage && isMainText && isContact && isAddress) {
-                    handleClickOpen();
-                  } else {
-                    alert('내용을 모두 입력해주세요');
-                  }
-                }}
-                fullWidth
-                sx={{
-                  height: '45px',
-                }}
-              >다음 단계로 이동</Button>
-					</Grid>
+        <Grid item xs={8}>
+          <Card variant="outlined"><OfficeInfoCard ></OfficeInfoCard></Card>
+        </Grid>
+        <Grid item xs={4} border={true}>
+          <Card variant="outlined" sx={{marginBottom: '15px',}}><BillLikeCard></BillLikeCard></Card>
+          <Button
+            variant="contained"
+            onClick={function (e) {
+              const isTitle = (content.title != null) && (content.title != '');
+              const isFirstImage = (content.imageList[0] != null);
+              const isMainText = (content.mainText != null) && (content.mainText != '');
+              const isContact = (content.contact != null) && (content.contact != '');
+              const isAddress = (content.address != null) && (content.address != '');
+
+              if (isTitle && isFirstImage && isMainText && isContact && isAddress) {
+                handleClickOpen();
+              } else {
+                alert('내용을 모두 입력해주세요');
+              }
+
+              handleClickOpen();
+            }}
+            fullWidth
+            sx={{
+              height: '45px',
+            }}
+          >다음 단계로 이동</Button>
+        </Grid>
 			</Grid>
 
 
@@ -117,22 +116,7 @@ const OfficeInfoEditor = () => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        {/* <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
-          </Button>
-        </DialogActions> */}
-        <ThumnbnailEditor></ThumnbnailEditor>
+        <ThumbnailPreview></ThumbnailPreview>
       </Dialog>
 		</div>
 	);
