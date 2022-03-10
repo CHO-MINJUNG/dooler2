@@ -11,6 +11,7 @@ import ThumbnailPreview from "../ThumbnailPreview";
 import MainAddressPopup from "../addressPopup/MainAddressPopup"
 import DepositFee from "./DepositFee";
 import PhoneNumber from "./PhoneNumber";
+import MediaQuery from "react-responsive";
 
 const OfficeInfoCard = () => {  
   const dispatch = useDispatch();
@@ -78,37 +79,42 @@ const OfficeInfoEditor = () => {
 				paddingBottom: '50px',
 			}}
 		>
-			<Grid container spacing={4}>
-        <Grid item xs={8}>
-          <Card variant="outlined"><OfficeInfoCard ></OfficeInfoCard></Card>
+      <MediaQuery minWidth={901}>
+        <Grid container spacing={4}>
+          <Grid item xs={8}>
+            <Card variant="outlined"><OfficeInfoCard ></OfficeInfoCard></Card>
+          </Grid>
+          <Grid item xs={4} border={true}>
+            <Card variant="outlined" sx={{marginBottom: '15px',}}><BillLikeCard></BillLikeCard></Card>
+            <Button
+              variant="contained"
+              onClick={(e) => openDialogButton(e, content, handleClickOpen)}
+              fullWidth
+              sx={{
+                height: '45px',
+              }}
+            >다음 단계로 이동</Button>
+          </Grid>
         </Grid>
-        <Grid item xs={4} border={true}>
-          <Card variant="outlined" sx={{marginBottom: '15px',}}><BillLikeCard></BillLikeCard></Card>
-          <Button
-            variant="contained"
-            onClick={function (e) {
-              const isTitle = (content.title != null) && (content.title != '');
-              const isFirstImage = (content.imageList[0] != null);
-              const isMainText = (content.mainText != null) && (content.mainText != '');
-              const isContact = (content.contact != null) && (content.contact != '');
-              const isAddress = (content.address != null) && (content.address != '');
-
-              if (isTitle && isFirstImage && isMainText && isContact && isAddress) {
-                handleClickOpen();
-              } else {
-                alert('내용을 모두 입력해주세요');
-              }
-
-              handleClickOpen();
-            }}
-            fullWidth
-            sx={{
-              height: '45px',
-            }}
-          >다음 단계로 이동</Button>
+      </MediaQuery>
+      <MediaQuery maxWidth={900}>
+        <Grid container direction={"column"} spacing={4}>
+          <Grid item xs={4} border={true}>
+            <Card variant="outlined" sx={{marginBottom: '15px',}}><BillLikeCard></BillLikeCard></Card>
+            <Button
+              variant="contained"
+              onClick={(e) => openDialogButton(e, content, handleClickOpen)}
+              fullWidth
+              sx={{
+                height: '45px',
+              }}
+            >다음 단계로 이동</Button>
+          </Grid>
+          <Grid item xs={8}>
+            <Card variant="outlined"><OfficeInfoCard ></OfficeInfoCard></Card>
+          </Grid>
         </Grid>
-			</Grid>
-
+      </MediaQuery>
 
       <Dialog
         open={open}
@@ -121,5 +127,22 @@ const OfficeInfoEditor = () => {
 		</div>
 	);
 };
+
+const openDialogButton = (e, content, handleClickOpen) => {
+
+  const isTitle = (content.title != null) && (content.title != '');
+  const isFirstImage = (content.imageList[0] != null);
+  const isMainText = (content.mainText != null) && (content.mainText != '');
+  const isContact = (content.contact != null) && (content.contact != '');
+  const isAddress = (content.address != null) && (content.address != '');
+
+  if (isTitle && isFirstImage && isMainText && isContact && isAddress) {
+    handleClickOpen();
+  } else {
+    alert('내용을 모두 입력해주세요');
+  }
+
+  handleClickOpen();
+}
 
 export default OfficeInfoEditor;

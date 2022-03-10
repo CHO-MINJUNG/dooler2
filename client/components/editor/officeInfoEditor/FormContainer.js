@@ -1,5 +1,5 @@
 import {React, useState} from "react";
-import TitleEditor from "../TitleEditor";
+import TitleEditor from "./TitleEditor";
 import OfficeInfoEditor from "./OfficeInfoEditor";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
