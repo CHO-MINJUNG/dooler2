@@ -16,6 +16,7 @@ const ButtonsOfMainPage = () => {
       <Button 
       href={"/createDream"}
       sx={{
+        fontFamily:"NanumSquare",
         border: '1px solid black',
         color: 'black',
         '&:hover': {

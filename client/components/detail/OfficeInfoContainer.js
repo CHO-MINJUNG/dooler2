@@ -11,10 +11,10 @@ const OfficeInfoCard = ({title, content, address}) => {
   return (
     <React.Fragment>
       <CardContent>
-      <Typography sx={{ fontSize: 18, fontWeight: 'bold' }} color="black" gutterBottom>
+      <Typography sx={{ fontFamily:"NanumSquare", fontSize: 18, fontWeight: '800' }} color="black" gutterBottom>
         호스트 메시지
       </Typography>
-        <Typography variant="body2" color="text.secondary" style={{whiteSpace: 'pre-line'}}>
+        <Typography variant="body2" color="text.secondary" style={{fontFamily:"NanumSquare", whiteSpace: 'pre-line'}}>
           {content}
         </Typography>
         <MapContainer address_road={address} />
@@ -33,15 +33,16 @@ const BillLikeCard = ({create_time, views_count, deposit, fee, address, phoneCar
   <React.Fragment>
     <CardContent>
 			<MetaInfo views_count={views_count} create_time={create_time}></MetaInfo>
-      <Typography sx={{ marginTop: '20px', fontSize: 22,fontWeight: '600' }} color="black">
+      <Typography sx={{ fontFamily:"NanumSquare",marginTop: '20px', fontSize: 22,fontWeight: '800' }} color="black">
         월세 {deposit} / {fee}
       </Typography>
-      <Typography sx={{ fontSize: 14, fontWeight: 'light'}} color="black" gutterBottom>
+      <Typography sx={{ fontFamily:"NanumSquare",fontSize: 14, fontWeight: 'light'}} color="black" gutterBottom>
 				{address}
       </Typography>
 			<Button
 				fullWidth
 				style={{
+					fontFamily:"NanumSquare",
 					marginTop: '20px',
 					backgroundColor: '#F6A730',
 					color: '#ffffff',
@@ -59,7 +60,7 @@ const PhoneCard = ({phoneNumber}) => {
 	return (
 		<React.Fragment>
 		<CardContent>
-      <Typography sx={{ fontSize: 17, fontWeight: '700'}} color="black" gutterBottom>
+      <Typography sx={{ fontFamily:"NanumSquare", fontSize: 18, fontWeight: '800'}} color="black" gutterBottom>
 				연락처
       </Typography>
 			<Typography sx={{background:'#F9F8F5', textAlign: 'center', fontSize: 17, padding: 1}} 
@@ -68,7 +69,7 @@ const PhoneCard = ({phoneNumber}) => {
 			{phoneNumber}
 			</Typography>
 			<Typography variant="caption" color="text.secondary">
-        <span style={{color:'#FF8A00'}}>‘둘러에서 보고 전화드립니다.’</span> 
+        <span style={{fontFamily:"NanumSquare", color:'#FF8A00'}}>‘둘러에서 보고 전화드립니다.’</span> 
         라고 하시면 문의가 쉽습니다.
 			</Typography>
 		</CardContent>

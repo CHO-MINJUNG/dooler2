@@ -64,7 +64,7 @@ export const LoginWindow = () => {
             flexDirection: 'column',
             alignItems: 'center',
           }}>
-          <Typography component="h1" variant="h6" sx={{marginBottom: '30px', marginTop:'10px'}}>
+          <Typography component="h1" variant="h6" sx={{fontFamily:"NanumSquareBold",marginBottom: '30px', marginTop:'10px'}}>
             로그인
           </Typography>
           <Box component="form"
@@ -98,13 +98,13 @@ export const LoginWindow = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ fontFamily:"NanumSquare", mt: 3, mb: 2 }}
             >
               로그인
             </Button>
             <Grid container>
               <Grid item>
-                <Typography variant='body2' sx={{display:'inline'}}>계정이 없으신가요? </Typography>
+                <Typography variant='body2' sx={{fontFamily:"NanumSquare",display:'inline'}}>계정이 없으신가요? </Typography>
                 <Link href="/auth/signup" variant="body2">
                   {"회원가입"}
                 </Link>

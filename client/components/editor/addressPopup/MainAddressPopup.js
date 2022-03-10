@@ -85,10 +85,10 @@ const MainAddressPopup = () => {
 			<Helmet>
 				<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" />
 			</Helmet>
-      <Typography sx={{ fontSize: 15}} color="black" gutterBottom>
+      <Typography sx={{ fontFamily:"NanumSquareBold", fontSize: 15}} color="black" gutterBottom>
         상세주소 입력
       </Typography>
-			<Grid container spacing={3} >
+			<Grid container spacing={1} sx={{alignItems:"center"}}>
 				<Grid item xs={7}>
 					<TextField
 						hiddenLabel
@@ -102,6 +102,7 @@ const MainAddressPopup = () => {
 				</Grid>
 				<Grid item xs={5} >
 					<Button
+            sx={{fontFamily:"NanumSquareBold", padding:0, fontSize:17}}
 						variant="outlined"
 						size={'small'}
 						onClick={get_address}

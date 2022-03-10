@@ -19,7 +19,7 @@ const OfficeInfoCard = () => {
   return (
     <React.Fragment>
       <CardContent>
-      <Typography sx={{ fontSize: 18, fontWeight: 'bold' }} color="black" gutterBottom>
+      <Typography sx={{ fontFamily:"NanumSquareBold", fontSize: 18, fontWeight: 'bold' }} color="black" gutterBottom>
         호스트 메시지
       </Typography>
       <TextField
@@ -106,6 +106,7 @@ const OfficeInfoEditor = () => {
               onClick={(e) => openDialogButton(e, content, handleClickOpen)}
               fullWidth
               sx={{
+                fontFamily:"NanumSquare",
                 height: '45px',
               }}
             >다음 단계로 이동</Button>

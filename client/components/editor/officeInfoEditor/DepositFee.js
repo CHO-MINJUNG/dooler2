@@ -9,7 +9,7 @@ const DepositFee = () => {
   return (
     <>
 
-      <Typography sx={{ fontSize: 15}} color="black" gutterBottom>
+      <Typography sx={{fontFamily:"NanumSquareBold", fontSize: 15}} color="black" gutterBottom>
         보증금/월세 입력
       </Typography>
       <Grid container direction={'row'}>

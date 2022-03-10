@@ -11,11 +11,12 @@ export function MetaInfo ({views_count, create_time}) {
           <Typography fontWeight={350} color="text.secondary"
             sx={
               {
-                font: 'NanumSquare',
+                fontFamily:"NanumSquare",
+                fontWeight:"700",
                 border: '1px solid black',
                 padding: '2px 10px',
                 fontSize: 13,
-                marginTop: '5px'
+                marginTop: '5px',
               }
             }
           >

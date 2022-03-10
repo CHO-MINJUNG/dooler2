@@ -54,18 +54,18 @@ class Thumbnail extends Component {
 						/>
 						{this.getNewSign(create_time)}
 						<CardContent sx={{ flexGrow: 1}}>
-						<Typography fontSize={20} fontWeight={700}>
+						<Typography fontSize={20} fontWeight={800} fontFamily={"NanumSquare"}>
 								월 {deposit}/{fee}
 							</Typography>
-							<Typography sx={{fontSize: 14}} fontWeight={350}>
+							<Typography sx={{fontFamily:"NanumSquare",fontSize: 14}} fontWeight={350}>
 								{roadname ? roadname: '위치 오류'}
 							</Typography>
-							<Typography noWrap={true} sx={{color: color2, fontSize: 14, marginTop: '5px'}} fontWeight={350}>
+							<Typography noWrap={true} sx={{fontFamily:"NanumSquare", color: color2, fontSize: 14, marginTop: '5px'}} fontWeight={350}>
 								{title}
 							</Typography>
 							<Grid container sx={{marginTop: '5px'}} justifyContent={'space-between'} spacing={1} >
 								<Grid item>
-									<Typography sx={{fontSize: 13, color: color3}} fontWeight={350} color="text.secondary">
+									<Typography sx={{fontFamily:"NanumSquare",fontSize: 13, color: color3}} fontWeight={350} color="text.secondary">
 										{getDateReadable(create_time)}
 									</Typography>
 								</Grid>

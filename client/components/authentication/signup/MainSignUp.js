@@ -122,14 +122,14 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          <Typography component="h1" variant="h6" sx={{marginBottom: '30px', marginTop:'10px'}}>
+          <Typography component="h1" variant="h6" sx={{fontFamily:"NanumSquareBold",marginBottom: '30px', marginTop:'10px'}}>
             회원가입    
           </Typography>
           <Box
             sx={{
               alignItems: 'start',
             }}>
-            <Typography component="h1" variant="h5">
+            <Typography sx={{fontFamily:"NanumSquare"}} component="h1" variant="h5">
               지금 둘러에서 새로운 꿈을 연결보세요!
             </Typography>
           </Box>
@@ -225,13 +225,13 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ fontFamily:"NanumSquare", mt: 3, mb: 2 }}
             >
               완료
             </Button>
             <Grid container justifyContent="flex-start">
               <Grid item>
-                <Typography variant='body2' sx={{display: 'inline'}}>이미 계정이 있으신가요? </Typography>
+                <Typography variant='body2' sx={{fontFamily:"NanumSquare",display: 'inline'}}>이미 계정이 있으신가요? </Typography>
                 <Link href="/auth/login" variant="body2">
                   로그인
                 </Link>

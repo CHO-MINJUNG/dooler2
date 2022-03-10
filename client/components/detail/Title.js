@@ -14,7 +14,7 @@ export function Title ({title, views_count}) {
         paddingBottom: '20px',
       }}
     >
-      <Typography variant='h1' fontWeight={600} fontSize={30}>{title}</Typography>
+      <Typography variant='h1' fontFamily={"NanumSquare"} fontWeight={700} fontSize={30}>{title}</Typography>
 			<div style={{display: 'inline-block'}}>
       	<VisibilityIcon sx={{ fontSize: 13, color: color3}}  />
 				<Typography
