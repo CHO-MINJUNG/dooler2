@@ -78,9 +78,10 @@ router.get('/:id', (req,res) => {
       if(req.isAuthenticated()){
         // 현재 post를 보낸 사람의 id
         post_user_id = req.user.id;
-      } else{
-        officeDataset.user_phone = "로그인이 필요합니다"
-      }
+      } 
+      // else{
+      //   officeDataset.user_phone = "로그인이 필요합니다"
+      // }
     }
   )
   // 해당 게시물을 작성한 사람의 id
