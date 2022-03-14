@@ -1,6 +1,6 @@
 import {React, useState} from 'react';
 import { Toolbar } from '@mui/material';
-
+import Link from "next/link";
 import {authButtons} from './HeaderAuth';
 import axios from 'axios';
 axios.defaults.withCredentials=true;
@@ -17,9 +17,11 @@ const Header = ({isAuthNeeded = true}) => {
 			
 	return (
 		<Toolbar sx={{ justifyContent: "space-between" }}>
-			<a href="/">
+			<Link href="/">
+			<a>
 				<img height='30' src="/logo.png" alt="logo"/>
 			</a>
+			</Link>
 			{authButtons(isAuthNeeded, isLogin)}
 		</Toolbar>
 		);

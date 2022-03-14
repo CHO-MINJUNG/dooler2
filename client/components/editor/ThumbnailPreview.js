@@ -24,8 +24,13 @@ import {getDateReadable} from "../list/getDateReadable";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const ThumbnailPreview = () => {
-  const img = useSelector((state) => state.imageList[0]);
-  const imgSrc = URL.createObjectURL(img);
+  const imgSrc = '';
+  const img = useSelector(state => state.imageList[0]);
+  if (typeof(img)==="object"){
+    imgSrc = URL.createObjectURL(img);
+  }else {
+    imgSrc = img
+  }
   const content = useSelector((state) => state);
 
   const title = useSelector((state) => state.title);
@@ -103,15 +108,13 @@ const ThumbnailPreview = () => {
           onClick={() => {
             const isLocation = (content.location != null) && (content.location != '');
             const isFee = (content.fee != null) && (content.fee != '');
-            if (isLocation && isFee) {
+
               const success = sendContentToAxios(content)
               if (success) {
                 alert('게시물 작성이 완료되었습니다')
                 router.push('/')
               }
-            } else {
-              alert('정보를 모두 입력해주세요');
-            }
+        
           }}
         >
           완료하기

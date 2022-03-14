@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
+import Link from "next/link";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import axios from 'axios';
@@ -62,10 +62,15 @@ const OfficeButtonContainer = ({office_id}) => {
       }}
       >
       <Stack direction="row" spacing={1}>
-        <Button 
-          variant="outlined"
-          sx={buttonStyle}
-        >수정</Button>
+        <Link href={{
+          pathname: `/updateDream/${office_id}`,
+        }}>
+          <Button 
+            variant="outlined"
+            sx={buttonStyle}
+          >수정
+          </Button>
+        </Link>
         <Button
           variant="outlined"
           sx={buttonStyle}

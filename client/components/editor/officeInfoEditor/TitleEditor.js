@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const TitleEditor = ({setState, name, placeholder}) => {
   const dispatch = useDispatch();
+  let selector = useSelector(state => state);
 
   return (
     <TextField
@@ -11,6 +12,7 @@ const TitleEditor = ({setState, name, placeholder}) => {
       placeholder={placeholder}
       fullWidth
       size="middle"
+      value={selector.title}
       onChange={function(e) {
         dispatch({
           type: 'TITLE_CHANGE',

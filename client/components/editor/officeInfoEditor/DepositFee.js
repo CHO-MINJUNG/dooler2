@@ -3,7 +3,7 @@ import React from "react";
 import {useSelector, useDispatch} from "react-redux";
 
 const DepositFee = () => {
-  const content = useSelector((state) => state);
+  const selector = useSelector(state => state);
   const dispatch = useDispatch();
 
   return (
@@ -19,7 +19,7 @@ const DepositFee = () => {
             fullWidth
             hiddenLabel
             variant={"filled"}
-            value={content.deposit}
+            value={selector.deposit}
             margin="dense"
             size="small"
             sx={{padding: '0px'}}
@@ -40,7 +40,7 @@ const DepositFee = () => {
           <TextField
             placeholder={"월세"}
             fullWidth
-            value={content.fee}
+            value={selector.fee}
             hiddenLabel
             variant={"filled"}
             margin="dense"

@@ -13,7 +13,7 @@ const OfficeImageContainer = ({imageList}) => {
 					heightMode="current"
 				>
 					{imageList.map((item) => (
-						<img src={item} style={imgStyle()}></img>
+						<img src={item.file_name} key={item.id} style={imgStyle()}></img>
 					))}
         </Carousel>
 			</>

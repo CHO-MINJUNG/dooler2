@@ -1,4 +1,5 @@
 // import { useNavigate } from 'react-router-dom';
+import Link from "next/link";
 import axios from 'axios';
 axios.defaults.withCredentials=true;
 
@@ -19,23 +20,25 @@ export const authButtons = (isAuthNeeded, isLoggedIn) => {
 export const loginRegistrationButton = () => {
 	return (
 		<div>
-			<a href="/auth/login"
+			<Link href="/auth/login">
+			<a
 				style={{
 					textDecoration:'none',
 					color: 'black',
 				}}
 			>
 				로그인
-			</a>
+			</a></Link>
 			/
-			<a href="/auth/signup"
+			<Link href="/auth/signup"> 
+			<a
 				style={{
 					textDecoration:'none',
 					color: 'black',
 				}}
 			>
 				회원가입
-			</a>
+			</a></Link>
 		</div>
 	);
 }
@@ -43,15 +46,17 @@ export const loginRegistrationButton = () => {
 export const logoutMypageButton = () => {
 	return (
 		<div>
-			<a href='/auth/logout'
+			<Link href='/auth/logout'>
+			<a 
 				style={{
 					textDecoration:'none',
 					color: 'black',
 				}}>
 				로그아웃
-			</a>
+			</a></Link>
 			/
-			<a href="/"
+			<Link href="/">
+			<a 
 				style={{
 					textDecoration:'none',
 					color: 'black',
@@ -59,7 +64,7 @@ export const logoutMypageButton = () => {
 				// onClick={alert("준비중인 서비스입니다")}
 			>
 				마이페이지
-			</a>
+			</a></Link>
 		</div>
 	);
 }

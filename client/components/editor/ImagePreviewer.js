@@ -7,10 +7,8 @@ export const API_BASE_URL = process.env.REACT_APP_API_ROOT;
 
 
 const ImagePreviewer = () => {
-	const domain = `${API_BASE_URL}/api/image/`;
-
 	const dispatch = useDispatch();
-	const imageList = useSelector((state) => state.imageList);
+	const imageList = useSelector(state => state.imageList);
 
 	const imageOrFileInput = () => {
 		const renderedList = [];
@@ -44,7 +42,6 @@ const ImagePreviewer = () => {
 				justifyContent={'center'} 
 				alignContent={'center'} 
 				height={'500px'}
-				
 			>
 				<input 
 					key={i} 
@@ -59,7 +56,12 @@ const ImagePreviewer = () => {
 	};
 
 	const imageViewer = (i) => {
-		const image = URL.createObjectURL(imageList[i]);
+		const image = ''
+		if (typeof(imageList[i])==="object"){
+			image = URL.createObjectURL(imageList[i]);
+		}else {
+			image = imageList[i]
+		}
 		return (
 			<img key={i} src={image} style={imgStyle()} onClick={() => {
 				if (window.confirm('삭제 하시겠습니까?')) {

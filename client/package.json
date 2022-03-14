@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "env-cmd -f .env.production next build",
-    "start": "next start",
+    "build": "next build",
+    "start": "next -p 3000",
     "lint": "next lint"
   },
   "dependencies": {
@@ -31,7 +31,7 @@
     "redux": "^4.1.2"
   },
   "devDependencies": {
-    "eslint": "8.10.0",
+    "eslint": "^8.10.0",
     "eslint-config-next": "12.1.0"
   }
 }

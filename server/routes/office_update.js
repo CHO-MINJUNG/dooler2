@@ -50,9 +50,12 @@ router.get('/update/:id', (req, res) => {
   )
   })
   
-  router.post('/update/:id', (req, res) => {
+
+
+  router.post('/update/:id', isLoggedIn, s3.upload.array('image'),  (req, res) => {
     const id = req.params.id;
-    const {contact, fee, location, mainText, title, address} = req.body;  
+    const {contact, deposit, fee, location, mainText, title, zipcode, road, detail} = req.body;  
+    const user_id = req.user.id;
 
     const update_office = {
       office_title: title, 
@@ -60,25 +63,43 @@ router.get('/update/:id', (req, res) => {
       user_id: user_id, 
       user_phone: contact, 
       office_location: location, 
+      address_zipcode: zipcode,
+      address_road: road,
+      address_detail: detail,
+      office_deposit: deposit,
       office_fee: fee, 
-      office_content: mainText,
-      address_zipcode: address.zipcode,
-      address_road: address.road,
-      address_detail: address.detail
+      office_content: mainText
     }
 
-    connection.query(
-      `update Office_Info
-      set office_title=?, thumbnail=?, user_id=?, user_phone=?, office_location=?, office_content=?
-      where office_id =?
-      `,
-      [,id],
-      (err,rows,field) => {
-        if(err) console.log("err: "+err);
-          // res.render('update success');
+    let update_db = async () => {
+      try{
+        await connection.query(
+          `update Office_Info
+          set office_title=?, thumbnail=?, user_id=?, user_phone=?, office_location=?, office_content=?
+          where office_id =${id}
+          `,
+          update_office,
+          (err,rows,field) => {
+            if(err) console.log("err: "+err);
+              // res.render('update success');
+          }
+        )
+
+        for (var img of req.files){
+          await connection.query( 
+            `INSERT INTO Office_Image SET ?`,
+            {office_id: id, 
+              file_name: img.location}
+          )
+        }
+
+      } catch (err) {
+        console.log(err)
+        throw err;
       }
-  
-    )
+    }
+
+    
   })
 
 

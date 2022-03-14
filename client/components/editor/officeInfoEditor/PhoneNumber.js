@@ -1,11 +1,11 @@
 import Typography from "@mui/material/Typography";
 import {TextField} from "@mui/material";
 import React from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const PhoneNumber = () => {
   const dispatch = useDispatch();
-
+  let selector = useSelector(state => state);
   return (
     <div style={{marginTop: '20px'}}>
       <Typography sx={{ fontFamily:"NanumSquareBold",fontSize: 15}} color="black" gutterBottom>
@@ -17,6 +17,7 @@ const PhoneNumber = () => {
         margin={"dense"}
         size="small"
         placeholder="010-0000-0000"
+        value={selector.contact}
         onChange={
           function (e) {
             dispatch({

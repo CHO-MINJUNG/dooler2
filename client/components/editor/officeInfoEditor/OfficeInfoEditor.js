@@ -15,6 +15,7 @@ import MediaQuery from "react-responsive";
 
 const OfficeInfoCard = () => {  
   const dispatch = useDispatch();
+	let selector = useSelector(state => state);
 
   return (
     <React.Fragment>
@@ -29,6 +30,7 @@ const OfficeInfoCard = () => {
         multiline={true}
         minRows={10}
         placeholder={"사무실 소개 글을 적어주세요"}
+        value={selector.mainText}
         onChange={
           function (e) {
             dispatch({
@@ -92,6 +94,7 @@ const OfficeInfoEditor = () => {
               fullWidth
               sx={{
                 height: '45px',
+                fontFamily: 'NanumSquare'
               }}
             >다음 단계로 이동</Button>
           </Grid>

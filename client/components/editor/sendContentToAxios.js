@@ -6,7 +6,7 @@ export const API_BASE_URL = process.env.NEXT_PUBLIC_REACT_APP_API_ROOT;
 const sendContentToAxios = (content) => {
   let formData = new FormData();
   let createSuccess = true;
-
+  console.log(content)
   const num = content.imageList.length;
   for (var i=0; i<num; i++){
     if (content.imageList[i]=== null) break;
@@ -23,14 +23,26 @@ const sendContentToAxios = (content) => {
   formData.append('title', content.title)
   formData.append('zipcode', content.address.zipcode)
 
-  axios({
-    method: 'post',
-    url: `${API_BASE_URL}/api/office_info/create`,
-    data: formData,
-    headers: { "Content-type" : "multipart/form-data"},
-  }).then((response) => {
-    createSuccess = response.data.createSuccess
-  });
+  if (content.postType==='CREATE'){
+    axios({
+      method: 'post',
+      url: `${API_BASE_URL}/api/office_info/create`,
+      data: formData,
+      headers: { "Content-type" : "multipart/form-data"},
+    }).then((response) => {
+      createSuccess = response.data.createSuccess
+    });
+  }
+  else if(content.postType==='UPDATE'){
+    // axios({
+    //   method: 'post',
+    //   url: `${API_BASE_URL}/api/office_info/update/${content.office_id}`,
+    //   data: formData,
+    //   headers: { "Content-type" : "multipart/form-data"},
+    // }).then((response) => {
+    //   createSuccess = response.data.createSuccess
+    // });
+  }
   return createSuccess
 }
 

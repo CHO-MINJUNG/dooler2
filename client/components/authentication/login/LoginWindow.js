@@ -104,7 +104,7 @@ export const LoginWindow = () => {
             </Button>
             <Grid container>
               <Grid item>
-                <Typography variant='body2' sx={{fontFamily:"NanumSquare",display:'inline'}}>계정이 없으신가요? </Typography>
+                <Typography variant='body2' sx={{fontFamily:"NanumSquare", display:'inline'}}>계정이 없으신가요? </Typography>
                 <Link href="/auth/signup" variant="body2">
                   {"회원가입"}
                 </Link>

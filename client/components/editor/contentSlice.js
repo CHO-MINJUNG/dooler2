@@ -9,12 +9,13 @@ const contentReducer = (currentState, action) => {
       title: '',
       contact: '',
       location: '',
-      address: undefined,
+      address: {"zipcode":'', "road": '', "detail":''},
       deposit: undefined,
       fee: undefined,
       addressClassifier: undefined,
       mainText: '',
       imageList: [null, null, null, null],
+      office_id: undefined
     };
   }
 
@@ -53,6 +54,8 @@ const contentReducer = (currentState, action) => {
     case 'ADDRESS_CLASSIFIER_CHANGE':
       newState.addressClassifier = action.addressClassifierDict;
       break;
+    case 'UPDATE_ID_CHANGE':
+      newState.office_id = action.number;
     default:
       console.log('error: content redux error, no type');
   }

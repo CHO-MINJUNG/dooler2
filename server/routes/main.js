@@ -40,9 +40,40 @@ router.get('/pageCount', (req,res) => {
   )
 })
 
-router.get('/:id', (req,res) => {
+router.get('/:id/isUser', (req, res) => {
   let post_user_id = null;
-  
+  var isUserData = {};
+  const id = req.params.id;
+  if(req.isAuthenticated()){
+    // 현재 post를 보낸 사람의 id
+    post_user_id = req.user.id;
+    isUserData.isLoggedIn = true;
+  }else{
+    isUserData.isLoggedIn = false;
+  }
+
+  let user_id = null;
+
+  connection.query(
+    `select user_id
+    from Office_Info
+    where id = ?`,
+    id,
+    (err,rows,field) => {
+      user_id = rows[0].user_id
+        // 사용자와 게시자가 일치하는지
+        if (post_user_id == user_id){
+          isUserData.userIsCorrect = true;
+      } else{
+        isUserData.userIsCorrect = false;
+      }
+      console.log(isUserData)
+      res.send(isUserData)
+    }
+  )
+})
+
+router.get('/:id', (req,res) => {
   const id = req.params.id;
   var officeDataset = {};
   connection.query(
@@ -61,7 +92,9 @@ router.get('/:id', (req,res) => {
     user_id,
     user_phone,
     office_location,
+    address_zipcode,
     address_road,
+    address_detail,
     office_deposit,
     office_fee,
     office_content,
@@ -75,43 +108,19 @@ router.get('/:id', (req,res) => {
     id,
     (err,rows,field) => {
       officeDataset=rows[0];
-      if(req.isAuthenticated()){
-        // 현재 post를 보낸 사람의 id
-        post_user_id = req.user.id;
-      } 
-      // else{
-      //   officeDataset.user_phone = "로그인이 필요합니다"
-      // }
-    }
-  )
-  // 해당 게시물을 작성한 사람의 id
-  let user_id = null;
-
-  connection.query(
-    `select user_id
-    from Office_Info
-    where id = ?`,
-    id,
-    (err,rows,field) => {
-      user_id = rows[0].user_id
-        // 사용자와 게시자가 일치하는지
-        if (post_user_id === user_id){
-        officeDataset.userIsCorrect = true;
-      } else{
-        officeDataset.userIsCorrect = false;
-      }
     }
   )
 
   connection.query(
-    `select file_name
+    `select file_name, id
     from Office_Image
     where office_id = ?`,
     id,
     (err,rows,field) => {
+      console.log(rows)
       var imgList=[];
       for(var data of rows){
-        imgList.push(data.file_name);
+        imgList.push({"id":data.id ,"file_name":data.file_name});
       }
       officeDataset.image_link = imgList
       res.send(officeDataset)
@@ -130,6 +139,7 @@ router.get('/:id/img', (req,res) => {
             res.send(rows);
         }
     )
-});
+  }
+);
 
 module.exports = router;

@@ -26,7 +26,6 @@ const OfficeInfoCard = ({title, content, address}) => {
 const BillLikeCard = ({create_time, views_count, deposit, fee, address, phoneCard, setPhoneCard}) => {
   const phoneButtonClick = () => {
     setPhoneCard(!phoneCard)
-    console.log(phoneCard)
   }
   
   return (

@@ -14,6 +14,7 @@ const connection = db_config.init();
 db_config.connect(connection);
 
 router.get('/session', (req, res) => {
+  console.log(req.isAuthenticated())
   res.send({"isLoggedIn":req.isAuthenticated()});
 })
 
