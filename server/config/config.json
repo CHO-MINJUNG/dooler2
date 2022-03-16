@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "chomjung",
-    "password": "MYBrcl2906!SQL",
+    "password": "Akan0905!?",
     "database": "dooler",
-    "host": "52.79.47.103",
+    "host": "3.38.230.110",
     "dialect": "mysql"
   },
   "test": {
