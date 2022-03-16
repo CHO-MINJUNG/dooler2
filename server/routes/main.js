@@ -128,6 +128,14 @@ router.get('/:id', (req,res) => {
   )
 })
 
+
+router.get('/:id/phoneClick', (req, res) => {
+  const id = req.params.id;
+  connection.query(`
+    update Office_Info set phone_click=phone_click+1 
+    where id = ?`, id)
+})
+
 router.get('/:id/img', (req,res) => {
     const id = req.params.id;
     connection.query(
